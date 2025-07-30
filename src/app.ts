@@ -7,18 +7,23 @@ import { errorHandler } from './middlewares/errorHandler';
 import { config } from './config/config';
 import logger from './utils/logger';
 
+console.log('⚙️  Configuring Express application...');
+
 const app = express();
 
 // Security middleware
+console.log('🛡️  Loading security middleware...');
 app.use(helmet());
 
 // CORS configuration
+console.log('🌐 Configuring CORS...');
 app.use(cors({
   origin: config.cors.allowedOrigins,
   credentials: true,
 }));
 
 // Rate limiting - simplified configuration
+console.log('⏱️  Setting up rate limiting...');
 const limiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
   max: 100, // limit each IP to 100 requests per windowMs
@@ -27,10 +32,12 @@ const limiter = rateLimit({
 app.use(limiter);
 
 // Body parsing middleware
+console.log('📝 Configuring body parsers...');
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 
 // Request logging
+console.log('📊 Setting up request logging...');
 app.use((req, _res, next) => {
   logger.info(`${req.method} ${req.path}`, {
     ip: req.ip,
@@ -40,6 +47,7 @@ app.use((req, _res, next) => {
 });
 
 // Health check endpoint
+console.log('🏥 Setting up health check endpoint...');
 app.get('/health', (_req, res) => {
   res.json({
     status: '🌈 All good! Samanvi backend is happy and healthy! 🐾',
@@ -66,14 +74,19 @@ app.get('/health', (_req, res) => {
 });
 
 // API routes
+console.log('🛣️  Setting up API routes...');
 app.use('/api/users', userRoutes);
 
 // 404 handler
+console.log('❓ Setting up 404 handler...');
 app.use((_req, res) => {
   res.status(404).json({ message: 'Route not found' });
 });
 
 // Error handling middleware (must be last)
+console.log('🚨 Setting up error handler...');
 app.use(errorHandler);
+
+console.log('✅ Express application configured successfully!');
 
 export default app;

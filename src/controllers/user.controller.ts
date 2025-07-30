@@ -7,6 +7,7 @@ import logger from '../utils/logger';
 
 export const getUsers = async (_: Request, res: Response, next: NextFunction): Promise<void> => {
   try {
+    console.log('👥 Fetching all users...');
     const users = await prisma.user.findMany({
       where: { isActive: true },
       select: { 
@@ -17,6 +18,7 @@ export const getUsers = async (_: Request, res: Response, next: NextFunction): P
         updatedAt: true 
       }
     });
+    console.log(`✅ Found ${users.length} active users`);
     res.json(users);
   } catch (error) {
     next(error);
@@ -28,6 +30,7 @@ export const getUserById = async (req: Request, res: Response, next: NextFunctio
     const { id } = userIdSchema.parse({ id: req.params.id });
     const userId = parseInt(id);
     
+    console.log(`🔍 Looking for user with ID: ${userId}`);
     const user = await prisma.user.findFirst({
       where: { id: userId, isActive: true },
       select: { 
@@ -40,9 +43,11 @@ export const getUserById = async (req: Request, res: Response, next: NextFunctio
     });
 
     if (!user) {
+      console.log(`❌ User with ID ${userId} not found`);
       throw createError('User not found', 404);
     }
 
+    console.log(`✅ Found user: ${user.username} (ID: ${user.id})`);
     res.json(user);
   } catch (error) {
     next(error);
@@ -52,6 +57,8 @@ export const getUserById = async (req: Request, res: Response, next: NextFunctio
 export const addUser = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
   try {
     const data = userSchema.parse(req.body);
+    
+    console.log(`➕ Creating new user: ${data.username}`);
     
     // Check if user already exists
     const existingUser = await prisma.user.findFirst({
@@ -64,10 +71,12 @@ export const addUser = async (req: Request, res: Response, next: NextFunction): 
     });
 
     if (existingUser) {
+      console.log(`❌ User already exists: ${data.username}`);
       throw createError('Username or email already exists', 409);
     }
 
     // Hash password
+    console.log('🔐 Hashing password...');
     const hashedPassword = await AuthService.hashPassword(data.password);
 
     const user = await prisma.user.create({
@@ -84,6 +93,7 @@ export const addUser = async (req: Request, res: Response, next: NextFunction): 
       }
     });
 
+    console.log(`✅ User created successfully: ${user.username} (ID: ${user.id})`);
     logger.info('User created successfully', { userId: user.id, username: user.username });
     res.status(201).json(user);
   } catch (error) {
@@ -97,12 +107,15 @@ export const updateUser = async (req: Request, res: Response, next: NextFunction
     const userId = parseInt(id);
     const data = updateUserSchema.parse(req.body);
 
+    console.log(`✏️  Updating user with ID: ${userId}`);
+
     // Check if user exists and is active
     const existingUser = await prisma.user.findFirst({
       where: { id: userId, isActive: true }
     });
 
     if (!existingUser) {
+      console.log(`❌ User with ID ${userId} not found`);
       throw createError('User not found', 404);
     }
 
@@ -119,6 +132,7 @@ export const updateUser = async (req: Request, res: Response, next: NextFunction
       });
 
       if (conflictUser) {
+        console.log(`❌ Username/email conflict for user ID ${userId}`);
         throw createError('Username or email already exists', 409);
       }
     }
@@ -126,6 +140,7 @@ export const updateUser = async (req: Request, res: Response, next: NextFunction
     // Hash password if provided
     let hashedPassword: string | undefined;
     if (data.password) {
+      console.log('🔐 Hashing new password...');
       hashedPassword = await AuthService.hashPassword(data.password);
     }
 
@@ -145,6 +160,7 @@ export const updateUser = async (req: Request, res: Response, next: NextFunction
       }
     });
 
+    console.log(`✅ User updated successfully: ${user.username} (ID: ${user.id})`);
     logger.info('User updated successfully', { userId: user.id, username: user.username });
     res.json(user);
   } catch (error) {
@@ -157,12 +173,15 @@ export const deleteUser = async (req: Request, res: Response, next: NextFunction
     const { id } = userIdSchema.parse({ id: req.params.id });
     const userId = parseInt(id);
 
+    console.log(`🗑️  Soft deleting user with ID: ${userId}`);
+
     // Check if user exists and is active
     const existingUser = await prisma.user.findFirst({
       where: { id: userId, isActive: true }
     });
 
     if (!existingUser) {
+      console.log(`❌ User with ID ${userId} not found`);
       throw createError('User not found', 404);
     }
 
@@ -172,6 +191,7 @@ export const deleteUser = async (req: Request, res: Response, next: NextFunction
       data: { isActive: false }
     });
 
+    console.log(`✅ User soft deleted successfully: ${existingUser.username} (ID: ${userId})`);
     logger.info('User deleted successfully', { userId });
     res.sendStatus(204);
   } catch (error) {
@@ -183,6 +203,8 @@ export const loginUser = async (req: Request, res: Response, next: NextFunction)
   try {
     const data = loginSchema.parse(req.body);
     
+    console.log(`🔑 Login attempt for user: ${data.username}`);
+    
     const user = await prisma.user.findFirst({
       where: { 
         username: data.username,
@@ -191,15 +213,19 @@ export const loginUser = async (req: Request, res: Response, next: NextFunction)
     });
 
     if (!user) {
+      console.log(`❌ Login failed: User not found - ${data.username}`);
       throw createError('Invalid credentials', 401);
     }
 
+    console.log('🔐 Verifying password...');
     const isPasswordValid = await AuthService.comparePassword(data.password, user.password);
     
     if (!isPasswordValid) {
+      console.log(`❌ Login failed: Invalid password for user - ${data.username}`);
       throw createError('Invalid credentials', 401);
     }
 
+    console.log(`✅ Login successful: ${user.username} (ID: ${user.id})`);
     logger.info('User logged in successfully', { userId: user.id, username: user.username });
     res.json({
       message: 'Login successful',
