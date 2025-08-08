@@ -17,9 +17,26 @@ app.use(helmet());
 
 // CORS configuration
 console.log('🌐 Configuring CORS...');
+console.log('🌐 Allowed origins:', config.cors.allowedOrigins);
+
 app.use(cors({
-  origin: config.cors.allowedOrigins,
+  origin: function (origin, callback) {
+    // Allow requests with no origin (like mobile apps or curl requests)
+    if (!origin) return callback(null, true);
+    
+    console.log('🌐 Request origin:', origin);
+    
+    if (config.cors.allowedOrigins.indexOf(origin) !== -1) {
+      console.log('✅ Origin allowed:', origin);
+      callback(null, true);
+    } else {
+      console.log('❌ Origin blocked:', origin);
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
   credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With'],
 }));
 
 // Rate limiting - simplified configuration

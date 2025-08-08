@@ -19,7 +19,18 @@ export const config = {
   
   // CORS Configuration
   cors: {
-    allowedOrigins: process.env.ALLOWED_ORIGINS?.split(',') || ['http://localhost:3000'],
+    allowedOrigins: process.env.ALLOWED_ORIGINS?.split(',') || [
+      'http://localhost:3000',
+      'http://localhost:3001',
+      'http://localhost:5173',
+      'http://localhost:8080',
+      'http://127.0.0.1:3000',
+      'http://127.0.0.1:3001',
+      'http://127.0.0.1:5173',
+      'https://samanvi-backend.vercel.app',
+      'https://samanvi-frontend.vercel.app',
+      'https://samanvi-frontend-git-main-samanvi-frontend.vercel.app'
+    ],
   },
   
   // Rate Limiting
