@@ -10,16 +10,16 @@ export const getUsers = async (_: Request, res: Response, next: NextFunction): P
     console.log('👥 Fetching all users...');
     const users = await prisma.user.findMany({
       where: { isActive: true },
-      select: { 
-        id: true, 
-        username: true, 
+      select: {
+        id: true,
+        username: true,
         email: true,
         createdAt: true,
-        updatedAt: true 
+        updatedAt: true
       }
     });
     console.log(`✅ Found ${users.length} active users`);
-    res.json(users);
+    res.status(200).json({ message: 'Users fetched successfully', users });
   } catch (error) {
     next(error);
   }
@@ -29,16 +29,16 @@ export const getUserById = async (req: Request, res: Response, next: NextFunctio
   try {
     const { id } = userIdSchema.parse({ id: req.params.id });
     const userId = parseInt(id);
-    
+
     console.log(`🔍 Looking for user with ID: ${userId}`);
     const user = await prisma.user.findFirst({
       where: { id: userId, isActive: true },
-      select: { 
-        id: true, 
-        username: true, 
+      select: {
+        id: true,
+        username: true,
         email: true,
         createdAt: true,
-        updatedAt: true 
+        updatedAt: true
       }
     });
 
@@ -57,9 +57,9 @@ export const getUserById = async (req: Request, res: Response, next: NextFunctio
 export const addUser = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
   try {
     const data = userSchema.parse(req.body);
-    
+
     console.log(`➕ Creating new user: ${data.username}`);
-    
+
     // Check if user already exists
     const existingUser = await prisma.user.findFirst({
       where: {
@@ -85,17 +85,17 @@ export const addUser = async (req: Request, res: Response, next: NextFunction): 
         password: hashedPassword,
         email: data.email,
       },
-      select: { 
-        id: true, 
-        username: true, 
+      select: {
+        id: true,
+        username: true,
         email: true,
-        createdAt: true 
+        createdAt: true
       }
     });
 
     console.log(`✅ User created successfully: ${user.username} (ID: ${user.id})`);
     logger.info('User created successfully', { userId: user.id, username: user.username });
-    res.status(201).json(user);
+    res.status(201).json({ message: 'User created successfully', user });
   } catch (error) {
     next(error);
   }
@@ -152,17 +152,17 @@ export const updateUser = async (req: Request, res: Response, next: NextFunction
     const user = await prisma.user.update({
       where: { id: userId },
       data: updateData,
-      select: { 
-        id: true, 
-        username: true, 
+      select: {
+        id: true,
+        username: true,
         email: true,
-        updatedAt: true 
+        updatedAt: true
       }
     });
 
     console.log(`✅ User updated successfully: ${user.username} (ID: ${user.id})`);
     logger.info('User updated successfully', { userId: user.id, username: user.username });
-    res.json(user);
+    res.status(200).json({ message: 'User updated successfully', user });
   } catch (error) {
     next(error);
   }
@@ -193,7 +193,7 @@ export const deleteUser = async (req: Request, res: Response, next: NextFunction
 
     console.log(`✅ User soft deleted successfully: ${existingUser.username} (ID: ${userId})`);
     logger.info('User deleted successfully', { userId });
-    res.sendStatus(204);
+    res.status(204).json({ message: 'User deleted successfully' });
   } catch (error) {
     next(error);
   }
@@ -202,32 +202,34 @@ export const deleteUser = async (req: Request, res: Response, next: NextFunction
 export const loginUser = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
   try {
     const data = loginSchema.parse(req.body);
-    
+
     console.log(`🔑 Login attempt for user: ${data.username}`);
-    
+
     const user = await prisma.user.findFirst({
-      where: { 
+      where: {
         username: data.username,
-        isActive: true 
+        isActive: true
       }
     });
 
     if (!user) {
       console.log(`❌ Login failed: User not found - ${data.username}`);
+      res.status(401).json({ message: 'Login failed User not found' });
       throw createError('Invalid credentials', 401);
     }
 
     console.log('🔐 Verifying password...');
     const isPasswordValid = await AuthService.comparePassword(data.password, user.password);
-    
+
     if (!isPasswordValid) {
       console.log(`❌ Login failed: Invalid password for user - ${data.username}`);
+      res.status(401).json({ message: 'Login failed Invalid password' });
       throw createError('Invalid credentials', 401);
     }
 
     console.log(`✅ Login successful: ${user.username} (ID: ${user.id})`);
     logger.info('User logged in successfully', { userId: user.id, username: user.username });
-    res.json({
+    res.status(200).json({
       message: 'Login successful',
       user: {
         id: user.id,
