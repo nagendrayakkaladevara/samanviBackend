@@ -9,7 +9,7 @@ export const getUsers = async (_: Request, res: Response, next: NextFunction): P
   try {
     console.log('👥 Fetching all users...');
     const users = await prisma.user.findMany({
-      where: { isActive: true },
+      // where: { isActive: true },
       select: {
         id: true,
         username: true,
