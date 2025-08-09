@@ -34,7 +34,7 @@ export const getUserById = async (req: Request, res: Response, next: NextFunctio
 
     console.log(`🔍 Looking for user with ID: ${userId}`);
     const user = await prisma.user.findFirst({
-      where: { id: userId, isActive: true },
+      where: { id: userId },
       select: {
         id: true,
         username: true,
@@ -47,6 +47,7 @@ export const getUserById = async (req: Request, res: Response, next: NextFunctio
 
     if (!user) {
       console.log(`❌ User with ID ${userId} not found`);
+      res.status(404).json({ message: 'User not found' });
       throw createError('User not found', 404);
     }
 
@@ -119,6 +120,7 @@ export const updateUser = async (req: Request, res: Response, next: NextFunction
 
     if (!existingUser) {
       console.log(`❌ User with ID ${userId} not found`);
+      res.status(404).json({ message: 'User not found' });
       throw createError('User not found', 404);
     }
 
@@ -180,18 +182,18 @@ export const deleteUser = async (req: Request, res: Response, next: NextFunction
 
     // Check if user exists and is active
     const existingUser = await prisma.user.findFirst({
-      where: { id: userId, isActive: true }
+      where: { id: userId }
     });
 
     if (!existingUser) {
       console.log(`❌ User with ID ${userId} not found`);
-      throw createError('User not found', 404);
+      res.status(404).json({ message: 'User not found' });
+      return;
     }
 
-    // Soft delete by setting isActive to false
-    await prisma.user.update({
-      where: { id: userId },
-      data: { isActive: false }
+    // Delete user
+    await prisma.user.delete({
+      where: { id: userId }
     });
 
     console.log(`✅ User soft deleted successfully: ${existingUser.username} (ID: ${userId})`);
