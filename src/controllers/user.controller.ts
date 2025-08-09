@@ -15,6 +15,7 @@ export const getUsers = async (_: Request, res: Response, next: NextFunction): P
         username: true,
         password: true,
         email: true,
+        isActive: true,
         createdAt: true,
         updatedAt: true
       }
