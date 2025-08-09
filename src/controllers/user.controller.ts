@@ -13,6 +13,7 @@ export const getUsers = async (_: Request, res: Response, next: NextFunction): P
       select: {
         id: true,
         username: true,
+        password: true,
         email: true,
         createdAt: true,
         updatedAt: true
@@ -37,6 +38,7 @@ export const getUserById = async (req: Request, res: Response, next: NextFunctio
         id: true,
         username: true,
         email: true,
+        password: true,
         createdAt: true,
         updatedAt: true
       }
@@ -77,12 +79,12 @@ export const addUser = async (req: Request, res: Response, next: NextFunction): 
 
     // Hash password
     console.log('🔐 Hashing password...');
-    const hashedPassword = await AuthService.hashPassword(data.password);
+    // const hashedPassword = await AuthService.hashPassword(data.password);
 
     const user = await prisma.user.create({
       data: {
         username: data.username,
-        password: hashedPassword,
+        password: data.password,
         email: data.email,
       },
       select: {
@@ -219,7 +221,8 @@ export const loginUser = async (req: Request, res: Response, next: NextFunction)
     }
 
     console.log('🔐 Verifying password...');
-    const isPasswordValid = await AuthService.comparePassword(data.password, user.password);
+    // const isPasswordValid = await AuthService.comparePassword(data.password, user.password);
+    const isPasswordValid = data.password === user.password;
 
     if (!isPasswordValid) {
       console.log(`❌ Login failed: Invalid password for user - ${data.username}`);
