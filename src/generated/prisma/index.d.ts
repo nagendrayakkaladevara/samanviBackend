@@ -18,6 +18,21 @@ export type PrismaPromise<T> = $Public.PrismaPromise<T>
  * 
  */
 export type User = $Result.DefaultSelection<Prisma.$UserPayload>
+/**
+ * Model Bus
+ * 
+ */
+export type Bus = $Result.DefaultSelection<Prisma.$BusPayload>
+/**
+ * Model DocumentType
+ * 
+ */
+export type DocumentType = $Result.DefaultSelection<Prisma.$DocumentTypePayload>
+/**
+ * Model BusDocument
+ * 
+ */
+export type BusDocument = $Result.DefaultSelection<Prisma.$BusDocumentPayload>
 
 /**
  * ##  Prisma Client ʲˢ
@@ -153,6 +168,36 @@ export class PrismaClient<
     * ```
     */
   get user(): Prisma.UserDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.bus`: Exposes CRUD operations for the **Bus** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Buses
+    * const buses = await prisma.bus.findMany()
+    * ```
+    */
+  get bus(): Prisma.BusDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.documentType`: Exposes CRUD operations for the **DocumentType** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more DocumentTypes
+    * const documentTypes = await prisma.documentType.findMany()
+    * ```
+    */
+  get documentType(): Prisma.DocumentTypeDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.busDocument`: Exposes CRUD operations for the **BusDocument** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more BusDocuments
+    * const busDocuments = await prisma.busDocument.findMany()
+    * ```
+    */
+  get busDocument(): Prisma.BusDocumentDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -593,7 +638,10 @@ export namespace Prisma {
 
 
   export const ModelName: {
-    User: 'User'
+    User: 'User',
+    Bus: 'Bus',
+    DocumentType: 'DocumentType',
+    BusDocument: 'BusDocument'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -612,7 +660,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user"
+      modelProps: "user" | "bus" | "documentType" | "busDocument"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -687,6 +735,228 @@ export namespace Prisma {
           count: {
             args: Prisma.UserCountArgs<ExtArgs>
             result: $Utils.Optional<UserCountAggregateOutputType> | number
+          }
+        }
+      }
+      Bus: {
+        payload: Prisma.$BusPayload<ExtArgs>
+        fields: Prisma.BusFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.BusFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BusPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.BusFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BusPayload>
+          }
+          findFirst: {
+            args: Prisma.BusFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BusPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.BusFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BusPayload>
+          }
+          findMany: {
+            args: Prisma.BusFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BusPayload>[]
+          }
+          create: {
+            args: Prisma.BusCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BusPayload>
+          }
+          createMany: {
+            args: Prisma.BusCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.BusCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BusPayload>[]
+          }
+          delete: {
+            args: Prisma.BusDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BusPayload>
+          }
+          update: {
+            args: Prisma.BusUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BusPayload>
+          }
+          deleteMany: {
+            args: Prisma.BusDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.BusUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.BusUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BusPayload>[]
+          }
+          upsert: {
+            args: Prisma.BusUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BusPayload>
+          }
+          aggregate: {
+            args: Prisma.BusAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateBus>
+          }
+          groupBy: {
+            args: Prisma.BusGroupByArgs<ExtArgs>
+            result: $Utils.Optional<BusGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.BusCountArgs<ExtArgs>
+            result: $Utils.Optional<BusCountAggregateOutputType> | number
+          }
+        }
+      }
+      DocumentType: {
+        payload: Prisma.$DocumentTypePayload<ExtArgs>
+        fields: Prisma.DocumentTypeFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.DocumentTypeFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DocumentTypePayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.DocumentTypeFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DocumentTypePayload>
+          }
+          findFirst: {
+            args: Prisma.DocumentTypeFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DocumentTypePayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.DocumentTypeFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DocumentTypePayload>
+          }
+          findMany: {
+            args: Prisma.DocumentTypeFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DocumentTypePayload>[]
+          }
+          create: {
+            args: Prisma.DocumentTypeCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DocumentTypePayload>
+          }
+          createMany: {
+            args: Prisma.DocumentTypeCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.DocumentTypeCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DocumentTypePayload>[]
+          }
+          delete: {
+            args: Prisma.DocumentTypeDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DocumentTypePayload>
+          }
+          update: {
+            args: Prisma.DocumentTypeUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DocumentTypePayload>
+          }
+          deleteMany: {
+            args: Prisma.DocumentTypeDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.DocumentTypeUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.DocumentTypeUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DocumentTypePayload>[]
+          }
+          upsert: {
+            args: Prisma.DocumentTypeUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$DocumentTypePayload>
+          }
+          aggregate: {
+            args: Prisma.DocumentTypeAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateDocumentType>
+          }
+          groupBy: {
+            args: Prisma.DocumentTypeGroupByArgs<ExtArgs>
+            result: $Utils.Optional<DocumentTypeGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.DocumentTypeCountArgs<ExtArgs>
+            result: $Utils.Optional<DocumentTypeCountAggregateOutputType> | number
+          }
+        }
+      }
+      BusDocument: {
+        payload: Prisma.$BusDocumentPayload<ExtArgs>
+        fields: Prisma.BusDocumentFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.BusDocumentFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BusDocumentPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.BusDocumentFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BusDocumentPayload>
+          }
+          findFirst: {
+            args: Prisma.BusDocumentFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BusDocumentPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.BusDocumentFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BusDocumentPayload>
+          }
+          findMany: {
+            args: Prisma.BusDocumentFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BusDocumentPayload>[]
+          }
+          create: {
+            args: Prisma.BusDocumentCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BusDocumentPayload>
+          }
+          createMany: {
+            args: Prisma.BusDocumentCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.BusDocumentCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BusDocumentPayload>[]
+          }
+          delete: {
+            args: Prisma.BusDocumentDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BusDocumentPayload>
+          }
+          update: {
+            args: Prisma.BusDocumentUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BusDocumentPayload>
+          }
+          deleteMany: {
+            args: Prisma.BusDocumentDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.BusDocumentUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.BusDocumentUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BusDocumentPayload>[]
+          }
+          upsert: {
+            args: Prisma.BusDocumentUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BusDocumentPayload>
+          }
+          aggregate: {
+            args: Prisma.BusDocumentAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateBusDocument>
+          }
+          groupBy: {
+            args: Prisma.BusDocumentGroupByArgs<ExtArgs>
+            result: $Utils.Optional<BusDocumentGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.BusDocumentCountArgs<ExtArgs>
+            result: $Utils.Optional<BusDocumentCountAggregateOutputType> | number
           }
         }
       }
@@ -783,6 +1053,9 @@ export namespace Prisma {
   }
   export type GlobalOmitConfig = {
     user?: UserOmit
+    bus?: BusOmit
+    documentType?: DocumentTypeOmit
+    busDocument?: BusDocumentOmit
   }
 
   /* Types for Logging */
@@ -876,6 +1149,67 @@ export namespace Prisma {
    * Count Types
    */
 
+
+  /**
+   * Count Type BusCountOutputType
+   */
+
+  export type BusCountOutputType = {
+    documents: number
+  }
+
+  export type BusCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    documents?: boolean | BusCountOutputTypeCountDocumentsArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * BusCountOutputType without action
+   */
+  export type BusCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BusCountOutputType
+     */
+    select?: BusCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * BusCountOutputType without action
+   */
+  export type BusCountOutputTypeCountDocumentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: BusDocumentWhereInput
+  }
+
+
+  /**
+   * Count Type DocumentTypeCountOutputType
+   */
+
+  export type DocumentTypeCountOutputType = {
+    documents: number
+  }
+
+  export type DocumentTypeCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    documents?: boolean | DocumentTypeCountOutputTypeCountDocumentsArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * DocumentTypeCountOutputType without action
+   */
+  export type DocumentTypeCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DocumentTypeCountOutputType
+     */
+    select?: DocumentTypeCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * DocumentTypeCountOutputType without action
+   */
+  export type DocumentTypeCountOutputTypeCountDocumentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: BusDocumentWhereInput
+  }
 
 
   /**
@@ -1938,6 +2272,3337 @@ export namespace Prisma {
 
 
   /**
+   * Model Bus
+   */
+
+  export type AggregateBus = {
+    _count: BusCountAggregateOutputType | null
+    _avg: BusAvgAggregateOutputType | null
+    _sum: BusSumAggregateOutputType | null
+    _min: BusMinAggregateOutputType | null
+    _max: BusMaxAggregateOutputType | null
+  }
+
+  export type BusAvgAggregateOutputType = {
+    yearOfMake: number | null
+  }
+
+  export type BusSumAggregateOutputType = {
+    yearOfMake: number | null
+  }
+
+  export type BusMinAggregateOutputType = {
+    id: string | null
+    registrationNo: string | null
+    model: string | null
+    manufacturer: string | null
+    yearOfMake: number | null
+    ownerName: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type BusMaxAggregateOutputType = {
+    id: string | null
+    registrationNo: string | null
+    model: string | null
+    manufacturer: string | null
+    yearOfMake: number | null
+    ownerName: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type BusCountAggregateOutputType = {
+    id: number
+    registrationNo: number
+    model: number
+    manufacturer: number
+    yearOfMake: number
+    ownerName: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type BusAvgAggregateInputType = {
+    yearOfMake?: true
+  }
+
+  export type BusSumAggregateInputType = {
+    yearOfMake?: true
+  }
+
+  export type BusMinAggregateInputType = {
+    id?: true
+    registrationNo?: true
+    model?: true
+    manufacturer?: true
+    yearOfMake?: true
+    ownerName?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type BusMaxAggregateInputType = {
+    id?: true
+    registrationNo?: true
+    model?: true
+    manufacturer?: true
+    yearOfMake?: true
+    ownerName?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type BusCountAggregateInputType = {
+    id?: true
+    registrationNo?: true
+    model?: true
+    manufacturer?: true
+    yearOfMake?: true
+    ownerName?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type BusAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Bus to aggregate.
+     */
+    where?: BusWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Buses to fetch.
+     */
+    orderBy?: BusOrderByWithRelationInput | BusOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: BusWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Buses from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Buses.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Buses
+    **/
+    _count?: true | BusCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: BusAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: BusSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: BusMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: BusMaxAggregateInputType
+  }
+
+  export type GetBusAggregateType<T extends BusAggregateArgs> = {
+        [P in keyof T & keyof AggregateBus]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateBus[P]>
+      : GetScalarType<T[P], AggregateBus[P]>
+  }
+
+
+
+
+  export type BusGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: BusWhereInput
+    orderBy?: BusOrderByWithAggregationInput | BusOrderByWithAggregationInput[]
+    by: BusScalarFieldEnum[] | BusScalarFieldEnum
+    having?: BusScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: BusCountAggregateInputType | true
+    _avg?: BusAvgAggregateInputType
+    _sum?: BusSumAggregateInputType
+    _min?: BusMinAggregateInputType
+    _max?: BusMaxAggregateInputType
+  }
+
+  export type BusGroupByOutputType = {
+    id: string
+    registrationNo: string
+    model: string | null
+    manufacturer: string | null
+    yearOfMake: number | null
+    ownerName: string | null
+    createdAt: Date
+    updatedAt: Date
+    _count: BusCountAggregateOutputType | null
+    _avg: BusAvgAggregateOutputType | null
+    _sum: BusSumAggregateOutputType | null
+    _min: BusMinAggregateOutputType | null
+    _max: BusMaxAggregateOutputType | null
+  }
+
+  type GetBusGroupByPayload<T extends BusGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<BusGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof BusGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], BusGroupByOutputType[P]>
+            : GetScalarType<T[P], BusGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type BusSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    registrationNo?: boolean
+    model?: boolean
+    manufacturer?: boolean
+    yearOfMake?: boolean
+    ownerName?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    documents?: boolean | Bus$documentsArgs<ExtArgs>
+    _count?: boolean | BusCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["bus"]>
+
+  export type BusSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    registrationNo?: boolean
+    model?: boolean
+    manufacturer?: boolean
+    yearOfMake?: boolean
+    ownerName?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["bus"]>
+
+  export type BusSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    registrationNo?: boolean
+    model?: boolean
+    manufacturer?: boolean
+    yearOfMake?: boolean
+    ownerName?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["bus"]>
+
+  export type BusSelectScalar = {
+    id?: boolean
+    registrationNo?: boolean
+    model?: boolean
+    manufacturer?: boolean
+    yearOfMake?: boolean
+    ownerName?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type BusOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "registrationNo" | "model" | "manufacturer" | "yearOfMake" | "ownerName" | "createdAt" | "updatedAt", ExtArgs["result"]["bus"]>
+  export type BusInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    documents?: boolean | Bus$documentsArgs<ExtArgs>
+    _count?: boolean | BusCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type BusIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+  export type BusIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+
+  export type $BusPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Bus"
+    objects: {
+      documents: Prisma.$BusDocumentPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      registrationNo: string
+      model: string | null
+      manufacturer: string | null
+      yearOfMake: number | null
+      ownerName: string | null
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["bus"]>
+    composites: {}
+  }
+
+  type BusGetPayload<S extends boolean | null | undefined | BusDefaultArgs> = $Result.GetResult<Prisma.$BusPayload, S>
+
+  type BusCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<BusFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: BusCountAggregateInputType | true
+    }
+
+  export interface BusDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Bus'], meta: { name: 'Bus' } }
+    /**
+     * Find zero or one Bus that matches the filter.
+     * @param {BusFindUniqueArgs} args - Arguments to find a Bus
+     * @example
+     * // Get one Bus
+     * const bus = await prisma.bus.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends BusFindUniqueArgs>(args: SelectSubset<T, BusFindUniqueArgs<ExtArgs>>): Prisma__BusClient<$Result.GetResult<Prisma.$BusPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Bus that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {BusFindUniqueOrThrowArgs} args - Arguments to find a Bus
+     * @example
+     * // Get one Bus
+     * const bus = await prisma.bus.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends BusFindUniqueOrThrowArgs>(args: SelectSubset<T, BusFindUniqueOrThrowArgs<ExtArgs>>): Prisma__BusClient<$Result.GetResult<Prisma.$BusPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Bus that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BusFindFirstArgs} args - Arguments to find a Bus
+     * @example
+     * // Get one Bus
+     * const bus = await prisma.bus.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends BusFindFirstArgs>(args?: SelectSubset<T, BusFindFirstArgs<ExtArgs>>): Prisma__BusClient<$Result.GetResult<Prisma.$BusPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Bus that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BusFindFirstOrThrowArgs} args - Arguments to find a Bus
+     * @example
+     * // Get one Bus
+     * const bus = await prisma.bus.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends BusFindFirstOrThrowArgs>(args?: SelectSubset<T, BusFindFirstOrThrowArgs<ExtArgs>>): Prisma__BusClient<$Result.GetResult<Prisma.$BusPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Buses that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BusFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Buses
+     * const buses = await prisma.bus.findMany()
+     * 
+     * // Get first 10 Buses
+     * const buses = await prisma.bus.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const busWithIdOnly = await prisma.bus.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends BusFindManyArgs>(args?: SelectSubset<T, BusFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BusPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Bus.
+     * @param {BusCreateArgs} args - Arguments to create a Bus.
+     * @example
+     * // Create one Bus
+     * const Bus = await prisma.bus.create({
+     *   data: {
+     *     // ... data to create a Bus
+     *   }
+     * })
+     * 
+     */
+    create<T extends BusCreateArgs>(args: SelectSubset<T, BusCreateArgs<ExtArgs>>): Prisma__BusClient<$Result.GetResult<Prisma.$BusPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Buses.
+     * @param {BusCreateManyArgs} args - Arguments to create many Buses.
+     * @example
+     * // Create many Buses
+     * const bus = await prisma.bus.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends BusCreateManyArgs>(args?: SelectSubset<T, BusCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Buses and returns the data saved in the database.
+     * @param {BusCreateManyAndReturnArgs} args - Arguments to create many Buses.
+     * @example
+     * // Create many Buses
+     * const bus = await prisma.bus.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Buses and only return the `id`
+     * const busWithIdOnly = await prisma.bus.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends BusCreateManyAndReturnArgs>(args?: SelectSubset<T, BusCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BusPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Bus.
+     * @param {BusDeleteArgs} args - Arguments to delete one Bus.
+     * @example
+     * // Delete one Bus
+     * const Bus = await prisma.bus.delete({
+     *   where: {
+     *     // ... filter to delete one Bus
+     *   }
+     * })
+     * 
+     */
+    delete<T extends BusDeleteArgs>(args: SelectSubset<T, BusDeleteArgs<ExtArgs>>): Prisma__BusClient<$Result.GetResult<Prisma.$BusPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Bus.
+     * @param {BusUpdateArgs} args - Arguments to update one Bus.
+     * @example
+     * // Update one Bus
+     * const bus = await prisma.bus.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends BusUpdateArgs>(args: SelectSubset<T, BusUpdateArgs<ExtArgs>>): Prisma__BusClient<$Result.GetResult<Prisma.$BusPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Buses.
+     * @param {BusDeleteManyArgs} args - Arguments to filter Buses to delete.
+     * @example
+     * // Delete a few Buses
+     * const { count } = await prisma.bus.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends BusDeleteManyArgs>(args?: SelectSubset<T, BusDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Buses.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BusUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Buses
+     * const bus = await prisma.bus.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends BusUpdateManyArgs>(args: SelectSubset<T, BusUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Buses and returns the data updated in the database.
+     * @param {BusUpdateManyAndReturnArgs} args - Arguments to update many Buses.
+     * @example
+     * // Update many Buses
+     * const bus = await prisma.bus.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Buses and only return the `id`
+     * const busWithIdOnly = await prisma.bus.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends BusUpdateManyAndReturnArgs>(args: SelectSubset<T, BusUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BusPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Bus.
+     * @param {BusUpsertArgs} args - Arguments to update or create a Bus.
+     * @example
+     * // Update or create a Bus
+     * const bus = await prisma.bus.upsert({
+     *   create: {
+     *     // ... data to create a Bus
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Bus we want to update
+     *   }
+     * })
+     */
+    upsert<T extends BusUpsertArgs>(args: SelectSubset<T, BusUpsertArgs<ExtArgs>>): Prisma__BusClient<$Result.GetResult<Prisma.$BusPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Buses.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BusCountArgs} args - Arguments to filter Buses to count.
+     * @example
+     * // Count the number of Buses
+     * const count = await prisma.bus.count({
+     *   where: {
+     *     // ... the filter for the Buses we want to count
+     *   }
+     * })
+    **/
+    count<T extends BusCountArgs>(
+      args?: Subset<T, BusCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], BusCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Bus.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BusAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends BusAggregateArgs>(args: Subset<T, BusAggregateArgs>): Prisma.PrismaPromise<GetBusAggregateType<T>>
+
+    /**
+     * Group by Bus.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BusGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends BusGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: BusGroupByArgs['orderBy'] }
+        : { orderBy?: BusGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, BusGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetBusGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Bus model
+   */
+  readonly fields: BusFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Bus.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__BusClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    documents<T extends Bus$documentsArgs<ExtArgs> = {}>(args?: Subset<T, Bus$documentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BusDocumentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Bus model
+   */
+  interface BusFieldRefs {
+    readonly id: FieldRef<"Bus", 'String'>
+    readonly registrationNo: FieldRef<"Bus", 'String'>
+    readonly model: FieldRef<"Bus", 'String'>
+    readonly manufacturer: FieldRef<"Bus", 'String'>
+    readonly yearOfMake: FieldRef<"Bus", 'Int'>
+    readonly ownerName: FieldRef<"Bus", 'String'>
+    readonly createdAt: FieldRef<"Bus", 'DateTime'>
+    readonly updatedAt: FieldRef<"Bus", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Bus findUnique
+   */
+  export type BusFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Bus
+     */
+    select?: BusSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Bus
+     */
+    omit?: BusOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BusInclude<ExtArgs> | null
+    /**
+     * Filter, which Bus to fetch.
+     */
+    where: BusWhereUniqueInput
+  }
+
+  /**
+   * Bus findUniqueOrThrow
+   */
+  export type BusFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Bus
+     */
+    select?: BusSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Bus
+     */
+    omit?: BusOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BusInclude<ExtArgs> | null
+    /**
+     * Filter, which Bus to fetch.
+     */
+    where: BusWhereUniqueInput
+  }
+
+  /**
+   * Bus findFirst
+   */
+  export type BusFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Bus
+     */
+    select?: BusSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Bus
+     */
+    omit?: BusOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BusInclude<ExtArgs> | null
+    /**
+     * Filter, which Bus to fetch.
+     */
+    where?: BusWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Buses to fetch.
+     */
+    orderBy?: BusOrderByWithRelationInput | BusOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Buses.
+     */
+    cursor?: BusWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Buses from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Buses.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Buses.
+     */
+    distinct?: BusScalarFieldEnum | BusScalarFieldEnum[]
+  }
+
+  /**
+   * Bus findFirstOrThrow
+   */
+  export type BusFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Bus
+     */
+    select?: BusSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Bus
+     */
+    omit?: BusOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BusInclude<ExtArgs> | null
+    /**
+     * Filter, which Bus to fetch.
+     */
+    where?: BusWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Buses to fetch.
+     */
+    orderBy?: BusOrderByWithRelationInput | BusOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Buses.
+     */
+    cursor?: BusWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Buses from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Buses.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Buses.
+     */
+    distinct?: BusScalarFieldEnum | BusScalarFieldEnum[]
+  }
+
+  /**
+   * Bus findMany
+   */
+  export type BusFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Bus
+     */
+    select?: BusSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Bus
+     */
+    omit?: BusOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BusInclude<ExtArgs> | null
+    /**
+     * Filter, which Buses to fetch.
+     */
+    where?: BusWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Buses to fetch.
+     */
+    orderBy?: BusOrderByWithRelationInput | BusOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Buses.
+     */
+    cursor?: BusWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Buses from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Buses.
+     */
+    skip?: number
+    distinct?: BusScalarFieldEnum | BusScalarFieldEnum[]
+  }
+
+  /**
+   * Bus create
+   */
+  export type BusCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Bus
+     */
+    select?: BusSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Bus
+     */
+    omit?: BusOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BusInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Bus.
+     */
+    data: XOR<BusCreateInput, BusUncheckedCreateInput>
+  }
+
+  /**
+   * Bus createMany
+   */
+  export type BusCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Buses.
+     */
+    data: BusCreateManyInput | BusCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Bus createManyAndReturn
+   */
+  export type BusCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Bus
+     */
+    select?: BusSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Bus
+     */
+    omit?: BusOmit<ExtArgs> | null
+    /**
+     * The data used to create many Buses.
+     */
+    data: BusCreateManyInput | BusCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Bus update
+   */
+  export type BusUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Bus
+     */
+    select?: BusSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Bus
+     */
+    omit?: BusOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BusInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Bus.
+     */
+    data: XOR<BusUpdateInput, BusUncheckedUpdateInput>
+    /**
+     * Choose, which Bus to update.
+     */
+    where: BusWhereUniqueInput
+  }
+
+  /**
+   * Bus updateMany
+   */
+  export type BusUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Buses.
+     */
+    data: XOR<BusUpdateManyMutationInput, BusUncheckedUpdateManyInput>
+    /**
+     * Filter which Buses to update
+     */
+    where?: BusWhereInput
+    /**
+     * Limit how many Buses to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Bus updateManyAndReturn
+   */
+  export type BusUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Bus
+     */
+    select?: BusSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Bus
+     */
+    omit?: BusOmit<ExtArgs> | null
+    /**
+     * The data used to update Buses.
+     */
+    data: XOR<BusUpdateManyMutationInput, BusUncheckedUpdateManyInput>
+    /**
+     * Filter which Buses to update
+     */
+    where?: BusWhereInput
+    /**
+     * Limit how many Buses to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Bus upsert
+   */
+  export type BusUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Bus
+     */
+    select?: BusSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Bus
+     */
+    omit?: BusOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BusInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Bus to update in case it exists.
+     */
+    where: BusWhereUniqueInput
+    /**
+     * In case the Bus found by the `where` argument doesn't exist, create a new Bus with this data.
+     */
+    create: XOR<BusCreateInput, BusUncheckedCreateInput>
+    /**
+     * In case the Bus was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<BusUpdateInput, BusUncheckedUpdateInput>
+  }
+
+  /**
+   * Bus delete
+   */
+  export type BusDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Bus
+     */
+    select?: BusSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Bus
+     */
+    omit?: BusOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BusInclude<ExtArgs> | null
+    /**
+     * Filter which Bus to delete.
+     */
+    where: BusWhereUniqueInput
+  }
+
+  /**
+   * Bus deleteMany
+   */
+  export type BusDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Buses to delete
+     */
+    where?: BusWhereInput
+    /**
+     * Limit how many Buses to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * Bus.documents
+   */
+  export type Bus$documentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BusDocument
+     */
+    select?: BusDocumentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BusDocument
+     */
+    omit?: BusDocumentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BusDocumentInclude<ExtArgs> | null
+    where?: BusDocumentWhereInput
+    orderBy?: BusDocumentOrderByWithRelationInput | BusDocumentOrderByWithRelationInput[]
+    cursor?: BusDocumentWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: BusDocumentScalarFieldEnum | BusDocumentScalarFieldEnum[]
+  }
+
+  /**
+   * Bus without action
+   */
+  export type BusDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Bus
+     */
+    select?: BusSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Bus
+     */
+    omit?: BusOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BusInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model DocumentType
+   */
+
+  export type AggregateDocumentType = {
+    _count: DocumentTypeCountAggregateOutputType | null
+    _min: DocumentTypeMinAggregateOutputType | null
+    _max: DocumentTypeMaxAggregateOutputType | null
+  }
+
+  export type DocumentTypeMinAggregateOutputType = {
+    id: string | null
+    name: string | null
+    description: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type DocumentTypeMaxAggregateOutputType = {
+    id: string | null
+    name: string | null
+    description: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type DocumentTypeCountAggregateOutputType = {
+    id: number
+    name: number
+    description: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type DocumentTypeMinAggregateInputType = {
+    id?: true
+    name?: true
+    description?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type DocumentTypeMaxAggregateInputType = {
+    id?: true
+    name?: true
+    description?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type DocumentTypeCountAggregateInputType = {
+    id?: true
+    name?: true
+    description?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type DocumentTypeAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which DocumentType to aggregate.
+     */
+    where?: DocumentTypeWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of DocumentTypes to fetch.
+     */
+    orderBy?: DocumentTypeOrderByWithRelationInput | DocumentTypeOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: DocumentTypeWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` DocumentTypes from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` DocumentTypes.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned DocumentTypes
+    **/
+    _count?: true | DocumentTypeCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: DocumentTypeMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: DocumentTypeMaxAggregateInputType
+  }
+
+  export type GetDocumentTypeAggregateType<T extends DocumentTypeAggregateArgs> = {
+        [P in keyof T & keyof AggregateDocumentType]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateDocumentType[P]>
+      : GetScalarType<T[P], AggregateDocumentType[P]>
+  }
+
+
+
+
+  export type DocumentTypeGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: DocumentTypeWhereInput
+    orderBy?: DocumentTypeOrderByWithAggregationInput | DocumentTypeOrderByWithAggregationInput[]
+    by: DocumentTypeScalarFieldEnum[] | DocumentTypeScalarFieldEnum
+    having?: DocumentTypeScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: DocumentTypeCountAggregateInputType | true
+    _min?: DocumentTypeMinAggregateInputType
+    _max?: DocumentTypeMaxAggregateInputType
+  }
+
+  export type DocumentTypeGroupByOutputType = {
+    id: string
+    name: string
+    description: string | null
+    createdAt: Date
+    updatedAt: Date
+    _count: DocumentTypeCountAggregateOutputType | null
+    _min: DocumentTypeMinAggregateOutputType | null
+    _max: DocumentTypeMaxAggregateOutputType | null
+  }
+
+  type GetDocumentTypeGroupByPayload<T extends DocumentTypeGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<DocumentTypeGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof DocumentTypeGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], DocumentTypeGroupByOutputType[P]>
+            : GetScalarType<T[P], DocumentTypeGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type DocumentTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    description?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    documents?: boolean | DocumentType$documentsArgs<ExtArgs>
+    _count?: boolean | DocumentTypeCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["documentType"]>
+
+  export type DocumentTypeSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    description?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["documentType"]>
+
+  export type DocumentTypeSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    description?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["documentType"]>
+
+  export type DocumentTypeSelectScalar = {
+    id?: boolean
+    name?: boolean
+    description?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type DocumentTypeOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "description" | "createdAt" | "updatedAt", ExtArgs["result"]["documentType"]>
+  export type DocumentTypeInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    documents?: boolean | DocumentType$documentsArgs<ExtArgs>
+    _count?: boolean | DocumentTypeCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type DocumentTypeIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+  export type DocumentTypeIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+
+  export type $DocumentTypePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "DocumentType"
+    objects: {
+      documents: Prisma.$BusDocumentPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      name: string
+      description: string | null
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["documentType"]>
+    composites: {}
+  }
+
+  type DocumentTypeGetPayload<S extends boolean | null | undefined | DocumentTypeDefaultArgs> = $Result.GetResult<Prisma.$DocumentTypePayload, S>
+
+  type DocumentTypeCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<DocumentTypeFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: DocumentTypeCountAggregateInputType | true
+    }
+
+  export interface DocumentTypeDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['DocumentType'], meta: { name: 'DocumentType' } }
+    /**
+     * Find zero or one DocumentType that matches the filter.
+     * @param {DocumentTypeFindUniqueArgs} args - Arguments to find a DocumentType
+     * @example
+     * // Get one DocumentType
+     * const documentType = await prisma.documentType.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends DocumentTypeFindUniqueArgs>(args: SelectSubset<T, DocumentTypeFindUniqueArgs<ExtArgs>>): Prisma__DocumentTypeClient<$Result.GetResult<Prisma.$DocumentTypePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one DocumentType that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {DocumentTypeFindUniqueOrThrowArgs} args - Arguments to find a DocumentType
+     * @example
+     * // Get one DocumentType
+     * const documentType = await prisma.documentType.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends DocumentTypeFindUniqueOrThrowArgs>(args: SelectSubset<T, DocumentTypeFindUniqueOrThrowArgs<ExtArgs>>): Prisma__DocumentTypeClient<$Result.GetResult<Prisma.$DocumentTypePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first DocumentType that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DocumentTypeFindFirstArgs} args - Arguments to find a DocumentType
+     * @example
+     * // Get one DocumentType
+     * const documentType = await prisma.documentType.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends DocumentTypeFindFirstArgs>(args?: SelectSubset<T, DocumentTypeFindFirstArgs<ExtArgs>>): Prisma__DocumentTypeClient<$Result.GetResult<Prisma.$DocumentTypePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first DocumentType that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DocumentTypeFindFirstOrThrowArgs} args - Arguments to find a DocumentType
+     * @example
+     * // Get one DocumentType
+     * const documentType = await prisma.documentType.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends DocumentTypeFindFirstOrThrowArgs>(args?: SelectSubset<T, DocumentTypeFindFirstOrThrowArgs<ExtArgs>>): Prisma__DocumentTypeClient<$Result.GetResult<Prisma.$DocumentTypePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more DocumentTypes that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DocumentTypeFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all DocumentTypes
+     * const documentTypes = await prisma.documentType.findMany()
+     * 
+     * // Get first 10 DocumentTypes
+     * const documentTypes = await prisma.documentType.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const documentTypeWithIdOnly = await prisma.documentType.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends DocumentTypeFindManyArgs>(args?: SelectSubset<T, DocumentTypeFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DocumentTypePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a DocumentType.
+     * @param {DocumentTypeCreateArgs} args - Arguments to create a DocumentType.
+     * @example
+     * // Create one DocumentType
+     * const DocumentType = await prisma.documentType.create({
+     *   data: {
+     *     // ... data to create a DocumentType
+     *   }
+     * })
+     * 
+     */
+    create<T extends DocumentTypeCreateArgs>(args: SelectSubset<T, DocumentTypeCreateArgs<ExtArgs>>): Prisma__DocumentTypeClient<$Result.GetResult<Prisma.$DocumentTypePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many DocumentTypes.
+     * @param {DocumentTypeCreateManyArgs} args - Arguments to create many DocumentTypes.
+     * @example
+     * // Create many DocumentTypes
+     * const documentType = await prisma.documentType.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends DocumentTypeCreateManyArgs>(args?: SelectSubset<T, DocumentTypeCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many DocumentTypes and returns the data saved in the database.
+     * @param {DocumentTypeCreateManyAndReturnArgs} args - Arguments to create many DocumentTypes.
+     * @example
+     * // Create many DocumentTypes
+     * const documentType = await prisma.documentType.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many DocumentTypes and only return the `id`
+     * const documentTypeWithIdOnly = await prisma.documentType.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends DocumentTypeCreateManyAndReturnArgs>(args?: SelectSubset<T, DocumentTypeCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DocumentTypePayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a DocumentType.
+     * @param {DocumentTypeDeleteArgs} args - Arguments to delete one DocumentType.
+     * @example
+     * // Delete one DocumentType
+     * const DocumentType = await prisma.documentType.delete({
+     *   where: {
+     *     // ... filter to delete one DocumentType
+     *   }
+     * })
+     * 
+     */
+    delete<T extends DocumentTypeDeleteArgs>(args: SelectSubset<T, DocumentTypeDeleteArgs<ExtArgs>>): Prisma__DocumentTypeClient<$Result.GetResult<Prisma.$DocumentTypePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one DocumentType.
+     * @param {DocumentTypeUpdateArgs} args - Arguments to update one DocumentType.
+     * @example
+     * // Update one DocumentType
+     * const documentType = await prisma.documentType.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends DocumentTypeUpdateArgs>(args: SelectSubset<T, DocumentTypeUpdateArgs<ExtArgs>>): Prisma__DocumentTypeClient<$Result.GetResult<Prisma.$DocumentTypePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more DocumentTypes.
+     * @param {DocumentTypeDeleteManyArgs} args - Arguments to filter DocumentTypes to delete.
+     * @example
+     * // Delete a few DocumentTypes
+     * const { count } = await prisma.documentType.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends DocumentTypeDeleteManyArgs>(args?: SelectSubset<T, DocumentTypeDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more DocumentTypes.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DocumentTypeUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many DocumentTypes
+     * const documentType = await prisma.documentType.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends DocumentTypeUpdateManyArgs>(args: SelectSubset<T, DocumentTypeUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more DocumentTypes and returns the data updated in the database.
+     * @param {DocumentTypeUpdateManyAndReturnArgs} args - Arguments to update many DocumentTypes.
+     * @example
+     * // Update many DocumentTypes
+     * const documentType = await prisma.documentType.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more DocumentTypes and only return the `id`
+     * const documentTypeWithIdOnly = await prisma.documentType.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends DocumentTypeUpdateManyAndReturnArgs>(args: SelectSubset<T, DocumentTypeUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DocumentTypePayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one DocumentType.
+     * @param {DocumentTypeUpsertArgs} args - Arguments to update or create a DocumentType.
+     * @example
+     * // Update or create a DocumentType
+     * const documentType = await prisma.documentType.upsert({
+     *   create: {
+     *     // ... data to create a DocumentType
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the DocumentType we want to update
+     *   }
+     * })
+     */
+    upsert<T extends DocumentTypeUpsertArgs>(args: SelectSubset<T, DocumentTypeUpsertArgs<ExtArgs>>): Prisma__DocumentTypeClient<$Result.GetResult<Prisma.$DocumentTypePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of DocumentTypes.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DocumentTypeCountArgs} args - Arguments to filter DocumentTypes to count.
+     * @example
+     * // Count the number of DocumentTypes
+     * const count = await prisma.documentType.count({
+     *   where: {
+     *     // ... the filter for the DocumentTypes we want to count
+     *   }
+     * })
+    **/
+    count<T extends DocumentTypeCountArgs>(
+      args?: Subset<T, DocumentTypeCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], DocumentTypeCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a DocumentType.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DocumentTypeAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends DocumentTypeAggregateArgs>(args: Subset<T, DocumentTypeAggregateArgs>): Prisma.PrismaPromise<GetDocumentTypeAggregateType<T>>
+
+    /**
+     * Group by DocumentType.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {DocumentTypeGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends DocumentTypeGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: DocumentTypeGroupByArgs['orderBy'] }
+        : { orderBy?: DocumentTypeGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, DocumentTypeGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetDocumentTypeGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the DocumentType model
+   */
+  readonly fields: DocumentTypeFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for DocumentType.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__DocumentTypeClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    documents<T extends DocumentType$documentsArgs<ExtArgs> = {}>(args?: Subset<T, DocumentType$documentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BusDocumentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the DocumentType model
+   */
+  interface DocumentTypeFieldRefs {
+    readonly id: FieldRef<"DocumentType", 'String'>
+    readonly name: FieldRef<"DocumentType", 'String'>
+    readonly description: FieldRef<"DocumentType", 'String'>
+    readonly createdAt: FieldRef<"DocumentType", 'DateTime'>
+    readonly updatedAt: FieldRef<"DocumentType", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * DocumentType findUnique
+   */
+  export type DocumentTypeFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DocumentType
+     */
+    select?: DocumentTypeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DocumentType
+     */
+    omit?: DocumentTypeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DocumentTypeInclude<ExtArgs> | null
+    /**
+     * Filter, which DocumentType to fetch.
+     */
+    where: DocumentTypeWhereUniqueInput
+  }
+
+  /**
+   * DocumentType findUniqueOrThrow
+   */
+  export type DocumentTypeFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DocumentType
+     */
+    select?: DocumentTypeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DocumentType
+     */
+    omit?: DocumentTypeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DocumentTypeInclude<ExtArgs> | null
+    /**
+     * Filter, which DocumentType to fetch.
+     */
+    where: DocumentTypeWhereUniqueInput
+  }
+
+  /**
+   * DocumentType findFirst
+   */
+  export type DocumentTypeFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DocumentType
+     */
+    select?: DocumentTypeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DocumentType
+     */
+    omit?: DocumentTypeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DocumentTypeInclude<ExtArgs> | null
+    /**
+     * Filter, which DocumentType to fetch.
+     */
+    where?: DocumentTypeWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of DocumentTypes to fetch.
+     */
+    orderBy?: DocumentTypeOrderByWithRelationInput | DocumentTypeOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for DocumentTypes.
+     */
+    cursor?: DocumentTypeWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` DocumentTypes from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` DocumentTypes.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of DocumentTypes.
+     */
+    distinct?: DocumentTypeScalarFieldEnum | DocumentTypeScalarFieldEnum[]
+  }
+
+  /**
+   * DocumentType findFirstOrThrow
+   */
+  export type DocumentTypeFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DocumentType
+     */
+    select?: DocumentTypeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DocumentType
+     */
+    omit?: DocumentTypeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DocumentTypeInclude<ExtArgs> | null
+    /**
+     * Filter, which DocumentType to fetch.
+     */
+    where?: DocumentTypeWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of DocumentTypes to fetch.
+     */
+    orderBy?: DocumentTypeOrderByWithRelationInput | DocumentTypeOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for DocumentTypes.
+     */
+    cursor?: DocumentTypeWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` DocumentTypes from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` DocumentTypes.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of DocumentTypes.
+     */
+    distinct?: DocumentTypeScalarFieldEnum | DocumentTypeScalarFieldEnum[]
+  }
+
+  /**
+   * DocumentType findMany
+   */
+  export type DocumentTypeFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DocumentType
+     */
+    select?: DocumentTypeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DocumentType
+     */
+    omit?: DocumentTypeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DocumentTypeInclude<ExtArgs> | null
+    /**
+     * Filter, which DocumentTypes to fetch.
+     */
+    where?: DocumentTypeWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of DocumentTypes to fetch.
+     */
+    orderBy?: DocumentTypeOrderByWithRelationInput | DocumentTypeOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing DocumentTypes.
+     */
+    cursor?: DocumentTypeWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` DocumentTypes from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` DocumentTypes.
+     */
+    skip?: number
+    distinct?: DocumentTypeScalarFieldEnum | DocumentTypeScalarFieldEnum[]
+  }
+
+  /**
+   * DocumentType create
+   */
+  export type DocumentTypeCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DocumentType
+     */
+    select?: DocumentTypeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DocumentType
+     */
+    omit?: DocumentTypeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DocumentTypeInclude<ExtArgs> | null
+    /**
+     * The data needed to create a DocumentType.
+     */
+    data: XOR<DocumentTypeCreateInput, DocumentTypeUncheckedCreateInput>
+  }
+
+  /**
+   * DocumentType createMany
+   */
+  export type DocumentTypeCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many DocumentTypes.
+     */
+    data: DocumentTypeCreateManyInput | DocumentTypeCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * DocumentType createManyAndReturn
+   */
+  export type DocumentTypeCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DocumentType
+     */
+    select?: DocumentTypeSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the DocumentType
+     */
+    omit?: DocumentTypeOmit<ExtArgs> | null
+    /**
+     * The data used to create many DocumentTypes.
+     */
+    data: DocumentTypeCreateManyInput | DocumentTypeCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * DocumentType update
+   */
+  export type DocumentTypeUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DocumentType
+     */
+    select?: DocumentTypeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DocumentType
+     */
+    omit?: DocumentTypeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DocumentTypeInclude<ExtArgs> | null
+    /**
+     * The data needed to update a DocumentType.
+     */
+    data: XOR<DocumentTypeUpdateInput, DocumentTypeUncheckedUpdateInput>
+    /**
+     * Choose, which DocumentType to update.
+     */
+    where: DocumentTypeWhereUniqueInput
+  }
+
+  /**
+   * DocumentType updateMany
+   */
+  export type DocumentTypeUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update DocumentTypes.
+     */
+    data: XOR<DocumentTypeUpdateManyMutationInput, DocumentTypeUncheckedUpdateManyInput>
+    /**
+     * Filter which DocumentTypes to update
+     */
+    where?: DocumentTypeWhereInput
+    /**
+     * Limit how many DocumentTypes to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * DocumentType updateManyAndReturn
+   */
+  export type DocumentTypeUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DocumentType
+     */
+    select?: DocumentTypeSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the DocumentType
+     */
+    omit?: DocumentTypeOmit<ExtArgs> | null
+    /**
+     * The data used to update DocumentTypes.
+     */
+    data: XOR<DocumentTypeUpdateManyMutationInput, DocumentTypeUncheckedUpdateManyInput>
+    /**
+     * Filter which DocumentTypes to update
+     */
+    where?: DocumentTypeWhereInput
+    /**
+     * Limit how many DocumentTypes to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * DocumentType upsert
+   */
+  export type DocumentTypeUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DocumentType
+     */
+    select?: DocumentTypeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DocumentType
+     */
+    omit?: DocumentTypeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DocumentTypeInclude<ExtArgs> | null
+    /**
+     * The filter to search for the DocumentType to update in case it exists.
+     */
+    where: DocumentTypeWhereUniqueInput
+    /**
+     * In case the DocumentType found by the `where` argument doesn't exist, create a new DocumentType with this data.
+     */
+    create: XOR<DocumentTypeCreateInput, DocumentTypeUncheckedCreateInput>
+    /**
+     * In case the DocumentType was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<DocumentTypeUpdateInput, DocumentTypeUncheckedUpdateInput>
+  }
+
+  /**
+   * DocumentType delete
+   */
+  export type DocumentTypeDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DocumentType
+     */
+    select?: DocumentTypeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DocumentType
+     */
+    omit?: DocumentTypeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DocumentTypeInclude<ExtArgs> | null
+    /**
+     * Filter which DocumentType to delete.
+     */
+    where: DocumentTypeWhereUniqueInput
+  }
+
+  /**
+   * DocumentType deleteMany
+   */
+  export type DocumentTypeDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which DocumentTypes to delete
+     */
+    where?: DocumentTypeWhereInput
+    /**
+     * Limit how many DocumentTypes to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * DocumentType.documents
+   */
+  export type DocumentType$documentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BusDocument
+     */
+    select?: BusDocumentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BusDocument
+     */
+    omit?: BusDocumentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BusDocumentInclude<ExtArgs> | null
+    where?: BusDocumentWhereInput
+    orderBy?: BusDocumentOrderByWithRelationInput | BusDocumentOrderByWithRelationInput[]
+    cursor?: BusDocumentWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: BusDocumentScalarFieldEnum | BusDocumentScalarFieldEnum[]
+  }
+
+  /**
+   * DocumentType without action
+   */
+  export type DocumentTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the DocumentType
+     */
+    select?: DocumentTypeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the DocumentType
+     */
+    omit?: DocumentTypeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: DocumentTypeInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model BusDocument
+   */
+
+  export type AggregateBusDocument = {
+    _count: BusDocumentCountAggregateOutputType | null
+    _min: BusDocumentMinAggregateOutputType | null
+    _max: BusDocumentMaxAggregateOutputType | null
+  }
+
+  export type BusDocumentMinAggregateOutputType = {
+    id: string | null
+    busId: string | null
+    docTypeId: string | null
+    documentNumber: string | null
+    issueDate: Date | null
+    expiryDate: Date | null
+    fileUrl: string | null
+    remarks: string | null
+    uploadedAt: Date | null
+  }
+
+  export type BusDocumentMaxAggregateOutputType = {
+    id: string | null
+    busId: string | null
+    docTypeId: string | null
+    documentNumber: string | null
+    issueDate: Date | null
+    expiryDate: Date | null
+    fileUrl: string | null
+    remarks: string | null
+    uploadedAt: Date | null
+  }
+
+  export type BusDocumentCountAggregateOutputType = {
+    id: number
+    busId: number
+    docTypeId: number
+    documentNumber: number
+    issueDate: number
+    expiryDate: number
+    fileUrl: number
+    remarks: number
+    uploadedAt: number
+    _all: number
+  }
+
+
+  export type BusDocumentMinAggregateInputType = {
+    id?: true
+    busId?: true
+    docTypeId?: true
+    documentNumber?: true
+    issueDate?: true
+    expiryDate?: true
+    fileUrl?: true
+    remarks?: true
+    uploadedAt?: true
+  }
+
+  export type BusDocumentMaxAggregateInputType = {
+    id?: true
+    busId?: true
+    docTypeId?: true
+    documentNumber?: true
+    issueDate?: true
+    expiryDate?: true
+    fileUrl?: true
+    remarks?: true
+    uploadedAt?: true
+  }
+
+  export type BusDocumentCountAggregateInputType = {
+    id?: true
+    busId?: true
+    docTypeId?: true
+    documentNumber?: true
+    issueDate?: true
+    expiryDate?: true
+    fileUrl?: true
+    remarks?: true
+    uploadedAt?: true
+    _all?: true
+  }
+
+  export type BusDocumentAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which BusDocument to aggregate.
+     */
+    where?: BusDocumentWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of BusDocuments to fetch.
+     */
+    orderBy?: BusDocumentOrderByWithRelationInput | BusDocumentOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: BusDocumentWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` BusDocuments from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` BusDocuments.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned BusDocuments
+    **/
+    _count?: true | BusDocumentCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: BusDocumentMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: BusDocumentMaxAggregateInputType
+  }
+
+  export type GetBusDocumentAggregateType<T extends BusDocumentAggregateArgs> = {
+        [P in keyof T & keyof AggregateBusDocument]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateBusDocument[P]>
+      : GetScalarType<T[P], AggregateBusDocument[P]>
+  }
+
+
+
+
+  export type BusDocumentGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: BusDocumentWhereInput
+    orderBy?: BusDocumentOrderByWithAggregationInput | BusDocumentOrderByWithAggregationInput[]
+    by: BusDocumentScalarFieldEnum[] | BusDocumentScalarFieldEnum
+    having?: BusDocumentScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: BusDocumentCountAggregateInputType | true
+    _min?: BusDocumentMinAggregateInputType
+    _max?: BusDocumentMaxAggregateInputType
+  }
+
+  export type BusDocumentGroupByOutputType = {
+    id: string
+    busId: string
+    docTypeId: string
+    documentNumber: string | null
+    issueDate: Date | null
+    expiryDate: Date | null
+    fileUrl: string
+    remarks: string | null
+    uploadedAt: Date
+    _count: BusDocumentCountAggregateOutputType | null
+    _min: BusDocumentMinAggregateOutputType | null
+    _max: BusDocumentMaxAggregateOutputType | null
+  }
+
+  type GetBusDocumentGroupByPayload<T extends BusDocumentGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<BusDocumentGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof BusDocumentGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], BusDocumentGroupByOutputType[P]>
+            : GetScalarType<T[P], BusDocumentGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type BusDocumentSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    busId?: boolean
+    docTypeId?: boolean
+    documentNumber?: boolean
+    issueDate?: boolean
+    expiryDate?: boolean
+    fileUrl?: boolean
+    remarks?: boolean
+    uploadedAt?: boolean
+    bus?: boolean | BusDefaultArgs<ExtArgs>
+    docType?: boolean | DocumentTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["busDocument"]>
+
+  export type BusDocumentSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    busId?: boolean
+    docTypeId?: boolean
+    documentNumber?: boolean
+    issueDate?: boolean
+    expiryDate?: boolean
+    fileUrl?: boolean
+    remarks?: boolean
+    uploadedAt?: boolean
+    bus?: boolean | BusDefaultArgs<ExtArgs>
+    docType?: boolean | DocumentTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["busDocument"]>
+
+  export type BusDocumentSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    busId?: boolean
+    docTypeId?: boolean
+    documentNumber?: boolean
+    issueDate?: boolean
+    expiryDate?: boolean
+    fileUrl?: boolean
+    remarks?: boolean
+    uploadedAt?: boolean
+    bus?: boolean | BusDefaultArgs<ExtArgs>
+    docType?: boolean | DocumentTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["busDocument"]>
+
+  export type BusDocumentSelectScalar = {
+    id?: boolean
+    busId?: boolean
+    docTypeId?: boolean
+    documentNumber?: boolean
+    issueDate?: boolean
+    expiryDate?: boolean
+    fileUrl?: boolean
+    remarks?: boolean
+    uploadedAt?: boolean
+  }
+
+  export type BusDocumentOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "busId" | "docTypeId" | "documentNumber" | "issueDate" | "expiryDate" | "fileUrl" | "remarks" | "uploadedAt", ExtArgs["result"]["busDocument"]>
+  export type BusDocumentInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    bus?: boolean | BusDefaultArgs<ExtArgs>
+    docType?: boolean | DocumentTypeDefaultArgs<ExtArgs>
+  }
+  export type BusDocumentIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    bus?: boolean | BusDefaultArgs<ExtArgs>
+    docType?: boolean | DocumentTypeDefaultArgs<ExtArgs>
+  }
+  export type BusDocumentIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    bus?: boolean | BusDefaultArgs<ExtArgs>
+    docType?: boolean | DocumentTypeDefaultArgs<ExtArgs>
+  }
+
+  export type $BusDocumentPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "BusDocument"
+    objects: {
+      bus: Prisma.$BusPayload<ExtArgs>
+      docType: Prisma.$DocumentTypePayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      busId: string
+      docTypeId: string
+      documentNumber: string | null
+      issueDate: Date | null
+      expiryDate: Date | null
+      fileUrl: string
+      remarks: string | null
+      uploadedAt: Date
+    }, ExtArgs["result"]["busDocument"]>
+    composites: {}
+  }
+
+  type BusDocumentGetPayload<S extends boolean | null | undefined | BusDocumentDefaultArgs> = $Result.GetResult<Prisma.$BusDocumentPayload, S>
+
+  type BusDocumentCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<BusDocumentFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: BusDocumentCountAggregateInputType | true
+    }
+
+  export interface BusDocumentDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['BusDocument'], meta: { name: 'BusDocument' } }
+    /**
+     * Find zero or one BusDocument that matches the filter.
+     * @param {BusDocumentFindUniqueArgs} args - Arguments to find a BusDocument
+     * @example
+     * // Get one BusDocument
+     * const busDocument = await prisma.busDocument.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends BusDocumentFindUniqueArgs>(args: SelectSubset<T, BusDocumentFindUniqueArgs<ExtArgs>>): Prisma__BusDocumentClient<$Result.GetResult<Prisma.$BusDocumentPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one BusDocument that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {BusDocumentFindUniqueOrThrowArgs} args - Arguments to find a BusDocument
+     * @example
+     * // Get one BusDocument
+     * const busDocument = await prisma.busDocument.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends BusDocumentFindUniqueOrThrowArgs>(args: SelectSubset<T, BusDocumentFindUniqueOrThrowArgs<ExtArgs>>): Prisma__BusDocumentClient<$Result.GetResult<Prisma.$BusDocumentPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first BusDocument that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BusDocumentFindFirstArgs} args - Arguments to find a BusDocument
+     * @example
+     * // Get one BusDocument
+     * const busDocument = await prisma.busDocument.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends BusDocumentFindFirstArgs>(args?: SelectSubset<T, BusDocumentFindFirstArgs<ExtArgs>>): Prisma__BusDocumentClient<$Result.GetResult<Prisma.$BusDocumentPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first BusDocument that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BusDocumentFindFirstOrThrowArgs} args - Arguments to find a BusDocument
+     * @example
+     * // Get one BusDocument
+     * const busDocument = await prisma.busDocument.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends BusDocumentFindFirstOrThrowArgs>(args?: SelectSubset<T, BusDocumentFindFirstOrThrowArgs<ExtArgs>>): Prisma__BusDocumentClient<$Result.GetResult<Prisma.$BusDocumentPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more BusDocuments that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BusDocumentFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all BusDocuments
+     * const busDocuments = await prisma.busDocument.findMany()
+     * 
+     * // Get first 10 BusDocuments
+     * const busDocuments = await prisma.busDocument.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const busDocumentWithIdOnly = await prisma.busDocument.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends BusDocumentFindManyArgs>(args?: SelectSubset<T, BusDocumentFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BusDocumentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a BusDocument.
+     * @param {BusDocumentCreateArgs} args - Arguments to create a BusDocument.
+     * @example
+     * // Create one BusDocument
+     * const BusDocument = await prisma.busDocument.create({
+     *   data: {
+     *     // ... data to create a BusDocument
+     *   }
+     * })
+     * 
+     */
+    create<T extends BusDocumentCreateArgs>(args: SelectSubset<T, BusDocumentCreateArgs<ExtArgs>>): Prisma__BusDocumentClient<$Result.GetResult<Prisma.$BusDocumentPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many BusDocuments.
+     * @param {BusDocumentCreateManyArgs} args - Arguments to create many BusDocuments.
+     * @example
+     * // Create many BusDocuments
+     * const busDocument = await prisma.busDocument.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends BusDocumentCreateManyArgs>(args?: SelectSubset<T, BusDocumentCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many BusDocuments and returns the data saved in the database.
+     * @param {BusDocumentCreateManyAndReturnArgs} args - Arguments to create many BusDocuments.
+     * @example
+     * // Create many BusDocuments
+     * const busDocument = await prisma.busDocument.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many BusDocuments and only return the `id`
+     * const busDocumentWithIdOnly = await prisma.busDocument.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends BusDocumentCreateManyAndReturnArgs>(args?: SelectSubset<T, BusDocumentCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BusDocumentPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a BusDocument.
+     * @param {BusDocumentDeleteArgs} args - Arguments to delete one BusDocument.
+     * @example
+     * // Delete one BusDocument
+     * const BusDocument = await prisma.busDocument.delete({
+     *   where: {
+     *     // ... filter to delete one BusDocument
+     *   }
+     * })
+     * 
+     */
+    delete<T extends BusDocumentDeleteArgs>(args: SelectSubset<T, BusDocumentDeleteArgs<ExtArgs>>): Prisma__BusDocumentClient<$Result.GetResult<Prisma.$BusDocumentPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one BusDocument.
+     * @param {BusDocumentUpdateArgs} args - Arguments to update one BusDocument.
+     * @example
+     * // Update one BusDocument
+     * const busDocument = await prisma.busDocument.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends BusDocumentUpdateArgs>(args: SelectSubset<T, BusDocumentUpdateArgs<ExtArgs>>): Prisma__BusDocumentClient<$Result.GetResult<Prisma.$BusDocumentPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more BusDocuments.
+     * @param {BusDocumentDeleteManyArgs} args - Arguments to filter BusDocuments to delete.
+     * @example
+     * // Delete a few BusDocuments
+     * const { count } = await prisma.busDocument.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends BusDocumentDeleteManyArgs>(args?: SelectSubset<T, BusDocumentDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more BusDocuments.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BusDocumentUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many BusDocuments
+     * const busDocument = await prisma.busDocument.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends BusDocumentUpdateManyArgs>(args: SelectSubset<T, BusDocumentUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more BusDocuments and returns the data updated in the database.
+     * @param {BusDocumentUpdateManyAndReturnArgs} args - Arguments to update many BusDocuments.
+     * @example
+     * // Update many BusDocuments
+     * const busDocument = await prisma.busDocument.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more BusDocuments and only return the `id`
+     * const busDocumentWithIdOnly = await prisma.busDocument.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends BusDocumentUpdateManyAndReturnArgs>(args: SelectSubset<T, BusDocumentUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BusDocumentPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one BusDocument.
+     * @param {BusDocumentUpsertArgs} args - Arguments to update or create a BusDocument.
+     * @example
+     * // Update or create a BusDocument
+     * const busDocument = await prisma.busDocument.upsert({
+     *   create: {
+     *     // ... data to create a BusDocument
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the BusDocument we want to update
+     *   }
+     * })
+     */
+    upsert<T extends BusDocumentUpsertArgs>(args: SelectSubset<T, BusDocumentUpsertArgs<ExtArgs>>): Prisma__BusDocumentClient<$Result.GetResult<Prisma.$BusDocumentPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of BusDocuments.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BusDocumentCountArgs} args - Arguments to filter BusDocuments to count.
+     * @example
+     * // Count the number of BusDocuments
+     * const count = await prisma.busDocument.count({
+     *   where: {
+     *     // ... the filter for the BusDocuments we want to count
+     *   }
+     * })
+    **/
+    count<T extends BusDocumentCountArgs>(
+      args?: Subset<T, BusDocumentCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], BusDocumentCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a BusDocument.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BusDocumentAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends BusDocumentAggregateArgs>(args: Subset<T, BusDocumentAggregateArgs>): Prisma.PrismaPromise<GetBusDocumentAggregateType<T>>
+
+    /**
+     * Group by BusDocument.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BusDocumentGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends BusDocumentGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: BusDocumentGroupByArgs['orderBy'] }
+        : { orderBy?: BusDocumentGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, BusDocumentGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetBusDocumentGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the BusDocument model
+   */
+  readonly fields: BusDocumentFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for BusDocument.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__BusDocumentClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    bus<T extends BusDefaultArgs<ExtArgs> = {}>(args?: Subset<T, BusDefaultArgs<ExtArgs>>): Prisma__BusClient<$Result.GetResult<Prisma.$BusPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    docType<T extends DocumentTypeDefaultArgs<ExtArgs> = {}>(args?: Subset<T, DocumentTypeDefaultArgs<ExtArgs>>): Prisma__DocumentTypeClient<$Result.GetResult<Prisma.$DocumentTypePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the BusDocument model
+   */
+  interface BusDocumentFieldRefs {
+    readonly id: FieldRef<"BusDocument", 'String'>
+    readonly busId: FieldRef<"BusDocument", 'String'>
+    readonly docTypeId: FieldRef<"BusDocument", 'String'>
+    readonly documentNumber: FieldRef<"BusDocument", 'String'>
+    readonly issueDate: FieldRef<"BusDocument", 'DateTime'>
+    readonly expiryDate: FieldRef<"BusDocument", 'DateTime'>
+    readonly fileUrl: FieldRef<"BusDocument", 'String'>
+    readonly remarks: FieldRef<"BusDocument", 'String'>
+    readonly uploadedAt: FieldRef<"BusDocument", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * BusDocument findUnique
+   */
+  export type BusDocumentFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BusDocument
+     */
+    select?: BusDocumentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BusDocument
+     */
+    omit?: BusDocumentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BusDocumentInclude<ExtArgs> | null
+    /**
+     * Filter, which BusDocument to fetch.
+     */
+    where: BusDocumentWhereUniqueInput
+  }
+
+  /**
+   * BusDocument findUniqueOrThrow
+   */
+  export type BusDocumentFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BusDocument
+     */
+    select?: BusDocumentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BusDocument
+     */
+    omit?: BusDocumentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BusDocumentInclude<ExtArgs> | null
+    /**
+     * Filter, which BusDocument to fetch.
+     */
+    where: BusDocumentWhereUniqueInput
+  }
+
+  /**
+   * BusDocument findFirst
+   */
+  export type BusDocumentFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BusDocument
+     */
+    select?: BusDocumentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BusDocument
+     */
+    omit?: BusDocumentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BusDocumentInclude<ExtArgs> | null
+    /**
+     * Filter, which BusDocument to fetch.
+     */
+    where?: BusDocumentWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of BusDocuments to fetch.
+     */
+    orderBy?: BusDocumentOrderByWithRelationInput | BusDocumentOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for BusDocuments.
+     */
+    cursor?: BusDocumentWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` BusDocuments from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` BusDocuments.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of BusDocuments.
+     */
+    distinct?: BusDocumentScalarFieldEnum | BusDocumentScalarFieldEnum[]
+  }
+
+  /**
+   * BusDocument findFirstOrThrow
+   */
+  export type BusDocumentFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BusDocument
+     */
+    select?: BusDocumentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BusDocument
+     */
+    omit?: BusDocumentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BusDocumentInclude<ExtArgs> | null
+    /**
+     * Filter, which BusDocument to fetch.
+     */
+    where?: BusDocumentWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of BusDocuments to fetch.
+     */
+    orderBy?: BusDocumentOrderByWithRelationInput | BusDocumentOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for BusDocuments.
+     */
+    cursor?: BusDocumentWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` BusDocuments from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` BusDocuments.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of BusDocuments.
+     */
+    distinct?: BusDocumentScalarFieldEnum | BusDocumentScalarFieldEnum[]
+  }
+
+  /**
+   * BusDocument findMany
+   */
+  export type BusDocumentFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BusDocument
+     */
+    select?: BusDocumentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BusDocument
+     */
+    omit?: BusDocumentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BusDocumentInclude<ExtArgs> | null
+    /**
+     * Filter, which BusDocuments to fetch.
+     */
+    where?: BusDocumentWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of BusDocuments to fetch.
+     */
+    orderBy?: BusDocumentOrderByWithRelationInput | BusDocumentOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing BusDocuments.
+     */
+    cursor?: BusDocumentWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` BusDocuments from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` BusDocuments.
+     */
+    skip?: number
+    distinct?: BusDocumentScalarFieldEnum | BusDocumentScalarFieldEnum[]
+  }
+
+  /**
+   * BusDocument create
+   */
+  export type BusDocumentCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BusDocument
+     */
+    select?: BusDocumentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BusDocument
+     */
+    omit?: BusDocumentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BusDocumentInclude<ExtArgs> | null
+    /**
+     * The data needed to create a BusDocument.
+     */
+    data: XOR<BusDocumentCreateInput, BusDocumentUncheckedCreateInput>
+  }
+
+  /**
+   * BusDocument createMany
+   */
+  export type BusDocumentCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many BusDocuments.
+     */
+    data: BusDocumentCreateManyInput | BusDocumentCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * BusDocument createManyAndReturn
+   */
+  export type BusDocumentCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BusDocument
+     */
+    select?: BusDocumentSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the BusDocument
+     */
+    omit?: BusDocumentOmit<ExtArgs> | null
+    /**
+     * The data used to create many BusDocuments.
+     */
+    data: BusDocumentCreateManyInput | BusDocumentCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BusDocumentIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * BusDocument update
+   */
+  export type BusDocumentUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BusDocument
+     */
+    select?: BusDocumentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BusDocument
+     */
+    omit?: BusDocumentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BusDocumentInclude<ExtArgs> | null
+    /**
+     * The data needed to update a BusDocument.
+     */
+    data: XOR<BusDocumentUpdateInput, BusDocumentUncheckedUpdateInput>
+    /**
+     * Choose, which BusDocument to update.
+     */
+    where: BusDocumentWhereUniqueInput
+  }
+
+  /**
+   * BusDocument updateMany
+   */
+  export type BusDocumentUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update BusDocuments.
+     */
+    data: XOR<BusDocumentUpdateManyMutationInput, BusDocumentUncheckedUpdateManyInput>
+    /**
+     * Filter which BusDocuments to update
+     */
+    where?: BusDocumentWhereInput
+    /**
+     * Limit how many BusDocuments to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * BusDocument updateManyAndReturn
+   */
+  export type BusDocumentUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BusDocument
+     */
+    select?: BusDocumentSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the BusDocument
+     */
+    omit?: BusDocumentOmit<ExtArgs> | null
+    /**
+     * The data used to update BusDocuments.
+     */
+    data: XOR<BusDocumentUpdateManyMutationInput, BusDocumentUncheckedUpdateManyInput>
+    /**
+     * Filter which BusDocuments to update
+     */
+    where?: BusDocumentWhereInput
+    /**
+     * Limit how many BusDocuments to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BusDocumentIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * BusDocument upsert
+   */
+  export type BusDocumentUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BusDocument
+     */
+    select?: BusDocumentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BusDocument
+     */
+    omit?: BusDocumentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BusDocumentInclude<ExtArgs> | null
+    /**
+     * The filter to search for the BusDocument to update in case it exists.
+     */
+    where: BusDocumentWhereUniqueInput
+    /**
+     * In case the BusDocument found by the `where` argument doesn't exist, create a new BusDocument with this data.
+     */
+    create: XOR<BusDocumentCreateInput, BusDocumentUncheckedCreateInput>
+    /**
+     * In case the BusDocument was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<BusDocumentUpdateInput, BusDocumentUncheckedUpdateInput>
+  }
+
+  /**
+   * BusDocument delete
+   */
+  export type BusDocumentDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BusDocument
+     */
+    select?: BusDocumentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BusDocument
+     */
+    omit?: BusDocumentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BusDocumentInclude<ExtArgs> | null
+    /**
+     * Filter which BusDocument to delete.
+     */
+    where: BusDocumentWhereUniqueInput
+  }
+
+  /**
+   * BusDocument deleteMany
+   */
+  export type BusDocumentDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which BusDocuments to delete
+     */
+    where?: BusDocumentWhereInput
+    /**
+     * Limit how many BusDocuments to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * BusDocument without action
+   */
+  export type BusDocumentDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BusDocument
+     */
+    select?: BusDocumentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BusDocument
+     */
+    omit?: BusDocumentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BusDocumentInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -1962,6 +5627,46 @@ export namespace Prisma {
   };
 
   export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
+
+
+  export const BusScalarFieldEnum: {
+    id: 'id',
+    registrationNo: 'registrationNo',
+    model: 'model',
+    manufacturer: 'manufacturer',
+    yearOfMake: 'yearOfMake',
+    ownerName: 'ownerName',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type BusScalarFieldEnum = (typeof BusScalarFieldEnum)[keyof typeof BusScalarFieldEnum]
+
+
+  export const DocumentTypeScalarFieldEnum: {
+    id: 'id',
+    name: 'name',
+    description: 'description',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type DocumentTypeScalarFieldEnum = (typeof DocumentTypeScalarFieldEnum)[keyof typeof DocumentTypeScalarFieldEnum]
+
+
+  export const BusDocumentScalarFieldEnum: {
+    id: 'id',
+    busId: 'busId',
+    docTypeId: 'docTypeId',
+    documentNumber: 'documentNumber',
+    issueDate: 'issueDate',
+    expiryDate: 'expiryDate',
+    fileUrl: 'fileUrl',
+    remarks: 'remarks',
+    uploadedAt: 'uploadedAt'
+  };
+
+  export type BusDocumentScalarFieldEnum = (typeof BusDocumentScalarFieldEnum)[keyof typeof BusDocumentScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -2123,6 +5828,211 @@ export namespace Prisma {
     updatedAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
   }
 
+  export type BusWhereInput = {
+    AND?: BusWhereInput | BusWhereInput[]
+    OR?: BusWhereInput[]
+    NOT?: BusWhereInput | BusWhereInput[]
+    id?: StringFilter<"Bus"> | string
+    registrationNo?: StringFilter<"Bus"> | string
+    model?: StringNullableFilter<"Bus"> | string | null
+    manufacturer?: StringNullableFilter<"Bus"> | string | null
+    yearOfMake?: IntNullableFilter<"Bus"> | number | null
+    ownerName?: StringNullableFilter<"Bus"> | string | null
+    createdAt?: DateTimeFilter<"Bus"> | Date | string
+    updatedAt?: DateTimeFilter<"Bus"> | Date | string
+    documents?: BusDocumentListRelationFilter
+  }
+
+  export type BusOrderByWithRelationInput = {
+    id?: SortOrder
+    registrationNo?: SortOrder
+    model?: SortOrderInput | SortOrder
+    manufacturer?: SortOrderInput | SortOrder
+    yearOfMake?: SortOrderInput | SortOrder
+    ownerName?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    documents?: BusDocumentOrderByRelationAggregateInput
+  }
+
+  export type BusWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    registrationNo?: string
+    AND?: BusWhereInput | BusWhereInput[]
+    OR?: BusWhereInput[]
+    NOT?: BusWhereInput | BusWhereInput[]
+    model?: StringNullableFilter<"Bus"> | string | null
+    manufacturer?: StringNullableFilter<"Bus"> | string | null
+    yearOfMake?: IntNullableFilter<"Bus"> | number | null
+    ownerName?: StringNullableFilter<"Bus"> | string | null
+    createdAt?: DateTimeFilter<"Bus"> | Date | string
+    updatedAt?: DateTimeFilter<"Bus"> | Date | string
+    documents?: BusDocumentListRelationFilter
+  }, "id" | "registrationNo">
+
+  export type BusOrderByWithAggregationInput = {
+    id?: SortOrder
+    registrationNo?: SortOrder
+    model?: SortOrderInput | SortOrder
+    manufacturer?: SortOrderInput | SortOrder
+    yearOfMake?: SortOrderInput | SortOrder
+    ownerName?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: BusCountOrderByAggregateInput
+    _avg?: BusAvgOrderByAggregateInput
+    _max?: BusMaxOrderByAggregateInput
+    _min?: BusMinOrderByAggregateInput
+    _sum?: BusSumOrderByAggregateInput
+  }
+
+  export type BusScalarWhereWithAggregatesInput = {
+    AND?: BusScalarWhereWithAggregatesInput | BusScalarWhereWithAggregatesInput[]
+    OR?: BusScalarWhereWithAggregatesInput[]
+    NOT?: BusScalarWhereWithAggregatesInput | BusScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"Bus"> | string
+    registrationNo?: StringWithAggregatesFilter<"Bus"> | string
+    model?: StringNullableWithAggregatesFilter<"Bus"> | string | null
+    manufacturer?: StringNullableWithAggregatesFilter<"Bus"> | string | null
+    yearOfMake?: IntNullableWithAggregatesFilter<"Bus"> | number | null
+    ownerName?: StringNullableWithAggregatesFilter<"Bus"> | string | null
+    createdAt?: DateTimeWithAggregatesFilter<"Bus"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"Bus"> | Date | string
+  }
+
+  export type DocumentTypeWhereInput = {
+    AND?: DocumentTypeWhereInput | DocumentTypeWhereInput[]
+    OR?: DocumentTypeWhereInput[]
+    NOT?: DocumentTypeWhereInput | DocumentTypeWhereInput[]
+    id?: StringFilter<"DocumentType"> | string
+    name?: StringFilter<"DocumentType"> | string
+    description?: StringNullableFilter<"DocumentType"> | string | null
+    createdAt?: DateTimeFilter<"DocumentType"> | Date | string
+    updatedAt?: DateTimeFilter<"DocumentType"> | Date | string
+    documents?: BusDocumentListRelationFilter
+  }
+
+  export type DocumentTypeOrderByWithRelationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    description?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    documents?: BusDocumentOrderByRelationAggregateInput
+  }
+
+  export type DocumentTypeWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    name?: string
+    AND?: DocumentTypeWhereInput | DocumentTypeWhereInput[]
+    OR?: DocumentTypeWhereInput[]
+    NOT?: DocumentTypeWhereInput | DocumentTypeWhereInput[]
+    description?: StringNullableFilter<"DocumentType"> | string | null
+    createdAt?: DateTimeFilter<"DocumentType"> | Date | string
+    updatedAt?: DateTimeFilter<"DocumentType"> | Date | string
+    documents?: BusDocumentListRelationFilter
+  }, "id" | "name">
+
+  export type DocumentTypeOrderByWithAggregationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    description?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: DocumentTypeCountOrderByAggregateInput
+    _max?: DocumentTypeMaxOrderByAggregateInput
+    _min?: DocumentTypeMinOrderByAggregateInput
+  }
+
+  export type DocumentTypeScalarWhereWithAggregatesInput = {
+    AND?: DocumentTypeScalarWhereWithAggregatesInput | DocumentTypeScalarWhereWithAggregatesInput[]
+    OR?: DocumentTypeScalarWhereWithAggregatesInput[]
+    NOT?: DocumentTypeScalarWhereWithAggregatesInput | DocumentTypeScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"DocumentType"> | string
+    name?: StringWithAggregatesFilter<"DocumentType"> | string
+    description?: StringNullableWithAggregatesFilter<"DocumentType"> | string | null
+    createdAt?: DateTimeWithAggregatesFilter<"DocumentType"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"DocumentType"> | Date | string
+  }
+
+  export type BusDocumentWhereInput = {
+    AND?: BusDocumentWhereInput | BusDocumentWhereInput[]
+    OR?: BusDocumentWhereInput[]
+    NOT?: BusDocumentWhereInput | BusDocumentWhereInput[]
+    id?: StringFilter<"BusDocument"> | string
+    busId?: StringFilter<"BusDocument"> | string
+    docTypeId?: StringFilter<"BusDocument"> | string
+    documentNumber?: StringNullableFilter<"BusDocument"> | string | null
+    issueDate?: DateTimeNullableFilter<"BusDocument"> | Date | string | null
+    expiryDate?: DateTimeNullableFilter<"BusDocument"> | Date | string | null
+    fileUrl?: StringFilter<"BusDocument"> | string
+    remarks?: StringNullableFilter<"BusDocument"> | string | null
+    uploadedAt?: DateTimeFilter<"BusDocument"> | Date | string
+    bus?: XOR<BusScalarRelationFilter, BusWhereInput>
+    docType?: XOR<DocumentTypeScalarRelationFilter, DocumentTypeWhereInput>
+  }
+
+  export type BusDocumentOrderByWithRelationInput = {
+    id?: SortOrder
+    busId?: SortOrder
+    docTypeId?: SortOrder
+    documentNumber?: SortOrderInput | SortOrder
+    issueDate?: SortOrderInput | SortOrder
+    expiryDate?: SortOrderInput | SortOrder
+    fileUrl?: SortOrder
+    remarks?: SortOrderInput | SortOrder
+    uploadedAt?: SortOrder
+    bus?: BusOrderByWithRelationInput
+    docType?: DocumentTypeOrderByWithRelationInput
+  }
+
+  export type BusDocumentWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: BusDocumentWhereInput | BusDocumentWhereInput[]
+    OR?: BusDocumentWhereInput[]
+    NOT?: BusDocumentWhereInput | BusDocumentWhereInput[]
+    busId?: StringFilter<"BusDocument"> | string
+    docTypeId?: StringFilter<"BusDocument"> | string
+    documentNumber?: StringNullableFilter<"BusDocument"> | string | null
+    issueDate?: DateTimeNullableFilter<"BusDocument"> | Date | string | null
+    expiryDate?: DateTimeNullableFilter<"BusDocument"> | Date | string | null
+    fileUrl?: StringFilter<"BusDocument"> | string
+    remarks?: StringNullableFilter<"BusDocument"> | string | null
+    uploadedAt?: DateTimeFilter<"BusDocument"> | Date | string
+    bus?: XOR<BusScalarRelationFilter, BusWhereInput>
+    docType?: XOR<DocumentTypeScalarRelationFilter, DocumentTypeWhereInput>
+  }, "id">
+
+  export type BusDocumentOrderByWithAggregationInput = {
+    id?: SortOrder
+    busId?: SortOrder
+    docTypeId?: SortOrder
+    documentNumber?: SortOrderInput | SortOrder
+    issueDate?: SortOrderInput | SortOrder
+    expiryDate?: SortOrderInput | SortOrder
+    fileUrl?: SortOrder
+    remarks?: SortOrderInput | SortOrder
+    uploadedAt?: SortOrder
+    _count?: BusDocumentCountOrderByAggregateInput
+    _max?: BusDocumentMaxOrderByAggregateInput
+    _min?: BusDocumentMinOrderByAggregateInput
+  }
+
+  export type BusDocumentScalarWhereWithAggregatesInput = {
+    AND?: BusDocumentScalarWhereWithAggregatesInput | BusDocumentScalarWhereWithAggregatesInput[]
+    OR?: BusDocumentScalarWhereWithAggregatesInput[]
+    NOT?: BusDocumentScalarWhereWithAggregatesInput | BusDocumentScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"BusDocument"> | string
+    busId?: StringWithAggregatesFilter<"BusDocument"> | string
+    docTypeId?: StringWithAggregatesFilter<"BusDocument"> | string
+    documentNumber?: StringNullableWithAggregatesFilter<"BusDocument"> | string | null
+    issueDate?: DateTimeNullableWithAggregatesFilter<"BusDocument"> | Date | string | null
+    expiryDate?: DateTimeNullableWithAggregatesFilter<"BusDocument"> | Date | string | null
+    fileUrl?: StringWithAggregatesFilter<"BusDocument"> | string
+    remarks?: StringNullableWithAggregatesFilter<"BusDocument"> | string | null
+    uploadedAt?: DateTimeWithAggregatesFilter<"BusDocument"> | Date | string
+  }
+
   export type UserCreateInput = {
     username: string
     password: string
@@ -2188,6 +6098,229 @@ export namespace Prisma {
     isActive?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type BusCreateInput = {
+    id?: string
+    registrationNo: string
+    model?: string | null
+    manufacturer?: string | null
+    yearOfMake?: number | null
+    ownerName?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    documents?: BusDocumentCreateNestedManyWithoutBusInput
+  }
+
+  export type BusUncheckedCreateInput = {
+    id?: string
+    registrationNo: string
+    model?: string | null
+    manufacturer?: string | null
+    yearOfMake?: number | null
+    ownerName?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    documents?: BusDocumentUncheckedCreateNestedManyWithoutBusInput
+  }
+
+  export type BusUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    registrationNo?: StringFieldUpdateOperationsInput | string
+    model?: NullableStringFieldUpdateOperationsInput | string | null
+    manufacturer?: NullableStringFieldUpdateOperationsInput | string | null
+    yearOfMake?: NullableIntFieldUpdateOperationsInput | number | null
+    ownerName?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    documents?: BusDocumentUpdateManyWithoutBusNestedInput
+  }
+
+  export type BusUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    registrationNo?: StringFieldUpdateOperationsInput | string
+    model?: NullableStringFieldUpdateOperationsInput | string | null
+    manufacturer?: NullableStringFieldUpdateOperationsInput | string | null
+    yearOfMake?: NullableIntFieldUpdateOperationsInput | number | null
+    ownerName?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    documents?: BusDocumentUncheckedUpdateManyWithoutBusNestedInput
+  }
+
+  export type BusCreateManyInput = {
+    id?: string
+    registrationNo: string
+    model?: string | null
+    manufacturer?: string | null
+    yearOfMake?: number | null
+    ownerName?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type BusUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    registrationNo?: StringFieldUpdateOperationsInput | string
+    model?: NullableStringFieldUpdateOperationsInput | string | null
+    manufacturer?: NullableStringFieldUpdateOperationsInput | string | null
+    yearOfMake?: NullableIntFieldUpdateOperationsInput | number | null
+    ownerName?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type BusUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    registrationNo?: StringFieldUpdateOperationsInput | string
+    model?: NullableStringFieldUpdateOperationsInput | string | null
+    manufacturer?: NullableStringFieldUpdateOperationsInput | string | null
+    yearOfMake?: NullableIntFieldUpdateOperationsInput | number | null
+    ownerName?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type DocumentTypeCreateInput = {
+    id?: string
+    name: string
+    description?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    documents?: BusDocumentCreateNestedManyWithoutDocTypeInput
+  }
+
+  export type DocumentTypeUncheckedCreateInput = {
+    id?: string
+    name: string
+    description?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    documents?: BusDocumentUncheckedCreateNestedManyWithoutDocTypeInput
+  }
+
+  export type DocumentTypeUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    documents?: BusDocumentUpdateManyWithoutDocTypeNestedInput
+  }
+
+  export type DocumentTypeUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    documents?: BusDocumentUncheckedUpdateManyWithoutDocTypeNestedInput
+  }
+
+  export type DocumentTypeCreateManyInput = {
+    id?: string
+    name: string
+    description?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type DocumentTypeUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type DocumentTypeUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type BusDocumentCreateInput = {
+    id?: string
+    documentNumber?: string | null
+    issueDate?: Date | string | null
+    expiryDate?: Date | string | null
+    fileUrl: string
+    remarks?: string | null
+    uploadedAt?: Date | string
+    bus: BusCreateNestedOneWithoutDocumentsInput
+    docType: DocumentTypeCreateNestedOneWithoutDocumentsInput
+  }
+
+  export type BusDocumentUncheckedCreateInput = {
+    id?: string
+    busId: string
+    docTypeId: string
+    documentNumber?: string | null
+    issueDate?: Date | string | null
+    expiryDate?: Date | string | null
+    fileUrl: string
+    remarks?: string | null
+    uploadedAt?: Date | string
+  }
+
+  export type BusDocumentUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    documentNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    issueDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    expiryDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    fileUrl?: StringFieldUpdateOperationsInput | string
+    remarks?: NullableStringFieldUpdateOperationsInput | string | null
+    uploadedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    bus?: BusUpdateOneRequiredWithoutDocumentsNestedInput
+    docType?: DocumentTypeUpdateOneRequiredWithoutDocumentsNestedInput
+  }
+
+  export type BusDocumentUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    busId?: StringFieldUpdateOperationsInput | string
+    docTypeId?: StringFieldUpdateOperationsInput | string
+    documentNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    issueDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    expiryDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    fileUrl?: StringFieldUpdateOperationsInput | string
+    remarks?: NullableStringFieldUpdateOperationsInput | string | null
+    uploadedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type BusDocumentCreateManyInput = {
+    id?: string
+    busId: string
+    docTypeId: string
+    documentNumber?: string | null
+    issueDate?: Date | string | null
+    expiryDate?: Date | string | null
+    fileUrl: string
+    remarks?: string | null
+    uploadedAt?: Date | string
+  }
+
+  export type BusDocumentUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    documentNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    issueDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    expiryDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    fileUrl?: StringFieldUpdateOperationsInput | string
+    remarks?: NullableStringFieldUpdateOperationsInput | string | null
+    uploadedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type BusDocumentUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    busId?: StringFieldUpdateOperationsInput | string
+    docTypeId?: StringFieldUpdateOperationsInput | string
+    documentNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    issueDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    expiryDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    fileUrl?: StringFieldUpdateOperationsInput | string
+    remarks?: NullableStringFieldUpdateOperationsInput | string | null
+    uploadedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type IntFilter<$PrismaModel = never> = {
@@ -2364,6 +6497,179 @@ export namespace Prisma {
     _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
+  export type IntNullableFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableFilter<$PrismaModel> | number | null
+  }
+
+  export type BusDocumentListRelationFilter = {
+    every?: BusDocumentWhereInput
+    some?: BusDocumentWhereInput
+    none?: BusDocumentWhereInput
+  }
+
+  export type BusDocumentOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type BusCountOrderByAggregateInput = {
+    id?: SortOrder
+    registrationNo?: SortOrder
+    model?: SortOrder
+    manufacturer?: SortOrder
+    yearOfMake?: SortOrder
+    ownerName?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type BusAvgOrderByAggregateInput = {
+    yearOfMake?: SortOrder
+  }
+
+  export type BusMaxOrderByAggregateInput = {
+    id?: SortOrder
+    registrationNo?: SortOrder
+    model?: SortOrder
+    manufacturer?: SortOrder
+    yearOfMake?: SortOrder
+    ownerName?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type BusMinOrderByAggregateInput = {
+    id?: SortOrder
+    registrationNo?: SortOrder
+    model?: SortOrder
+    manufacturer?: SortOrder
+    yearOfMake?: SortOrder
+    ownerName?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type BusSumOrderByAggregateInput = {
+    yearOfMake?: SortOrder
+  }
+
+  export type IntNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedIntNullableFilter<$PrismaModel>
+    _max?: NestedIntNullableFilter<$PrismaModel>
+  }
+
+  export type DocumentTypeCountOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    description?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type DocumentTypeMaxOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    description?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type DocumentTypeMinOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    description?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type DateTimeNullableFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
+  }
+
+  export type BusScalarRelationFilter = {
+    is?: BusWhereInput
+    isNot?: BusWhereInput
+  }
+
+  export type DocumentTypeScalarRelationFilter = {
+    is?: DocumentTypeWhereInput
+    isNot?: DocumentTypeWhereInput
+  }
+
+  export type BusDocumentCountOrderByAggregateInput = {
+    id?: SortOrder
+    busId?: SortOrder
+    docTypeId?: SortOrder
+    documentNumber?: SortOrder
+    issueDate?: SortOrder
+    expiryDate?: SortOrder
+    fileUrl?: SortOrder
+    remarks?: SortOrder
+    uploadedAt?: SortOrder
+  }
+
+  export type BusDocumentMaxOrderByAggregateInput = {
+    id?: SortOrder
+    busId?: SortOrder
+    docTypeId?: SortOrder
+    documentNumber?: SortOrder
+    issueDate?: SortOrder
+    expiryDate?: SortOrder
+    fileUrl?: SortOrder
+    remarks?: SortOrder
+    uploadedAt?: SortOrder
+  }
+
+  export type BusDocumentMinOrderByAggregateInput = {
+    id?: SortOrder
+    busId?: SortOrder
+    docTypeId?: SortOrder
+    documentNumber?: SortOrder
+    issueDate?: SortOrder
+    expiryDate?: SortOrder
+    fileUrl?: SortOrder
+    remarks?: SortOrder
+    uploadedAt?: SortOrder
+  }
+
+  export type DateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableWithAggregatesFilter<$PrismaModel> | Date | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedDateTimeNullableFilter<$PrismaModel>
+    _max?: NestedDateTimeNullableFilter<$PrismaModel>
+  }
+
   export type StringFieldUpdateOperationsInput = {
     set?: string
   }
@@ -2386,6 +6692,130 @@ export namespace Prisma {
     decrement?: number
     multiply?: number
     divide?: number
+  }
+
+  export type BusDocumentCreateNestedManyWithoutBusInput = {
+    create?: XOR<BusDocumentCreateWithoutBusInput, BusDocumentUncheckedCreateWithoutBusInput> | BusDocumentCreateWithoutBusInput[] | BusDocumentUncheckedCreateWithoutBusInput[]
+    connectOrCreate?: BusDocumentCreateOrConnectWithoutBusInput | BusDocumentCreateOrConnectWithoutBusInput[]
+    createMany?: BusDocumentCreateManyBusInputEnvelope
+    connect?: BusDocumentWhereUniqueInput | BusDocumentWhereUniqueInput[]
+  }
+
+  export type BusDocumentUncheckedCreateNestedManyWithoutBusInput = {
+    create?: XOR<BusDocumentCreateWithoutBusInput, BusDocumentUncheckedCreateWithoutBusInput> | BusDocumentCreateWithoutBusInput[] | BusDocumentUncheckedCreateWithoutBusInput[]
+    connectOrCreate?: BusDocumentCreateOrConnectWithoutBusInput | BusDocumentCreateOrConnectWithoutBusInput[]
+    createMany?: BusDocumentCreateManyBusInputEnvelope
+    connect?: BusDocumentWhereUniqueInput | BusDocumentWhereUniqueInput[]
+  }
+
+  export type NullableIntFieldUpdateOperationsInput = {
+    set?: number | null
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
+  }
+
+  export type BusDocumentUpdateManyWithoutBusNestedInput = {
+    create?: XOR<BusDocumentCreateWithoutBusInput, BusDocumentUncheckedCreateWithoutBusInput> | BusDocumentCreateWithoutBusInput[] | BusDocumentUncheckedCreateWithoutBusInput[]
+    connectOrCreate?: BusDocumentCreateOrConnectWithoutBusInput | BusDocumentCreateOrConnectWithoutBusInput[]
+    upsert?: BusDocumentUpsertWithWhereUniqueWithoutBusInput | BusDocumentUpsertWithWhereUniqueWithoutBusInput[]
+    createMany?: BusDocumentCreateManyBusInputEnvelope
+    set?: BusDocumentWhereUniqueInput | BusDocumentWhereUniqueInput[]
+    disconnect?: BusDocumentWhereUniqueInput | BusDocumentWhereUniqueInput[]
+    delete?: BusDocumentWhereUniqueInput | BusDocumentWhereUniqueInput[]
+    connect?: BusDocumentWhereUniqueInput | BusDocumentWhereUniqueInput[]
+    update?: BusDocumentUpdateWithWhereUniqueWithoutBusInput | BusDocumentUpdateWithWhereUniqueWithoutBusInput[]
+    updateMany?: BusDocumentUpdateManyWithWhereWithoutBusInput | BusDocumentUpdateManyWithWhereWithoutBusInput[]
+    deleteMany?: BusDocumentScalarWhereInput | BusDocumentScalarWhereInput[]
+  }
+
+  export type BusDocumentUncheckedUpdateManyWithoutBusNestedInput = {
+    create?: XOR<BusDocumentCreateWithoutBusInput, BusDocumentUncheckedCreateWithoutBusInput> | BusDocumentCreateWithoutBusInput[] | BusDocumentUncheckedCreateWithoutBusInput[]
+    connectOrCreate?: BusDocumentCreateOrConnectWithoutBusInput | BusDocumentCreateOrConnectWithoutBusInput[]
+    upsert?: BusDocumentUpsertWithWhereUniqueWithoutBusInput | BusDocumentUpsertWithWhereUniqueWithoutBusInput[]
+    createMany?: BusDocumentCreateManyBusInputEnvelope
+    set?: BusDocumentWhereUniqueInput | BusDocumentWhereUniqueInput[]
+    disconnect?: BusDocumentWhereUniqueInput | BusDocumentWhereUniqueInput[]
+    delete?: BusDocumentWhereUniqueInput | BusDocumentWhereUniqueInput[]
+    connect?: BusDocumentWhereUniqueInput | BusDocumentWhereUniqueInput[]
+    update?: BusDocumentUpdateWithWhereUniqueWithoutBusInput | BusDocumentUpdateWithWhereUniqueWithoutBusInput[]
+    updateMany?: BusDocumentUpdateManyWithWhereWithoutBusInput | BusDocumentUpdateManyWithWhereWithoutBusInput[]
+    deleteMany?: BusDocumentScalarWhereInput | BusDocumentScalarWhereInput[]
+  }
+
+  export type BusDocumentCreateNestedManyWithoutDocTypeInput = {
+    create?: XOR<BusDocumentCreateWithoutDocTypeInput, BusDocumentUncheckedCreateWithoutDocTypeInput> | BusDocumentCreateWithoutDocTypeInput[] | BusDocumentUncheckedCreateWithoutDocTypeInput[]
+    connectOrCreate?: BusDocumentCreateOrConnectWithoutDocTypeInput | BusDocumentCreateOrConnectWithoutDocTypeInput[]
+    createMany?: BusDocumentCreateManyDocTypeInputEnvelope
+    connect?: BusDocumentWhereUniqueInput | BusDocumentWhereUniqueInput[]
+  }
+
+  export type BusDocumentUncheckedCreateNestedManyWithoutDocTypeInput = {
+    create?: XOR<BusDocumentCreateWithoutDocTypeInput, BusDocumentUncheckedCreateWithoutDocTypeInput> | BusDocumentCreateWithoutDocTypeInput[] | BusDocumentUncheckedCreateWithoutDocTypeInput[]
+    connectOrCreate?: BusDocumentCreateOrConnectWithoutDocTypeInput | BusDocumentCreateOrConnectWithoutDocTypeInput[]
+    createMany?: BusDocumentCreateManyDocTypeInputEnvelope
+    connect?: BusDocumentWhereUniqueInput | BusDocumentWhereUniqueInput[]
+  }
+
+  export type BusDocumentUpdateManyWithoutDocTypeNestedInput = {
+    create?: XOR<BusDocumentCreateWithoutDocTypeInput, BusDocumentUncheckedCreateWithoutDocTypeInput> | BusDocumentCreateWithoutDocTypeInput[] | BusDocumentUncheckedCreateWithoutDocTypeInput[]
+    connectOrCreate?: BusDocumentCreateOrConnectWithoutDocTypeInput | BusDocumentCreateOrConnectWithoutDocTypeInput[]
+    upsert?: BusDocumentUpsertWithWhereUniqueWithoutDocTypeInput | BusDocumentUpsertWithWhereUniqueWithoutDocTypeInput[]
+    createMany?: BusDocumentCreateManyDocTypeInputEnvelope
+    set?: BusDocumentWhereUniqueInput | BusDocumentWhereUniqueInput[]
+    disconnect?: BusDocumentWhereUniqueInput | BusDocumentWhereUniqueInput[]
+    delete?: BusDocumentWhereUniqueInput | BusDocumentWhereUniqueInput[]
+    connect?: BusDocumentWhereUniqueInput | BusDocumentWhereUniqueInput[]
+    update?: BusDocumentUpdateWithWhereUniqueWithoutDocTypeInput | BusDocumentUpdateWithWhereUniqueWithoutDocTypeInput[]
+    updateMany?: BusDocumentUpdateManyWithWhereWithoutDocTypeInput | BusDocumentUpdateManyWithWhereWithoutDocTypeInput[]
+    deleteMany?: BusDocumentScalarWhereInput | BusDocumentScalarWhereInput[]
+  }
+
+  export type BusDocumentUncheckedUpdateManyWithoutDocTypeNestedInput = {
+    create?: XOR<BusDocumentCreateWithoutDocTypeInput, BusDocumentUncheckedCreateWithoutDocTypeInput> | BusDocumentCreateWithoutDocTypeInput[] | BusDocumentUncheckedCreateWithoutDocTypeInput[]
+    connectOrCreate?: BusDocumentCreateOrConnectWithoutDocTypeInput | BusDocumentCreateOrConnectWithoutDocTypeInput[]
+    upsert?: BusDocumentUpsertWithWhereUniqueWithoutDocTypeInput | BusDocumentUpsertWithWhereUniqueWithoutDocTypeInput[]
+    createMany?: BusDocumentCreateManyDocTypeInputEnvelope
+    set?: BusDocumentWhereUniqueInput | BusDocumentWhereUniqueInput[]
+    disconnect?: BusDocumentWhereUniqueInput | BusDocumentWhereUniqueInput[]
+    delete?: BusDocumentWhereUniqueInput | BusDocumentWhereUniqueInput[]
+    connect?: BusDocumentWhereUniqueInput | BusDocumentWhereUniqueInput[]
+    update?: BusDocumentUpdateWithWhereUniqueWithoutDocTypeInput | BusDocumentUpdateWithWhereUniqueWithoutDocTypeInput[]
+    updateMany?: BusDocumentUpdateManyWithWhereWithoutDocTypeInput | BusDocumentUpdateManyWithWhereWithoutDocTypeInput[]
+    deleteMany?: BusDocumentScalarWhereInput | BusDocumentScalarWhereInput[]
+  }
+
+  export type BusCreateNestedOneWithoutDocumentsInput = {
+    create?: XOR<BusCreateWithoutDocumentsInput, BusUncheckedCreateWithoutDocumentsInput>
+    connectOrCreate?: BusCreateOrConnectWithoutDocumentsInput
+    connect?: BusWhereUniqueInput
+  }
+
+  export type DocumentTypeCreateNestedOneWithoutDocumentsInput = {
+    create?: XOR<DocumentTypeCreateWithoutDocumentsInput, DocumentTypeUncheckedCreateWithoutDocumentsInput>
+    connectOrCreate?: DocumentTypeCreateOrConnectWithoutDocumentsInput
+    connect?: DocumentTypeWhereUniqueInput
+  }
+
+  export type NullableDateTimeFieldUpdateOperationsInput = {
+    set?: Date | string | null
+  }
+
+  export type BusUpdateOneRequiredWithoutDocumentsNestedInput = {
+    create?: XOR<BusCreateWithoutDocumentsInput, BusUncheckedCreateWithoutDocumentsInput>
+    connectOrCreate?: BusCreateOrConnectWithoutDocumentsInput
+    upsert?: BusUpsertWithoutDocumentsInput
+    connect?: BusWhereUniqueInput
+    update?: XOR<XOR<BusUpdateToOneWithWhereWithoutDocumentsInput, BusUpdateWithoutDocumentsInput>, BusUncheckedUpdateWithoutDocumentsInput>
+  }
+
+  export type DocumentTypeUpdateOneRequiredWithoutDocumentsNestedInput = {
+    create?: XOR<DocumentTypeCreateWithoutDocumentsInput, DocumentTypeUncheckedCreateWithoutDocumentsInput>
+    connectOrCreate?: DocumentTypeCreateOrConnectWithoutDocumentsInput
+    upsert?: DocumentTypeUpsertWithoutDocumentsInput
+    connect?: DocumentTypeWhereUniqueInput
+    update?: XOR<XOR<DocumentTypeUpdateToOneWithWhereWithoutDocumentsInput, DocumentTypeUpdateWithoutDocumentsInput>, DocumentTypeUncheckedUpdateWithoutDocumentsInput>
   }
 
   export type NestedIntFilter<$PrismaModel = never> = {
@@ -2535,6 +6965,365 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedDateTimeFilter<$PrismaModel>
     _max?: NestedDateTimeFilter<$PrismaModel>
+  }
+
+  export type NestedIntNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedIntNullableFilter<$PrismaModel>
+    _max?: NestedIntNullableFilter<$PrismaModel>
+  }
+
+  export type NestedFloatNullableFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatNullableFilter<$PrismaModel> | number | null
+  }
+
+  export type NestedDateTimeNullableFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
+  }
+
+  export type NestedDateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableWithAggregatesFilter<$PrismaModel> | Date | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedDateTimeNullableFilter<$PrismaModel>
+    _max?: NestedDateTimeNullableFilter<$PrismaModel>
+  }
+
+  export type BusDocumentCreateWithoutBusInput = {
+    id?: string
+    documentNumber?: string | null
+    issueDate?: Date | string | null
+    expiryDate?: Date | string | null
+    fileUrl: string
+    remarks?: string | null
+    uploadedAt?: Date | string
+    docType: DocumentTypeCreateNestedOneWithoutDocumentsInput
+  }
+
+  export type BusDocumentUncheckedCreateWithoutBusInput = {
+    id?: string
+    docTypeId: string
+    documentNumber?: string | null
+    issueDate?: Date | string | null
+    expiryDate?: Date | string | null
+    fileUrl: string
+    remarks?: string | null
+    uploadedAt?: Date | string
+  }
+
+  export type BusDocumentCreateOrConnectWithoutBusInput = {
+    where: BusDocumentWhereUniqueInput
+    create: XOR<BusDocumentCreateWithoutBusInput, BusDocumentUncheckedCreateWithoutBusInput>
+  }
+
+  export type BusDocumentCreateManyBusInputEnvelope = {
+    data: BusDocumentCreateManyBusInput | BusDocumentCreateManyBusInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type BusDocumentUpsertWithWhereUniqueWithoutBusInput = {
+    where: BusDocumentWhereUniqueInput
+    update: XOR<BusDocumentUpdateWithoutBusInput, BusDocumentUncheckedUpdateWithoutBusInput>
+    create: XOR<BusDocumentCreateWithoutBusInput, BusDocumentUncheckedCreateWithoutBusInput>
+  }
+
+  export type BusDocumentUpdateWithWhereUniqueWithoutBusInput = {
+    where: BusDocumentWhereUniqueInput
+    data: XOR<BusDocumentUpdateWithoutBusInput, BusDocumentUncheckedUpdateWithoutBusInput>
+  }
+
+  export type BusDocumentUpdateManyWithWhereWithoutBusInput = {
+    where: BusDocumentScalarWhereInput
+    data: XOR<BusDocumentUpdateManyMutationInput, BusDocumentUncheckedUpdateManyWithoutBusInput>
+  }
+
+  export type BusDocumentScalarWhereInput = {
+    AND?: BusDocumentScalarWhereInput | BusDocumentScalarWhereInput[]
+    OR?: BusDocumentScalarWhereInput[]
+    NOT?: BusDocumentScalarWhereInput | BusDocumentScalarWhereInput[]
+    id?: StringFilter<"BusDocument"> | string
+    busId?: StringFilter<"BusDocument"> | string
+    docTypeId?: StringFilter<"BusDocument"> | string
+    documentNumber?: StringNullableFilter<"BusDocument"> | string | null
+    issueDate?: DateTimeNullableFilter<"BusDocument"> | Date | string | null
+    expiryDate?: DateTimeNullableFilter<"BusDocument"> | Date | string | null
+    fileUrl?: StringFilter<"BusDocument"> | string
+    remarks?: StringNullableFilter<"BusDocument"> | string | null
+    uploadedAt?: DateTimeFilter<"BusDocument"> | Date | string
+  }
+
+  export type BusDocumentCreateWithoutDocTypeInput = {
+    id?: string
+    documentNumber?: string | null
+    issueDate?: Date | string | null
+    expiryDate?: Date | string | null
+    fileUrl: string
+    remarks?: string | null
+    uploadedAt?: Date | string
+    bus: BusCreateNestedOneWithoutDocumentsInput
+  }
+
+  export type BusDocumentUncheckedCreateWithoutDocTypeInput = {
+    id?: string
+    busId: string
+    documentNumber?: string | null
+    issueDate?: Date | string | null
+    expiryDate?: Date | string | null
+    fileUrl: string
+    remarks?: string | null
+    uploadedAt?: Date | string
+  }
+
+  export type BusDocumentCreateOrConnectWithoutDocTypeInput = {
+    where: BusDocumentWhereUniqueInput
+    create: XOR<BusDocumentCreateWithoutDocTypeInput, BusDocumentUncheckedCreateWithoutDocTypeInput>
+  }
+
+  export type BusDocumentCreateManyDocTypeInputEnvelope = {
+    data: BusDocumentCreateManyDocTypeInput | BusDocumentCreateManyDocTypeInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type BusDocumentUpsertWithWhereUniqueWithoutDocTypeInput = {
+    where: BusDocumentWhereUniqueInput
+    update: XOR<BusDocumentUpdateWithoutDocTypeInput, BusDocumentUncheckedUpdateWithoutDocTypeInput>
+    create: XOR<BusDocumentCreateWithoutDocTypeInput, BusDocumentUncheckedCreateWithoutDocTypeInput>
+  }
+
+  export type BusDocumentUpdateWithWhereUniqueWithoutDocTypeInput = {
+    where: BusDocumentWhereUniqueInput
+    data: XOR<BusDocumentUpdateWithoutDocTypeInput, BusDocumentUncheckedUpdateWithoutDocTypeInput>
+  }
+
+  export type BusDocumentUpdateManyWithWhereWithoutDocTypeInput = {
+    where: BusDocumentScalarWhereInput
+    data: XOR<BusDocumentUpdateManyMutationInput, BusDocumentUncheckedUpdateManyWithoutDocTypeInput>
+  }
+
+  export type BusCreateWithoutDocumentsInput = {
+    id?: string
+    registrationNo: string
+    model?: string | null
+    manufacturer?: string | null
+    yearOfMake?: number | null
+    ownerName?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type BusUncheckedCreateWithoutDocumentsInput = {
+    id?: string
+    registrationNo: string
+    model?: string | null
+    manufacturer?: string | null
+    yearOfMake?: number | null
+    ownerName?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type BusCreateOrConnectWithoutDocumentsInput = {
+    where: BusWhereUniqueInput
+    create: XOR<BusCreateWithoutDocumentsInput, BusUncheckedCreateWithoutDocumentsInput>
+  }
+
+  export type DocumentTypeCreateWithoutDocumentsInput = {
+    id?: string
+    name: string
+    description?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type DocumentTypeUncheckedCreateWithoutDocumentsInput = {
+    id?: string
+    name: string
+    description?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type DocumentTypeCreateOrConnectWithoutDocumentsInput = {
+    where: DocumentTypeWhereUniqueInput
+    create: XOR<DocumentTypeCreateWithoutDocumentsInput, DocumentTypeUncheckedCreateWithoutDocumentsInput>
+  }
+
+  export type BusUpsertWithoutDocumentsInput = {
+    update: XOR<BusUpdateWithoutDocumentsInput, BusUncheckedUpdateWithoutDocumentsInput>
+    create: XOR<BusCreateWithoutDocumentsInput, BusUncheckedCreateWithoutDocumentsInput>
+    where?: BusWhereInput
+  }
+
+  export type BusUpdateToOneWithWhereWithoutDocumentsInput = {
+    where?: BusWhereInput
+    data: XOR<BusUpdateWithoutDocumentsInput, BusUncheckedUpdateWithoutDocumentsInput>
+  }
+
+  export type BusUpdateWithoutDocumentsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    registrationNo?: StringFieldUpdateOperationsInput | string
+    model?: NullableStringFieldUpdateOperationsInput | string | null
+    manufacturer?: NullableStringFieldUpdateOperationsInput | string | null
+    yearOfMake?: NullableIntFieldUpdateOperationsInput | number | null
+    ownerName?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type BusUncheckedUpdateWithoutDocumentsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    registrationNo?: StringFieldUpdateOperationsInput | string
+    model?: NullableStringFieldUpdateOperationsInput | string | null
+    manufacturer?: NullableStringFieldUpdateOperationsInput | string | null
+    yearOfMake?: NullableIntFieldUpdateOperationsInput | number | null
+    ownerName?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type DocumentTypeUpsertWithoutDocumentsInput = {
+    update: XOR<DocumentTypeUpdateWithoutDocumentsInput, DocumentTypeUncheckedUpdateWithoutDocumentsInput>
+    create: XOR<DocumentTypeCreateWithoutDocumentsInput, DocumentTypeUncheckedCreateWithoutDocumentsInput>
+    where?: DocumentTypeWhereInput
+  }
+
+  export type DocumentTypeUpdateToOneWithWhereWithoutDocumentsInput = {
+    where?: DocumentTypeWhereInput
+    data: XOR<DocumentTypeUpdateWithoutDocumentsInput, DocumentTypeUncheckedUpdateWithoutDocumentsInput>
+  }
+
+  export type DocumentTypeUpdateWithoutDocumentsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type DocumentTypeUncheckedUpdateWithoutDocumentsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type BusDocumentCreateManyBusInput = {
+    id?: string
+    docTypeId: string
+    documentNumber?: string | null
+    issueDate?: Date | string | null
+    expiryDate?: Date | string | null
+    fileUrl: string
+    remarks?: string | null
+    uploadedAt?: Date | string
+  }
+
+  export type BusDocumentUpdateWithoutBusInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    documentNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    issueDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    expiryDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    fileUrl?: StringFieldUpdateOperationsInput | string
+    remarks?: NullableStringFieldUpdateOperationsInput | string | null
+    uploadedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    docType?: DocumentTypeUpdateOneRequiredWithoutDocumentsNestedInput
+  }
+
+  export type BusDocumentUncheckedUpdateWithoutBusInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    docTypeId?: StringFieldUpdateOperationsInput | string
+    documentNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    issueDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    expiryDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    fileUrl?: StringFieldUpdateOperationsInput | string
+    remarks?: NullableStringFieldUpdateOperationsInput | string | null
+    uploadedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type BusDocumentUncheckedUpdateManyWithoutBusInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    docTypeId?: StringFieldUpdateOperationsInput | string
+    documentNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    issueDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    expiryDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    fileUrl?: StringFieldUpdateOperationsInput | string
+    remarks?: NullableStringFieldUpdateOperationsInput | string | null
+    uploadedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type BusDocumentCreateManyDocTypeInput = {
+    id?: string
+    busId: string
+    documentNumber?: string | null
+    issueDate?: Date | string | null
+    expiryDate?: Date | string | null
+    fileUrl: string
+    remarks?: string | null
+    uploadedAt?: Date | string
+  }
+
+  export type BusDocumentUpdateWithoutDocTypeInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    documentNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    issueDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    expiryDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    fileUrl?: StringFieldUpdateOperationsInput | string
+    remarks?: NullableStringFieldUpdateOperationsInput | string | null
+    uploadedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    bus?: BusUpdateOneRequiredWithoutDocumentsNestedInput
+  }
+
+  export type BusDocumentUncheckedUpdateWithoutDocTypeInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    busId?: StringFieldUpdateOperationsInput | string
+    documentNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    issueDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    expiryDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    fileUrl?: StringFieldUpdateOperationsInput | string
+    remarks?: NullableStringFieldUpdateOperationsInput | string | null
+    uploadedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type BusDocumentUncheckedUpdateManyWithoutDocTypeInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    busId?: StringFieldUpdateOperationsInput | string
+    documentNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    issueDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    expiryDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    fileUrl?: StringFieldUpdateOperationsInput | string
+    remarks?: NullableStringFieldUpdateOperationsInput | string | null
+    uploadedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
 

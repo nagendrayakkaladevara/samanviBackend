@@ -11,10 +11,13 @@ A production-ready Node.js backend built with Express, TypeScript, and Prisma.
 - 🔄 **Graceful Shutdown** - Proper cleanup on server shutdown
 - 🏥 **Health Checks** - Built-in health monitoring endpoint
 - 📊 **Error Handling** - Comprehensive error handling and validation
+- 🚌 **Bus Management** - Complete bus and document management system
+- 📄 **Document Tracking** - Document expiry tracking and alerts
+- 🔑 **API Key Authentication** - Secure API access control
 
 ## Prerequisites
 
-- Node.js 18+ 
+- Node.js 18+
 - PostgreSQL 12+
 - npm or yarn
 
@@ -35,21 +38,25 @@ A production-ready Node.js backend built with Express, TypeScript, and Prisma.
    ```bash
    cp env.example .env
    ```
-   
+
    Edit `.env` with your configuration:
    ```env
    DATABASE_URL="postgresql://username:password@localhost:5432/samanvibackend?schema=public"
    PORT=3000
    NODE_ENV=development
+   ADMIN_API_KEY=your-secure-admin-api-key-here
    ```
 
 4. **Set up the database**
    ```bash
    # Generate Prisma client
    npm run prisma:generate
-   
-   # Run database migrations
-   npm run prisma:migrate
+
+   # Push schema to database
+   npx prisma db push
+
+   # Seed default data
+   npm run prisma:seed
    ```
 
 5. **Start the development server**
@@ -65,10 +72,11 @@ A production-ready Node.js backend built with Express, TypeScript, and Prisma.
 - `npm run prisma:generate` - Generate Prisma client
 - `npm run prisma:migrate` - Run database migrations
 - `npm run prisma:studio` - Open Prisma Studio
+- `npm run prisma:seed` - Seed database with default data
 
 ## API Endpoints
 
-### User Management
+### User Management (Public)
 
 #### POST `/api/users`
 Create a new user account.
@@ -79,16 +87,6 @@ Create a new user account.
   "username": "john_doe",
   "password": "securepassword123",
   "email": "john@example.com"
-}
-```
-
-**Response:**
-```json
-{
-  "id": 1,
-  "username": "john_doe",
-  "email": "john@example.com",
-  "createdAt": "2024-01-01T00:00:00.000Z"
 }
 ```
 
@@ -103,53 +101,113 @@ Authenticate a user.
 }
 ```
 
-**Response:**
-```json
-{
-  "message": "Login successful",
-  "user": {
-    "id": 1,
-    "username": "john_doe",
-    "email": "john@example.com"
-  }
-}
+### Bus Management (Requires API Key)
+
+**Authentication:** All bus management endpoints require the `x-api-key` header.
+
+#### POST `/api/v1/buses`
+Create a new bus.
+
+**Headers:**
 ```
-
-#### GET `/api/users`
-Get all active users.
-
-#### GET `/api/users/:id`
-Get a specific user by ID.
-
-#### PUT `/api/users/:id`
-Update a user's information.
+x-api-key: your-admin-api-key
+```
 
 **Request Body:**
 ```json
 {
-  "username": "new_username",
-  "email": "newemail@example.com",
-  "password": "newpassword123"
+  "registrationNo": "KA01AB1234",
+  "model": "Tata Starbus",
+  "manufacturer": "Tata Motors",
+  "yearOfMake": 2020,
+  "ownerName": "John Doe"
 }
 ```
 
-#### DELETE `/api/users/:id`
-Soft delete a user (sets isActive to false).
+#### GET `/api/v1/buses`
+List buses with pagination and search.
+
+**Query Parameters:**
+- `page` (optional): Page number (default: 1)
+- `limit` (optional): Items per page (default: 10)
+- `search` (optional): Search by registration number, model, manufacturer, or owner name
+
+#### GET `/api/v1/buses/:id`
+Get bus details with documents.
+
+#### PUT `/api/v1/buses/:id`
+Update bus information.
+
+#### DELETE `/api/v1/buses/:id`
+Delete a bus (only if no documents exist).
+
+### Document Types (Requires API Key)
+
+#### POST `/api/v1/document-types`
+Create a new document type.
+
+**Request Body:**
+```json
+{
+  "name": "Insurance",
+  "description": "Vehicle insurance certificate"
+}
+```
+
+#### GET `/api/v1/document-types`
+List all document types.
+
+#### PUT `/api/v1/document-types/:id`
+Update document type.
+
+#### DELETE `/api/v1/document-types/:id`
+Delete document type (only if not in use).
+
+### Bus Documents (Requires API Key)
+
+#### POST `/api/v1/buses/:busId/documents`
+Upload a document for a bus.
+
+**Content-Type:** `multipart/form-data`
+
+**Form Fields:**
+- `docTypeId`: Document type ID (required)
+- `documentNumber`: Document number (optional)
+- `issueDate`: Issue date in ISO format (optional)
+- `expiryDate`: Expiry date in ISO format (optional)
+- `remarks`: Additional remarks (optional)
+- `file`: Document file (PDF, JPG, PNG, max 10MB)
+
+#### GET `/api/v1/buses/:busId/documents`
+List all documents for a bus.
+
+#### GET `/api/v1/documents/:docId`
+Get a specific document.
+
+#### PUT `/api/v1/documents/:docId`
+Update document metadata (supports file replacement).
+
+#### DELETE `/api/v1/documents/:docId`
+Delete a document.
+
+### Expiry Helpers (Requires API Key)
+
+#### GET `/api/v1/documents/expiring`
+Get documents expiring within specified days.
+
+**Query Parameters:**
+- `withinDays` (optional): Days to check (default: 30)
+
+#### GET `/api/v1/buses/missing-required`
+Get buses missing required document types.
+
+**Query Parameters:**
+- `types` (optional): Comma-separated list of required document types
 
 ### Health Check
 
 #### GET `/health`
 Get server health status.
-
-**Response:**
-```json
-{
-  "status": "OK",
-  "timestamp": "2024-01-01T00:00:00.000Z",
-  "uptime": 123.456,
-  "environment": "development"
-}
-```
 
 ## Environment Variables
 
@@ -158,12 +216,75 @@ Get server health status.
 | `DATABASE_URL` | PostgreSQL connection string | - |
 | `PORT` | Server port | 3000 |
 | `NODE_ENV` | Environment (development/production) | development |
+| `ADMIN_API_KEY` | API key for bus management endpoints | - |
 | `BCRYPT_ROUNDS` | Password hashing rounds | 12 |
 | `ALLOWED_ORIGINS` | CORS allowed origins | http://localhost:3000 |
 | `LOG_LEVEL` | Logging level | info |
 
+## Database Schema
+
+The application uses a PostgreSQL database with the following schema:
+
+### Users Table
+```sql
+CREATE TABLE users (
+  id SERIAL PRIMARY KEY,
+  username VARCHAR(50) UNIQUE NOT NULL,
+  password VARCHAR(255) NOT NULL,
+  email VARCHAR(100) UNIQUE,
+  isActive BOOLEAN DEFAULT true,
+  createdAt TIMESTAMP DEFAULT NOW(),
+  updatedAt TIMESTAMP DEFAULT NOW()
+);
+```
+
+### Buses Table
+```sql
+CREATE TABLE buses (
+  id TEXT PRIMARY KEY,
+  registrationNo TEXT UNIQUE NOT NULL,
+  model TEXT,
+  manufacturer TEXT,
+  yearOfMake INTEGER,
+  ownerName TEXT,
+  createdAt TIMESTAMP DEFAULT NOW(),
+  updatedAt TIMESTAMP DEFAULT NOW()
+);
+```
+
+### Document Types Table
+```sql
+CREATE TABLE document_types (
+  id TEXT PRIMARY KEY,
+  name TEXT UNIQUE NOT NULL,
+  description TEXT,
+  createdAt TIMESTAMP DEFAULT NOW(),
+  updatedAt TIMESTAMP DEFAULT NOW()
+);
+```
+
+### Bus Documents Table
+```sql
+CREATE TABLE bus_documents (
+  id TEXT PRIMARY KEY,
+  busId TEXT NOT NULL REFERENCES buses(id) ON DELETE CASCADE,
+  docTypeId TEXT NOT NULL REFERENCES document_types(id) ON DELETE RESTRICT,
+  documentNumber TEXT,
+  issueDate TIMESTAMP,
+  expiryDate TIMESTAMP,
+  fileUrl TEXT NOT NULL,
+  remarks TEXT,
+  uploadedAt TIMESTAMP DEFAULT NOW()
+);
+
+CREATE INDEX ON bus_documents(busId);
+CREATE INDEX ON bus_documents(docTypeId);
+CREATE INDEX ON bus_documents(expiryDate);
+```
+
 ## Security Features
 
+- **API Key Authentication**: All bus management endpoints require a valid API key
 - **Password Hashing**: All passwords are hashed using bcrypt
 - **Rate Limiting**: Prevents abuse with configurable limits
 - **CORS Protection**: Configurable cross-origin resource sharing
@@ -182,6 +303,7 @@ Get server health status.
    ```env
    NODE_ENV=production
    DATABASE_URL=<production-database-url>
+   ADMIN_API_KEY=<secure-production-api-key>
    ```
 
 3. **Start the production server**
@@ -189,28 +311,13 @@ Get server health status.
    npm start
    ```
 
-## Database Schema
-
-The application uses a PostgreSQL database with the following schema:
-
-```sql
-CREATE TABLE users (
-  id SERIAL PRIMARY KEY,
-  username VARCHAR(50) UNIQUE NOT NULL,
-  password VARCHAR(255) NOT NULL,
-  email VARCHAR(100) UNIQUE,
-  isActive BOOLEAN DEFAULT true,
-  createdAt TIMESTAMP DEFAULT NOW(),
-  updatedAt TIMESTAMP DEFAULT NOW()
-);
-```
-
 ## Error Handling
 
 The application includes comprehensive error handling:
 
 - **Validation Errors**: 400 Bad Request with detailed validation messages
-- **Authentication Errors**: 401 Unauthorized for invalid credentials
+- **Authentication Errors**: 401 Unauthorized for invalid API keys
+- **Authorization Errors**: 403 Forbidden for invalid permissions
 - **Not Found Errors**: 404 Not Found for missing resources
 - **Conflict Errors**: 409 Conflict for duplicate resources
 - **Server Errors**: 500 Internal Server Error for unexpected issues
@@ -221,6 +328,8 @@ The application logs:
 - All HTTP requests with method, path, IP, and user agent
 - Authentication events (login, logout)
 - User management events (create, update, delete)
+- Bus management events (create, update, delete)
+- Document management events (upload, update, delete)
 - Errors with stack traces
 - Server startup and shutdown events
 

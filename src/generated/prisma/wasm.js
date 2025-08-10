@@ -130,6 +130,37 @@ exports.Prisma.UserScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
+exports.Prisma.BusScalarFieldEnum = {
+  id: 'id',
+  registrationNo: 'registrationNo',
+  model: 'model',
+  manufacturer: 'manufacturer',
+  yearOfMake: 'yearOfMake',
+  ownerName: 'ownerName',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.DocumentTypeScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  description: 'description',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.BusDocumentScalarFieldEnum = {
+  id: 'id',
+  busId: 'busId',
+  docTypeId: 'docTypeId',
+  documentNumber: 'documentNumber',
+  issueDate: 'issueDate',
+  expiryDate: 'expiryDate',
+  fileUrl: 'fileUrl',
+  remarks: 'remarks',
+  uploadedAt: 'uploadedAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -147,7 +178,10 @@ exports.Prisma.NullsOrder = {
 
 
 exports.Prisma.ModelName = {
-  User: 'User'
+  User: 'User',
+  Bus: 'Bus',
+  DocumentType: 'DocumentType',
+  BusDocument: 'BusDocument'
 };
 
 /**

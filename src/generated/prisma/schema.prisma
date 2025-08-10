@@ -25,3 +25,48 @@ model User {
 
   @@map("users")
 }
+
+model Bus {
+  id             String        @id @default(cuid())
+  registrationNo String        @unique
+  model          String?
+  manufacturer   String?
+  yearOfMake     Int?
+  ownerName      String?
+  createdAt      DateTime      @default(now())
+  updatedAt      DateTime      @updatedAt
+  documents      BusDocument[]
+
+  @@map("buses")
+}
+
+model DocumentType {
+  id          String        @id @default(cuid())
+  name        String        @unique
+  description String?
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+  documents   BusDocument[]
+
+  @@map("document_types")
+}
+
+model BusDocument {
+  id             String    @id @default(cuid())
+  busId          String
+  docTypeId      String
+  documentNumber String?
+  issueDate      DateTime?
+  expiryDate     DateTime?
+  fileUrl        String // relative path or S3 URL
+  remarks        String?
+  uploadedAt     DateTime  @default(now())
+
+  bus     Bus          @relation(fields: [busId], references: [id], onDelete: Cascade)
+  docType DocumentType @relation(fields: [docTypeId], references: [id], onDelete: Restrict)
+
+  @@index([busId])
+  @@index([docTypeId])
+  @@index([expiryDate])
+  @@map("bus_documents")
+}
