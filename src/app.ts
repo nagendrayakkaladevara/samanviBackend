@@ -3,6 +3,9 @@ import cors from 'cors';
 import helmet from 'helmet';
 import rateLimit from 'express-rate-limit';
 import userRoutes from './routes/user.routes';
+import busRoutes from './routes/bus.routes';
+import documentTypeRoutes from './routes/documentType.routes';
+import busDocumentRoutes from './routes/busDocument.routes';
 import { errorHandler } from './middlewares/errorHandler';
 import { config } from './config/config';
 import logger from './utils/logger';
@@ -79,6 +82,9 @@ app.get('/health', (_req, res) => {
 // API routes
 console.log('🛣️  Setting up API routes...');
 app.use('/api/users', userRoutes);
+app.use('/api/v1/buses', busRoutes);
+app.use('/api/v1/document-types', documentTypeRoutes);
+app.use('/api/v1', busDocumentRoutes);
 
 // 404 handler
 console.log('❓ Setting up 404 handler...');
