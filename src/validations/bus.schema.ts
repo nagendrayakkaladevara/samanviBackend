@@ -21,12 +21,12 @@ export const busIdSchema = z.object({
 });
 
 export const busQuerySchema = z.object({
-  page: z.string().regex(/^\d+$/).transform(Number).default('1'),
-  limit: z.string().regex(/^\d+$/).transform(Number).default('10'),
+  page: z.string().regex(/^\d+$/).transform(Number).default(() => 1),
+  limit: z.string().regex(/^\d+$/).transform(Number).default(() => 10),
   search: z.string().optional(),
 });
 
 export const busDocumentQuerySchema = z.object({
-  page: z.string().regex(/^\d+$/).transform(Number).default('1'),
-  limit: z.string().regex(/^\d+$/).transform(Number).default('10'),
+  page: z.string().regex(/^\d+$/).transform(Number).default(() => 1),
+  limit: z.string().regex(/^\d+$/).transform(Number).default(() => 10),
 });

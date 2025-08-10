@@ -48,10 +48,10 @@ export const getBuses = async (req: Request, res: Response, next: NextFunction):
     
     const where = search ? {
       OR: [
-        { registrationNo: { contains: search, mode: 'insensitive' } },
-        { model: { contains: search, mode: 'insensitive' } },
-        { manufacturer: { contains: search, mode: 'insensitive' } },
-        { ownerName: { contains: search, mode: 'insensitive' } },
+        { registrationNo: { contains: search, mode: 'insensitive' as const } },
+        { model: { contains: search, mode: 'insensitive' as const } },
+        { manufacturer: { contains: search, mode: 'insensitive' as const } },
+        { ownerName: { contains: search, mode: 'insensitive' as const } },
       ]
     } : {};
 

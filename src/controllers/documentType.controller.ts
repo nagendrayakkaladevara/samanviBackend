@@ -35,7 +35,7 @@ export const createDocumentType = async (req: Request, res: Response, next: Next
   }
 };
 
-export const getDocumentTypes = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
+export const getDocumentTypes = async (_req: Request, res: Response, next: NextFunction): Promise<void> => {
   try {
     console.log('📄 Fetching all document types...');
     

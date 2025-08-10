@@ -17,9 +17,6 @@ export const config = {
     bcryptRounds: parseInt(process.env.BCRYPT_ROUNDS || '12', 10),
   },
   
-  // Admin API Key
-  adminApiKey: process.env.ADMIN_API_KEY || 'default-admin-key-change-in-production',
-  
   // CORS Configuration
   cors: {
     allowedOrigins: process.env.ALLOWED_ORIGINS?.split(',') || [

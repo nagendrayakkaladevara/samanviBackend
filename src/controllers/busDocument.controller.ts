@@ -11,11 +11,6 @@ import {
 import { createError } from '../middlewares/errorHandler';
 import logger from '../utils/logger';
 
-// Simple file storage (in production, use S3 or similar)
-const generateFileUrl = (filename: string): string => {
-  return `/uploads/${filename}`;
-};
-
 export const createBusDocument = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
   try {
     const { busId } = busIdParamSchema.parse({ busId: req.params.busId });
@@ -43,15 +38,6 @@ export const createBusDocument = async (req: Request, res: Response, next: NextF
       throw createError('Document type not found', 404);
     }
 
-    // Handle file upload (simplified - in production use multer or similar)
-    const file = req.file;
-    if (!file) {
-      console.log(`❌ No file uploaded for bus ${busId}`);
-      throw createError('File is required', 400);
-    }
-
-    const fileUrl = generateFileUrl(file.filename);
-
     const document = await prisma.busDocument.create({
       data: {
         busId,
@@ -59,7 +45,7 @@ export const createBusDocument = async (req: Request, res: Response, next: NextF
         documentNumber: data.documentNumber,
         issueDate: data.issueDate ? new Date(data.issueDate) : null,
         expiryDate: data.expiryDate ? new Date(data.expiryDate) : null,
-        fileUrl,
+        fileUrl: data.fileUrl,
         remarks: data.remarks,
       },
       include: {
@@ -166,13 +152,6 @@ export const updateBusDocument = async (req: Request, res: Response, next: NextF
       }
     }
 
-    // Handle file replacement if new file is uploaded
-    let fileUrl = existingDocument.fileUrl;
-    const file = req.file;
-    if (file) {
-      fileUrl = generateFileUrl(file.filename);
-    }
-
     const document = await prisma.busDocument.update({
       where: { id: docId },
       data: {
@@ -180,7 +159,7 @@ export const updateBusDocument = async (req: Request, res: Response, next: NextF
         documentNumber: data.documentNumber,
         issueDate: data.issueDate ? new Date(data.issueDate) : null,
         expiryDate: data.expiryDate ? new Date(data.expiryDate) : null,
-        fileUrl,
+        fileUrl: data.fileUrl,
         remarks: data.remarks,
       },
       include: {

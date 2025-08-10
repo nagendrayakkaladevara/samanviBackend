@@ -13,7 +13,8 @@ A production-ready Node.js backend built with Express, TypeScript, and Prisma.
 - 📊 **Error Handling** - Comprehensive error handling and validation
 - 🚌 **Bus Management** - Complete bus and document management system
 - 📄 **Document Tracking** - Document expiry tracking and alerts
-- 🔑 **API Key Authentication** - Secure API access control
+- 🔑 **Basic Authentication** - Secure API access control
+- 🌐 **File URL Support** - Store document URLs from Google Drive or other cloud storage
 
 ## Prerequisites
 
@@ -44,7 +45,6 @@ A production-ready Node.js backend built with Express, TypeScript, and Prisma.
    DATABASE_URL="postgresql://username:password@localhost:5432/samanvibackend?schema=public"
    PORT=3000
    NODE_ENV=development
-   ADMIN_API_KEY=your-secure-admin-api-key-here
    ```
 
 4. **Set up the database**
@@ -101,16 +101,20 @@ Authenticate a user.
 }
 ```
 
-### Bus Management (Requires API Key)
+### Bus Management (Requires Basic Authentication)
 
-**Authentication:** All bus management endpoints require the `x-api-key` header.
+**Authentication:** All bus management endpoints require Basic Authentication.
+
+**Credentials:**
+- Username: `qwert`
+- Password: `123456`
 
 #### POST `/api/v1/buses`
 Create a new bus.
 
 **Headers:**
 ```
-x-api-key: your-admin-api-key
+Authorization: Basic cXdlcnQ6MTIzNDU2
 ```
 
 **Request Body:**
@@ -141,7 +145,7 @@ Update bus information.
 #### DELETE `/api/v1/buses/:id`
 Delete a bus (only if no documents exist).
 
-### Document Types (Requires API Key)
+### Document Types (Requires Basic Authentication)
 
 #### POST `/api/v1/document-types`
 Create a new document type.
@@ -163,20 +167,24 @@ Update document type.
 #### DELETE `/api/v1/document-types/:id`
 Delete document type (only if not in use).
 
-### Bus Documents (Requires API Key)
+### Bus Documents (Requires Basic Authentication)
 
 #### POST `/api/v1/buses/:busId/documents`
-Upload a document for a bus.
+Add a document for a bus using file URL.
 
-**Content-Type:** `multipart/form-data`
+**Content-Type:** `application/json`
 
-**Form Fields:**
-- `docTypeId`: Document type ID (required)
-- `documentNumber`: Document number (optional)
-- `issueDate`: Issue date in ISO format (optional)
-- `expiryDate`: Expiry date in ISO format (optional)
-- `remarks`: Additional remarks (optional)
-- `file`: Document file (PDF, JPG, PNG, max 10MB)
+**Request Body:**
+```json
+{
+  "docTypeId": "doc_type_id_here",
+  "documentNumber": "INS123456",
+  "issueDate": "2024-01-01T00:00:00.000Z",
+  "expiryDate": "2025-12-31T00:00:00.000Z",
+  "fileUrl": "https://drive.google.com/file/d/your_file_id/view",
+  "remarks": "Insurance document uploaded to Google Drive"
+}
+```
 
 #### GET `/api/v1/buses/:busId/documents`
 List all documents for a bus.
@@ -185,12 +193,21 @@ List all documents for a bus.
 Get a specific document.
 
 #### PUT `/api/v1/documents/:docId`
-Update document metadata (supports file replacement).
+Update document metadata (including file URL).
+
+**Request Body:**
+```json
+{
+  "fileUrl": "https://drive.google.com/file/d/new_file_id/view",
+  "expiryDate": "2026-12-31T00:00:00.000Z",
+  "remarks": "Updated insurance document"
+}
+```
 
 #### DELETE `/api/v1/documents/:docId`
 Delete a document.
 
-### Expiry Helpers (Requires API Key)
+### Expiry Helpers (Requires Basic Authentication)
 
 #### GET `/api/v1/documents/expiring`
 Get documents expiring within specified days.
@@ -216,7 +233,6 @@ Get server health status.
 | `DATABASE_URL` | PostgreSQL connection string | - |
 | `PORT` | Server port | 3000 |
 | `NODE_ENV` | Environment (development/production) | development |
-| `ADMIN_API_KEY` | API key for bus management endpoints | - |
 | `BCRYPT_ROUNDS` | Password hashing rounds | 12 |
 | `ALLOWED_ORIGINS` | CORS allowed origins | http://localhost:3000 |
 | `LOG_LEVEL` | Logging level | info |
@@ -284,7 +300,7 @@ CREATE INDEX ON bus_documents(expiryDate);
 
 ## Security Features
 
-- **API Key Authentication**: All bus management endpoints require a valid API key
+- **Basic Authentication**: All bus management endpoints require valid credentials
 - **Password Hashing**: All passwords are hashed using bcrypt
 - **Rate Limiting**: Prevents abuse with configurable limits
 - **CORS Protection**: Configurable cross-origin resource sharing
@@ -303,7 +319,6 @@ CREATE INDEX ON bus_documents(expiryDate);
    ```env
    NODE_ENV=production
    DATABASE_URL=<production-database-url>
-   ADMIN_API_KEY=<secure-production-api-key>
    ```
 
 3. **Start the production server**
@@ -316,7 +331,7 @@ CREATE INDEX ON bus_documents(expiryDate);
 The application includes comprehensive error handling:
 
 - **Validation Errors**: 400 Bad Request with detailed validation messages
-- **Authentication Errors**: 401 Unauthorized for invalid API keys
+- **Authentication Errors**: 401 Unauthorized for invalid credentials
 - **Authorization Errors**: 403 Forbidden for invalid permissions
 - **Not Found Errors**: 404 Not Found for missing resources
 - **Conflict Errors**: 409 Conflict for duplicate resources

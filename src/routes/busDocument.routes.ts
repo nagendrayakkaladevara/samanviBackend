@@ -1,11 +1,11 @@
 import { Router } from 'express';
 import * as controller from '../controllers/busDocument.controller';
-import { validateApiKey } from '../middlewares/apiKey';
+import { validateBasicAuth } from '../middlewares/basicAuth';
 
 const router = Router();
 
-// All routes require API key authentication
-router.use(validateApiKey);
+// All routes require basic authentication
+router.use(validateBasicAuth);
 
 // Bus document CRUD operations
 router.post('/buses/:busId/documents', controller.createBusDocument);

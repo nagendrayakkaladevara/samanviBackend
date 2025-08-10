@@ -6,6 +6,7 @@ export const createBusDocumentSchema = z.object({
   issueDate: z.string().datetime().optional(),
   expiryDate: z.string().datetime().optional(),
   remarks: z.string().optional(),
+  fileUrl: z.string().url('File URL must be a valid URL').min(1, 'File URL is required'),
 });
 
 export const updateBusDocumentSchema = z.object({
@@ -14,6 +15,7 @@ export const updateBusDocumentSchema = z.object({
   issueDate: z.string().datetime().optional(),
   expiryDate: z.string().datetime().optional(),
   remarks: z.string().optional(),
+  fileUrl: z.string().url('File URL must be a valid URL').optional(),
 });
 
 export const busDocumentIdSchema = z.object({
@@ -25,7 +27,7 @@ export const busIdParamSchema = z.object({
 });
 
 export const expiringDocumentsQuerySchema = z.object({
-  withinDays: z.string().regex(/^\d+$/).transform(Number).default('30'),
+  withinDays: z.string().regex(/^\d+$/).transform(Number).default(() => 30),
 });
 
 export const missingRequiredQuerySchema = z.object({
