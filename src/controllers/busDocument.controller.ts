@@ -220,7 +220,7 @@ export const getExpiringDocuments = async (req: Request, res: Response, next: Ne
   try {
     const { withinDays } = expiringDocumentsQuerySchema.parse(req.query);
     
-    console.log(`⏰ Fetching documents expiring within ${withinDays} days`);
+    console.log(`⏰ Fetching documents expiring within ${withinDays} days (including expired)`);
     
     const expiryDate = new Date();
     expiryDate.setDate(expiryDate.getDate() + withinDays);
@@ -228,8 +228,7 @@ export const getExpiringDocuments = async (req: Request, res: Response, next: Ne
     const documents = await prisma.busDocument.findMany({
       where: {
         expiryDate: {
-          lte: expiryDate,
-          gte: new Date() // Not already expired
+          lte: expiryDate
         }
       },
       include: {
@@ -239,7 +238,7 @@ export const getExpiringDocuments = async (req: Request, res: Response, next: Ne
       orderBy: { expiryDate: 'asc' }
     });
 
-    console.log(`✅ Found ${documents.length} documents expiring within ${withinDays} days`);
+    console.log(`✅ Found ${documents.length} documents expiring within ${withinDays} days (including expired)`);
     res.json(documents);
   } catch (error) {
     next(error);
