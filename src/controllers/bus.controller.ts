@@ -1,6 +1,7 @@
 import { Request, Response, NextFunction } from 'express';
 import { prisma } from '../config/prisma';
 import { createBusSchema, updateBusSchema, busIdSchema, busQuerySchema } from '../validations/bus.schema';
+import { missingRequiredQuerySchema } from '../validations/busDocument.schema';
 import { createError } from '../middlewares/errorHandler';
 import logger from '../utils/logger';
 
@@ -198,6 +199,103 @@ export const deleteBus = async (req: Request, res: Response, next: NextFunction)
     console.log(`✅ Bus deleted successfully: ${existingBus.registrationNo} (ID: ${id})`);
     logger.info('Bus deleted successfully', { busId: id, registrationNo: existingBus.registrationNo });
     res.sendStatus(204);
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const getBusesMissingRequired = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
+  try {
+    const { types } = missingRequiredQuerySchema.parse(req.query);
+    
+    console.log(`🔍 Finding buses missing required document types: ${types || 'all'}`);
+    
+    let requiredTypes: string[] = [];
+    if (types) {
+      requiredTypes = types.split(',').map(t => t.trim());
+    } else {
+      // Get all document types if none specified
+      const allTypes = await prisma.documentType.findMany();
+      requiredTypes = allTypes.map(t => t.name);
+    }
+
+    // Get all buses
+    const buses = await prisma.bus.findMany({
+      include: {
+        documents: {
+          include: {
+            docType: true
+          },
+          where: {
+            expiryDate: {
+              gte: new Date() // Not expired
+            }
+          }
+        }
+      }
+    });
+
+    // Find buses missing required documents
+    const missingRequired = buses.filter(bus => {
+      const busDocTypes = bus.documents.map(doc => doc.docType.name);
+      return requiredTypes.some(requiredType => !busDocTypes.includes(requiredType));
+    });
+
+    console.log(`✅ Found ${missingRequired.length} buses missing required documents`);
+    res.json({
+      buses: missingRequired,
+      requiredTypes,
+      total: missingRequired.length
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const getAllBusesWithDocuments = async (_req: Request, res: Response, next: NextFunction): Promise<void> => {
+  try {
+    console.log(`📱 User app requesting all buses with documents`);
+    
+    // Get all buses with their documents
+    const buses = await prisma.bus.findMany({
+      include: {
+        documents: {
+          include: {
+            docType: true
+          },
+          orderBy: { uploadedAt: 'desc' }
+        }
+      },
+      orderBy: { registrationNo: 'asc' }
+    });
+
+    // Format response for user app
+    const formattedBuses = buses.map(bus => ({
+      id: bus.id,
+      registrationNo: bus.registrationNo,
+      // model: bus.model,
+      // manufacturer: bus.manufacturer,
+      // yearOfMake: bus.yearOfMake,
+      // ownerName: bus.ownerName,
+      documents: bus.documents.map(doc => ({
+        id: doc.id,
+        documentName: doc.docType.name,
+        // documentNumber: doc.documentNumber,
+        // issueDate: doc.issueDate,
+        // expiryDate: doc.expiryDate,
+        fileUrl: doc.fileUrl,
+        // remarks: doc.remarks,
+        // uploadedAt: doc.uploadedAt,
+        // isExpired: doc.expiryDate ? new Date() > new Date(doc.expiryDate) : false,
+        // daysUntilExpiry: doc.expiryDate ? Math.ceil((new Date(doc.expiryDate).getTime() - new Date().getTime()) / (1000 * 60 * 60 * 24)) : null
+      }))
+    }));
+
+    console.log(`✅ All buses with documents sent to user app: ${buses.length} buses`);
+    res.json({
+      buses: formattedBuses,
+      total: buses.length
+    });
   } catch (error) {
     next(error);
   }

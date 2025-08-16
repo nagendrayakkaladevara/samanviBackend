@@ -9,7 +9,6 @@ router.use(validateBasicAuth);
 
 // Expiry helpers (must come before /documents/:docId to avoid route conflicts)
 router.get('/documents/expiring', controller.getExpiringDocuments);
-router.get('/buses/missing-required', controller.getBusesMissingRequired);
 
 // Bus document CRUD operations
 router.post('/buses/:busId/documents', controller.createBusDocument);
