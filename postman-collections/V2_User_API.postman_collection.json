@@ -288,7 +288,7 @@
 								}
 							]
 						},
-						"description": "Update user information. All fields are optional. You can update username, password, deviceId, or status."
+						"description": "Update user information. All fields are optional. You can update username, password, deviceId, or status. To reset deviceId, set it to null or empty string (\"\")."
 					},
 					"response": [
 						{
@@ -322,6 +322,69 @@
 							],
 							"cookie": [],
 							"body": "{\n  \"success\": true,\n  \"message\": \"V2 user updated successfully\",\n  \"data\": {\n    \"id\": \"clx123abc456def789\",\n    \"username\": \"johndoe\",\n    \"password\": \"newpassword123\",\n    \"deviceId\": \"device-abc-123\",\n    \"status\": \"active\",\n    \"createdAt\": \"2025-01-15T10:30:00.000Z\",\n    \"updatedAt\": \"2025-01-15T10:35:00.000Z\"\n  }\n}"
+						}
+					]
+				},
+				{
+					"name": "Reset User Device ID",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"deviceId\": null\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/v2/users/:id",
+							"host": ["{{base_url}}"],
+							"path": ["api", "v2", "users", ":id"],
+							"variable": [
+								{
+									"key": "id",
+									"value": "",
+									"description": "User ID (CUID format)"
+								}
+							]
+						},
+						"description": "Reset user's deviceId to null. This allows the user to login from a new device. You can also use empty string (\"\") instead of null."
+					},
+					"response": [
+						{
+							"name": "Success - Device ID Reset",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"deviceId\": null\n}"
+								},
+								"url": {
+									"raw": "{{base_url}}/api/v2/users/clx123abc456def789",
+									"host": ["{{base_url}}"],
+									"path": ["api", "v2", "users", "clx123abc456def789"]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"success\": true,\n  \"message\": \"V2 user updated successfully\",\n  \"data\": {\n    \"id\": \"clx123abc456def789\",\n    \"username\": \"johndoe\",\n    \"password\": \"password123\",\n    \"deviceId\": null,\n    \"status\": \"active\",\n    \"createdAt\": \"2025-01-15T10:30:00.000Z\",\n    \"updatedAt\": \"2025-01-15T10:35:00.000Z\"\n  }\n}"
 						}
 					]
 				},
