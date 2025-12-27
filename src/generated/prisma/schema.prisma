@@ -70,3 +70,35 @@ model BusDocument {
   @@index([expiryDate])
   @@map("bus_documents")
 }
+
+model V2Document {
+  id          String   @id @default(cuid())
+  vehicleNo   String   @unique
+  folderLink  String
+  description String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([vehicleNo])
+  @@map("v2_documents")
+}
+
+enum UserStatus {
+  active
+  blocked
+}
+
+model V2User {
+  id        String     @id @default(cuid())
+  username  String     @unique
+  password  String
+  deviceId  String?
+  status    UserStatus @default(active)
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+
+  @@index([username])
+  @@index([deviceId])
+  @@index([status])
+  @@map("v2_users")
+}
