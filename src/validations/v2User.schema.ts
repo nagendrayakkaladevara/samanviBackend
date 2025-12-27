@@ -23,9 +23,13 @@ export const updateV2UserSchema = z.object({
     .min(6, 'Password must be at least 6 characters')
     .max(255, 'Password must be less than 255 characters')
     .optional(),
-  deviceId: z.string()
-    .max(255, 'Device ID must be less than 255 characters')
-    .optional(),
+  deviceId: z.preprocess(
+    (val) => val === '' || val === null ? null : val,
+    z.union([
+      z.string().max(255, 'Device ID must be less than 255 characters'),
+      z.null()
+    ]).optional()
+  ),
   status: z.enum(['active', 'blocked']).optional()
 });
 

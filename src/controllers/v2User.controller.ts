@@ -202,9 +202,18 @@ export const updateV2User = async (req: Request, res: Response, next: NextFuncti
       }
     }
     
+    // Prepare update data - handle deviceId reset (null or empty string)
+    const updateData: any = { ...validatedData };
+    
+    // If deviceId is explicitly provided as null or empty string, set it to null to reset
+    if ('deviceId' in validatedData && (validatedData.deviceId === null || validatedData.deviceId === '')) {
+      updateData.deviceId = null;
+      console.log(`🔄 Resetting deviceId for user ${existingUser.username}`);
+    }
+    
     const user = await prisma.v2User.update({
       where: { id },
-      data: validatedData,
+      data: updateData,
       select: {
         id: true,
         username: true,
