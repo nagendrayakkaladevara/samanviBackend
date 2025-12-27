@@ -161,6 +161,25 @@ exports.Prisma.BusDocumentScalarFieldEnum = {
   uploadedAt: 'uploadedAt'
 };
 
+exports.Prisma.V2DocumentScalarFieldEnum = {
+  id: 'id',
+  vehicleNo: 'vehicleNo',
+  folderLink: 'folderLink',
+  description: 'description',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.V2UserScalarFieldEnum = {
+  id: 'id',
+  username: 'username',
+  password: 'password',
+  deviceId: 'deviceId',
+  status: 'status',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -175,13 +194,18 @@ exports.Prisma.NullsOrder = {
   first: 'first',
   last: 'last'
 };
-
+exports.UserStatus = exports.$Enums.UserStatus = {
+  active: 'active',
+  blocked: 'blocked'
+};
 
 exports.Prisma.ModelName = {
   User: 'User',
   Bus: 'Bus',
   DocumentType: 'DocumentType',
-  BusDocument: 'BusDocument'
+  BusDocument: 'BusDocument',
+  V2Document: 'V2Document',
+  V2User: 'V2User'
 };
 
 /**

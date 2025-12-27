@@ -1,0 +1,669 @@
+{
+	"info": {
+		"_postman_id": "v2-user-api-collection",
+		"name": "V2 User API",
+		"description": "Complete collection for V2 User Management API including login with device management. Only username and password are required for user creation. Status defaults to 'active'.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"auth": {
+		"type": "basic",
+		"basic": [
+			{
+				"key": "username",
+				"value": "qwert",
+				"type": "string"
+			},
+			{
+				"key": "password",
+				"value": "123456",
+				"type": "string"
+			}
+		]
+	},
+	"item": [
+		{
+			"name": "User Management",
+			"item": [
+				{
+					"name": "Create User (Minimal)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"username\": \"johndoe\",\n  \"password\": \"password123\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/v2/users",
+							"host": ["{{base_url}}"],
+							"path": ["api", "v2", "users"]
+						},
+						"description": "Create a new V2 user with only required fields (username and password). Status will default to 'active'."
+					},
+					"response": [
+						{
+							"name": "Success - User Created",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"username\": \"johndoe\",\n  \"password\": \"password123\"\n}"
+								},
+								"url": {
+									"raw": "{{base_url}}/api/v2/users",
+									"host": ["{{base_url}}"],
+									"path": ["api", "v2", "users"]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"success\": true,\n  \"message\": \"V2 user created successfully\",\n  \"data\": {\n    \"id\": \"clx123abc456def789\",\n    \"username\": \"johndoe\",\n    \"password\": \"password123\",\n    \"deviceId\": null,\n    \"status\": \"active\",\n    \"createdAt\": \"2025-01-15T10:30:00.000Z\",\n    \"updatedAt\": \"2025-01-15T10:30:00.000Z\"\n  }\n}"
+						},
+						{
+							"name": "Error - Username Already Exists",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"username\": \"johndoe\",\n  \"password\": \"password123\"\n}"
+								},
+								"url": {
+									"raw": "{{base_url}}/api/v2/users",
+									"host": ["{{base_url}}"],
+									"path": ["api", "v2", "users"]
+								}
+							},
+							"status": "Conflict",
+							"code": 409,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"success\": false,\n  \"message\": \"Username already exists\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Get All Users",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/v2/users?page=1&limit=10&status=active&search=&sortBy=createdAt&sortOrder=desc",
+							"host": ["{{base_url}}"],
+							"path": ["api", "v2", "users"],
+							"query": [
+								{
+									"key": "page",
+									"value": "1",
+									"description": "Page number (default: 1)"
+								},
+								{
+									"key": "limit",
+									"value": "10",
+									"description": "Items per page (default: 10)"
+								},
+								{
+									"key": "status",
+									"value": "active",
+									"description": "Filter by status: 'active' or 'blocked'",
+									"disabled": true
+								},
+								{
+									"key": "search",
+									"value": "",
+									"description": "Search in username",
+									"disabled": true
+								},
+								{
+									"key": "sortBy",
+									"value": "createdAt",
+									"description": "Sort field: username, createdAt, updatedAt"
+								},
+								{
+									"key": "sortOrder",
+									"value": "desc",
+									"description": "Sort order: asc or desc"
+								}
+							]
+						},
+						"description": "Get all users with pagination, search, and filtering options."
+					},
+					"response": [
+						{
+							"name": "Success - Users List",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/api/v2/users?page=1&limit=10",
+									"host": ["{{base_url}}"],
+									"path": ["api", "v2", "users"],
+									"query": [
+										{
+											"key": "page",
+											"value": "1"
+										},
+										{
+											"key": "limit",
+											"value": "10"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"success\": true,\n  \"data\": [\n    {\n      \"id\": \"clx123abc456def789\",\n      \"username\": \"johndoe\",\n      \"password\": \"password123\",\n      \"deviceId\": \"device-abc-123\",\n      \"status\": \"active\",\n      \"createdAt\": \"2025-01-15T10:30:00.000Z\",\n      \"updatedAt\": \"2025-01-15T10:30:00.000Z\"\n    }\n  ],\n  \"pagination\": {\n    \"page\": 1,\n    \"limit\": 10,\n    \"total\": 1,\n    \"totalPages\": 1,\n    \"hasNextPage\": false,\n    \"hasPrevPage\": false\n  }\n}"
+						}
+					]
+				},
+				{
+					"name": "Get User By ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/v2/users/:id",
+							"host": ["{{base_url}}"],
+							"path": ["api", "v2", "users", ":id"],
+							"variable": [
+								{
+									"key": "id",
+									"value": "",
+									"description": "User ID (CUID format)"
+								}
+							]
+						},
+						"description": "Get a specific user by their ID."
+					},
+					"response": [
+						{
+							"name": "Success - User Found",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/api/v2/users/clx123abc456def789",
+									"host": ["{{base_url}}"],
+									"path": ["api", "v2", "users", "clx123abc456def789"]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"success\": true,\n  \"data\": {\n    \"id\": \"clx123abc456def789\",\n    \"username\": \"johndoe\",\n    \"password\": \"password123\",\n    \"deviceId\": \"device-abc-123\",\n    \"status\": \"active\",\n    \"createdAt\": \"2025-01-15T10:30:00.000Z\",\n    \"updatedAt\": \"2025-01-15T10:30:00.000Z\"\n  }\n}"
+						},
+						{
+							"name": "Error - User Not Found",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/api/v2/users/invalid-id",
+									"host": ["{{base_url}}"],
+									"path": ["api", "v2", "users", "invalid-id"]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"success\": false,\n  \"message\": \"V2 user not found\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Update User",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"username\": \"johndoe\",\n  \"password\": \"newpassword123\",\n  \"status\": \"active\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/v2/users/:id",
+							"host": ["{{base_url}}"],
+							"path": ["api", "v2", "users", ":id"],
+							"variable": [
+								{
+									"key": "id",
+									"value": "",
+									"description": "User ID (CUID format)"
+								}
+							]
+						},
+						"description": "Update user information. All fields are optional. You can update username, password, deviceId, or status."
+					},
+					"response": [
+						{
+							"name": "Success - User Updated",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"username\": \"johndoe\",\n  \"password\": \"newpassword123\",\n  \"status\": \"active\"\n}"
+								},
+								"url": {
+									"raw": "{{base_url}}/api/v2/users/clx123abc456def789",
+									"host": ["{{base_url}}"],
+									"path": ["api", "v2", "users", "clx123abc456def789"]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"success\": true,\n  \"message\": \"V2 user updated successfully\",\n  \"data\": {\n    \"id\": \"clx123abc456def789\",\n    \"username\": \"johndoe\",\n    \"password\": \"newpassword123\",\n    \"deviceId\": \"device-abc-123\",\n    \"status\": \"active\",\n    \"createdAt\": \"2025-01-15T10:30:00.000Z\",\n    \"updatedAt\": \"2025-01-15T10:35:00.000Z\"\n  }\n}"
+						}
+					]
+				},
+				{
+					"name": "Delete User",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/v2/users/:id",
+							"host": ["{{base_url}}"],
+							"path": ["api", "v2", "users", ":id"],
+							"variable": [
+								{
+									"key": "id",
+									"value": "",
+									"description": "User ID (CUID format)"
+								}
+							]
+						},
+						"description": "Delete a user by ID."
+					},
+					"response": [
+						{
+							"name": "Success - User Deleted",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/api/v2/users/clx123abc456def789",
+									"host": ["{{base_url}}"],
+									"path": ["api", "v2", "users", "clx123abc456def789"]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"success\": true,\n  \"message\": \"V2 user deleted successfully\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Login",
+			"item": [
+				{
+					"name": "Login - First Time (Bind Device)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"username\": \"johndoe\",\n  \"password\": \"password123\",\n  \"deviceId\": \"device-abc-123\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/v2/users/login",
+							"host": ["{{base_url}}"],
+							"path": ["api", "v2", "users", "login"]
+						},
+						"description": "Login for the first time. If user.deviceId is NULL, this will bind the deviceId to the user. Validates username and password, checks if status is 'blocked'."
+					},
+					"response": [
+						{
+							"name": "Success - Device Bound",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"username\": \"johndoe\",\n  \"password\": \"password123\",\n  \"deviceId\": \"device-abc-123\"\n}"
+								},
+								"url": {
+									"raw": "{{base_url}}/api/v2/users/login",
+									"host": ["{{base_url}}"],
+									"path": ["api", "v2", "users", "login"]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"success\": true,\n  \"message\": \"Login successful\",\n  \"data\": {\n    \"id\": \"clx123abc456def789\",\n    \"username\": \"johndoe\",\n    \"password\": \"password123\",\n    \"deviceId\": \"device-abc-123\",\n    \"status\": \"active\",\n    \"createdAt\": \"2025-01-15T10:30:00.000Z\",\n    \"updatedAt\": \"2025-01-15T10:35:00.000Z\"\n  }\n}"
+						}
+					]
+				},
+				{
+					"name": "Login - Same Device (Success)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"username\": \"johndoe\",\n  \"password\": \"password123\",\n  \"deviceId\": \"device-abc-123\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/v2/users/login",
+							"host": ["{{base_url}}"],
+							"path": ["api", "v2", "users", "login"]
+						},
+						"description": "Login with the same device that was previously registered. Should succeed if deviceId matches."
+					},
+					"response": [
+						{
+							"name": "Success - Login Successful",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"username\": \"johndoe\",\n  \"password\": \"password123\",\n  \"deviceId\": \"device-abc-123\"\n}"
+								},
+								"url": {
+									"raw": "{{base_url}}/api/v2/users/login",
+									"host": ["{{base_url}}"],
+									"path": ["api", "v2", "users", "login"]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"success\": true,\n  \"message\": \"Login successful\",\n  \"data\": {\n    \"id\": \"clx123abc456def789\",\n    \"username\": \"johndoe\",\n    \"password\": \"password123\",\n    \"deviceId\": \"device-abc-123\",\n    \"status\": \"active\",\n    \"createdAt\": \"2025-01-15T10:30:00.000Z\",\n    \"updatedAt\": \"2025-01-15T10:35:00.000Z\"\n  }\n}"
+						}
+					]
+				},
+				{
+					"name": "Login - Different Device (Should Fail)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"username\": \"johndoe\",\n  \"password\": \"password123\",\n  \"deviceId\": \"device-xyz-789\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/v2/users/login",
+							"host": ["{{base_url}}"],
+							"path": ["api", "v2", "users", "login"]
+						},
+						"description": "Login attempt with a different device. Should fail with message: 'This account is already in use on another device. Please contact admin.'"
+					},
+					"response": [
+						{
+							"name": "Error - Device Mismatch",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"username\": \"johndoe\",\n  \"password\": \"password123\",\n  \"deviceId\": \"device-xyz-789\"\n}"
+								},
+								"url": {
+									"raw": "{{base_url}}/api/v2/users/login",
+									"host": ["{{base_url}}"],
+									"path": ["api", "v2", "users", "login"]
+								}
+							},
+							"status": "Forbidden",
+							"code": 403,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"success\": false,\n  \"message\": \"This account is already in use on another device. Please contact admin.\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Login - Blocked User (Should Fail)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"username\": \"johndoe\",\n  \"password\": \"password123\",\n  \"deviceId\": \"device-abc-123\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/v2/users/login",
+							"host": ["{{base_url}}"],
+							"path": ["api", "v2", "users", "login"]
+						},
+						"description": "Login attempt for a user with status 'blocked'. Should fail with message: 'Account is blocked. Please contact administrator.'"
+					},
+					"response": [
+						{
+							"name": "Error - Account Blocked",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"username\": \"johndoe\",\n  \"password\": \"password123\",\n  \"deviceId\": \"device-abc-123\"\n}"
+								},
+								"url": {
+									"raw": "{{base_url}}/api/v2/users/login",
+									"host": ["{{base_url}}"],
+									"path": ["api", "v2", "users", "login"]
+								}
+							},
+							"status": "Forbidden",
+							"code": 403,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"success\": false,\n  \"message\": \"Account is blocked. Please contact administrator.\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Login - Invalid Credentials (Should Fail)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"username\": \"johndoe\",\n  \"password\": \"wrongpassword\",\n  \"deviceId\": \"device-abc-123\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/api/v2/users/login",
+							"host": ["{{base_url}}"],
+							"path": ["api", "v2", "users", "login"]
+						},
+						"description": "Login attempt with invalid password. Should fail with message: 'Invalid username or password'"
+					},
+					"response": [
+						{
+							"name": "Error - Invalid Credentials",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"username\": \"johndoe\",\n  \"password\": \"wrongpassword\",\n  \"deviceId\": \"device-abc-123\"\n}"
+								},
+								"url": {
+									"raw": "{{base_url}}/api/v2/users/login",
+									"host": ["{{base_url}}"],
+									"path": ["api", "v2", "users", "login"]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n  \"success\": false,\n  \"message\": \"Invalid username or password\"\n}"
+						}
+					]
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://localhost:3000",
+			"type": "string",
+			"description": "Base URL for the API"
+		}
+	]
+}

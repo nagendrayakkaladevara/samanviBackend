@@ -7,6 +7,8 @@ import busRoutes from './routes/bus.routes';
 import documentTypeRoutes from './routes/documentType.routes';
 import busDocumentRoutes from './routes/busDocument.routes';
 import dashboardRoutes from './routes/dashboard.routes';
+import v2DocumentRoutes from './routes/v2Document.routes';
+import v2UserRoutes from './routes/v2User.routes';
 import { errorHandler } from './middlewares/errorHandler';
 import { config } from './config/config';
 import logger from './utils/logger';
@@ -87,6 +89,8 @@ app.use('/api/v1/buses', busRoutes);
 app.use('/api/v1/document-types', documentTypeRoutes);
 app.use('/api/v1', busDocumentRoutes);
 app.use('/api/v1/dashboard', dashboardRoutes);
+app.use('/api/v2/documents', v2DocumentRoutes);
+app.use('/api/v2/users', v2UserRoutes);
 
 // 404 handler
 console.log('❓ Setting up 404 handler...');

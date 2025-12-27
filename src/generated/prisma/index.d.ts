@@ -33,6 +33,33 @@ export type DocumentType = $Result.DefaultSelection<Prisma.$DocumentTypePayload>
  * 
  */
 export type BusDocument = $Result.DefaultSelection<Prisma.$BusDocumentPayload>
+/**
+ * Model V2Document
+ * 
+ */
+export type V2Document = $Result.DefaultSelection<Prisma.$V2DocumentPayload>
+/**
+ * Model V2User
+ * 
+ */
+export type V2User = $Result.DefaultSelection<Prisma.$V2UserPayload>
+
+/**
+ * Enums
+ */
+export namespace $Enums {
+  export const UserStatus: {
+  active: 'active',
+  blocked: 'blocked'
+};
+
+export type UserStatus = (typeof UserStatus)[keyof typeof UserStatus]
+
+}
+
+export type UserStatus = $Enums.UserStatus
+
+export const UserStatus: typeof $Enums.UserStatus
 
 /**
  * ##  Prisma Client ʲˢ
@@ -198,6 +225,26 @@ export class PrismaClient<
     * ```
     */
   get busDocument(): Prisma.BusDocumentDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.v2Document`: Exposes CRUD operations for the **V2Document** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more V2Documents
+    * const v2Documents = await prisma.v2Document.findMany()
+    * ```
+    */
+  get v2Document(): Prisma.V2DocumentDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.v2User`: Exposes CRUD operations for the **V2User** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more V2Users
+    * const v2Users = await prisma.v2User.findMany()
+    * ```
+    */
+  get v2User(): Prisma.V2UserDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -641,7 +688,9 @@ export namespace Prisma {
     User: 'User',
     Bus: 'Bus',
     DocumentType: 'DocumentType',
-    BusDocument: 'BusDocument'
+    BusDocument: 'BusDocument',
+    V2Document: 'V2Document',
+    V2User: 'V2User'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -660,7 +709,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "bus" | "documentType" | "busDocument"
+      modelProps: "user" | "bus" | "documentType" | "busDocument" | "v2Document" | "v2User"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -960,6 +1009,154 @@ export namespace Prisma {
           }
         }
       }
+      V2Document: {
+        payload: Prisma.$V2DocumentPayload<ExtArgs>
+        fields: Prisma.V2DocumentFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.V2DocumentFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$V2DocumentPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.V2DocumentFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$V2DocumentPayload>
+          }
+          findFirst: {
+            args: Prisma.V2DocumentFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$V2DocumentPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.V2DocumentFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$V2DocumentPayload>
+          }
+          findMany: {
+            args: Prisma.V2DocumentFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$V2DocumentPayload>[]
+          }
+          create: {
+            args: Prisma.V2DocumentCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$V2DocumentPayload>
+          }
+          createMany: {
+            args: Prisma.V2DocumentCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.V2DocumentCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$V2DocumentPayload>[]
+          }
+          delete: {
+            args: Prisma.V2DocumentDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$V2DocumentPayload>
+          }
+          update: {
+            args: Prisma.V2DocumentUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$V2DocumentPayload>
+          }
+          deleteMany: {
+            args: Prisma.V2DocumentDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.V2DocumentUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.V2DocumentUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$V2DocumentPayload>[]
+          }
+          upsert: {
+            args: Prisma.V2DocumentUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$V2DocumentPayload>
+          }
+          aggregate: {
+            args: Prisma.V2DocumentAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateV2Document>
+          }
+          groupBy: {
+            args: Prisma.V2DocumentGroupByArgs<ExtArgs>
+            result: $Utils.Optional<V2DocumentGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.V2DocumentCountArgs<ExtArgs>
+            result: $Utils.Optional<V2DocumentCountAggregateOutputType> | number
+          }
+        }
+      }
+      V2User: {
+        payload: Prisma.$V2UserPayload<ExtArgs>
+        fields: Prisma.V2UserFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.V2UserFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$V2UserPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.V2UserFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$V2UserPayload>
+          }
+          findFirst: {
+            args: Prisma.V2UserFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$V2UserPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.V2UserFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$V2UserPayload>
+          }
+          findMany: {
+            args: Prisma.V2UserFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$V2UserPayload>[]
+          }
+          create: {
+            args: Prisma.V2UserCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$V2UserPayload>
+          }
+          createMany: {
+            args: Prisma.V2UserCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.V2UserCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$V2UserPayload>[]
+          }
+          delete: {
+            args: Prisma.V2UserDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$V2UserPayload>
+          }
+          update: {
+            args: Prisma.V2UserUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$V2UserPayload>
+          }
+          deleteMany: {
+            args: Prisma.V2UserDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.V2UserUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.V2UserUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$V2UserPayload>[]
+          }
+          upsert: {
+            args: Prisma.V2UserUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$V2UserPayload>
+          }
+          aggregate: {
+            args: Prisma.V2UserAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateV2User>
+          }
+          groupBy: {
+            args: Prisma.V2UserGroupByArgs<ExtArgs>
+            result: $Utils.Optional<V2UserGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.V2UserCountArgs<ExtArgs>
+            result: $Utils.Optional<V2UserCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -1056,6 +1253,8 @@ export namespace Prisma {
     bus?: BusOmit
     documentType?: DocumentTypeOmit
     busDocument?: BusDocumentOmit
+    v2Document?: V2DocumentOmit
+    v2User?: V2UserOmit
   }
 
   /* Types for Logging */
@@ -5603,6 +5802,2035 @@ export namespace Prisma {
 
 
   /**
+   * Model V2Document
+   */
+
+  export type AggregateV2Document = {
+    _count: V2DocumentCountAggregateOutputType | null
+    _min: V2DocumentMinAggregateOutputType | null
+    _max: V2DocumentMaxAggregateOutputType | null
+  }
+
+  export type V2DocumentMinAggregateOutputType = {
+    id: string | null
+    vehicleNo: string | null
+    folderLink: string | null
+    description: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type V2DocumentMaxAggregateOutputType = {
+    id: string | null
+    vehicleNo: string | null
+    folderLink: string | null
+    description: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type V2DocumentCountAggregateOutputType = {
+    id: number
+    vehicleNo: number
+    folderLink: number
+    description: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type V2DocumentMinAggregateInputType = {
+    id?: true
+    vehicleNo?: true
+    folderLink?: true
+    description?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type V2DocumentMaxAggregateInputType = {
+    id?: true
+    vehicleNo?: true
+    folderLink?: true
+    description?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type V2DocumentCountAggregateInputType = {
+    id?: true
+    vehicleNo?: true
+    folderLink?: true
+    description?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type V2DocumentAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which V2Document to aggregate.
+     */
+    where?: V2DocumentWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of V2Documents to fetch.
+     */
+    orderBy?: V2DocumentOrderByWithRelationInput | V2DocumentOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: V2DocumentWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` V2Documents from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` V2Documents.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned V2Documents
+    **/
+    _count?: true | V2DocumentCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: V2DocumentMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: V2DocumentMaxAggregateInputType
+  }
+
+  export type GetV2DocumentAggregateType<T extends V2DocumentAggregateArgs> = {
+        [P in keyof T & keyof AggregateV2Document]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateV2Document[P]>
+      : GetScalarType<T[P], AggregateV2Document[P]>
+  }
+
+
+
+
+  export type V2DocumentGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: V2DocumentWhereInput
+    orderBy?: V2DocumentOrderByWithAggregationInput | V2DocumentOrderByWithAggregationInput[]
+    by: V2DocumentScalarFieldEnum[] | V2DocumentScalarFieldEnum
+    having?: V2DocumentScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: V2DocumentCountAggregateInputType | true
+    _min?: V2DocumentMinAggregateInputType
+    _max?: V2DocumentMaxAggregateInputType
+  }
+
+  export type V2DocumentGroupByOutputType = {
+    id: string
+    vehicleNo: string
+    folderLink: string
+    description: string | null
+    createdAt: Date
+    updatedAt: Date
+    _count: V2DocumentCountAggregateOutputType | null
+    _min: V2DocumentMinAggregateOutputType | null
+    _max: V2DocumentMaxAggregateOutputType | null
+  }
+
+  type GetV2DocumentGroupByPayload<T extends V2DocumentGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<V2DocumentGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof V2DocumentGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], V2DocumentGroupByOutputType[P]>
+            : GetScalarType<T[P], V2DocumentGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type V2DocumentSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    vehicleNo?: boolean
+    folderLink?: boolean
+    description?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["v2Document"]>
+
+  export type V2DocumentSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    vehicleNo?: boolean
+    folderLink?: boolean
+    description?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["v2Document"]>
+
+  export type V2DocumentSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    vehicleNo?: boolean
+    folderLink?: boolean
+    description?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["v2Document"]>
+
+  export type V2DocumentSelectScalar = {
+    id?: boolean
+    vehicleNo?: boolean
+    folderLink?: boolean
+    description?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type V2DocumentOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "vehicleNo" | "folderLink" | "description" | "createdAt" | "updatedAt", ExtArgs["result"]["v2Document"]>
+
+  export type $V2DocumentPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "V2Document"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      vehicleNo: string
+      folderLink: string
+      description: string | null
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["v2Document"]>
+    composites: {}
+  }
+
+  type V2DocumentGetPayload<S extends boolean | null | undefined | V2DocumentDefaultArgs> = $Result.GetResult<Prisma.$V2DocumentPayload, S>
+
+  type V2DocumentCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<V2DocumentFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: V2DocumentCountAggregateInputType | true
+    }
+
+  export interface V2DocumentDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['V2Document'], meta: { name: 'V2Document' } }
+    /**
+     * Find zero or one V2Document that matches the filter.
+     * @param {V2DocumentFindUniqueArgs} args - Arguments to find a V2Document
+     * @example
+     * // Get one V2Document
+     * const v2Document = await prisma.v2Document.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends V2DocumentFindUniqueArgs>(args: SelectSubset<T, V2DocumentFindUniqueArgs<ExtArgs>>): Prisma__V2DocumentClient<$Result.GetResult<Prisma.$V2DocumentPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one V2Document that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {V2DocumentFindUniqueOrThrowArgs} args - Arguments to find a V2Document
+     * @example
+     * // Get one V2Document
+     * const v2Document = await prisma.v2Document.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends V2DocumentFindUniqueOrThrowArgs>(args: SelectSubset<T, V2DocumentFindUniqueOrThrowArgs<ExtArgs>>): Prisma__V2DocumentClient<$Result.GetResult<Prisma.$V2DocumentPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first V2Document that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {V2DocumentFindFirstArgs} args - Arguments to find a V2Document
+     * @example
+     * // Get one V2Document
+     * const v2Document = await prisma.v2Document.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends V2DocumentFindFirstArgs>(args?: SelectSubset<T, V2DocumentFindFirstArgs<ExtArgs>>): Prisma__V2DocumentClient<$Result.GetResult<Prisma.$V2DocumentPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first V2Document that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {V2DocumentFindFirstOrThrowArgs} args - Arguments to find a V2Document
+     * @example
+     * // Get one V2Document
+     * const v2Document = await prisma.v2Document.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends V2DocumentFindFirstOrThrowArgs>(args?: SelectSubset<T, V2DocumentFindFirstOrThrowArgs<ExtArgs>>): Prisma__V2DocumentClient<$Result.GetResult<Prisma.$V2DocumentPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more V2Documents that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {V2DocumentFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all V2Documents
+     * const v2Documents = await prisma.v2Document.findMany()
+     * 
+     * // Get first 10 V2Documents
+     * const v2Documents = await prisma.v2Document.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const v2DocumentWithIdOnly = await prisma.v2Document.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends V2DocumentFindManyArgs>(args?: SelectSubset<T, V2DocumentFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$V2DocumentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a V2Document.
+     * @param {V2DocumentCreateArgs} args - Arguments to create a V2Document.
+     * @example
+     * // Create one V2Document
+     * const V2Document = await prisma.v2Document.create({
+     *   data: {
+     *     // ... data to create a V2Document
+     *   }
+     * })
+     * 
+     */
+    create<T extends V2DocumentCreateArgs>(args: SelectSubset<T, V2DocumentCreateArgs<ExtArgs>>): Prisma__V2DocumentClient<$Result.GetResult<Prisma.$V2DocumentPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many V2Documents.
+     * @param {V2DocumentCreateManyArgs} args - Arguments to create many V2Documents.
+     * @example
+     * // Create many V2Documents
+     * const v2Document = await prisma.v2Document.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends V2DocumentCreateManyArgs>(args?: SelectSubset<T, V2DocumentCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many V2Documents and returns the data saved in the database.
+     * @param {V2DocumentCreateManyAndReturnArgs} args - Arguments to create many V2Documents.
+     * @example
+     * // Create many V2Documents
+     * const v2Document = await prisma.v2Document.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many V2Documents and only return the `id`
+     * const v2DocumentWithIdOnly = await prisma.v2Document.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends V2DocumentCreateManyAndReturnArgs>(args?: SelectSubset<T, V2DocumentCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$V2DocumentPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a V2Document.
+     * @param {V2DocumentDeleteArgs} args - Arguments to delete one V2Document.
+     * @example
+     * // Delete one V2Document
+     * const V2Document = await prisma.v2Document.delete({
+     *   where: {
+     *     // ... filter to delete one V2Document
+     *   }
+     * })
+     * 
+     */
+    delete<T extends V2DocumentDeleteArgs>(args: SelectSubset<T, V2DocumentDeleteArgs<ExtArgs>>): Prisma__V2DocumentClient<$Result.GetResult<Prisma.$V2DocumentPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one V2Document.
+     * @param {V2DocumentUpdateArgs} args - Arguments to update one V2Document.
+     * @example
+     * // Update one V2Document
+     * const v2Document = await prisma.v2Document.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends V2DocumentUpdateArgs>(args: SelectSubset<T, V2DocumentUpdateArgs<ExtArgs>>): Prisma__V2DocumentClient<$Result.GetResult<Prisma.$V2DocumentPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more V2Documents.
+     * @param {V2DocumentDeleteManyArgs} args - Arguments to filter V2Documents to delete.
+     * @example
+     * // Delete a few V2Documents
+     * const { count } = await prisma.v2Document.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends V2DocumentDeleteManyArgs>(args?: SelectSubset<T, V2DocumentDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more V2Documents.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {V2DocumentUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many V2Documents
+     * const v2Document = await prisma.v2Document.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends V2DocumentUpdateManyArgs>(args: SelectSubset<T, V2DocumentUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more V2Documents and returns the data updated in the database.
+     * @param {V2DocumentUpdateManyAndReturnArgs} args - Arguments to update many V2Documents.
+     * @example
+     * // Update many V2Documents
+     * const v2Document = await prisma.v2Document.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more V2Documents and only return the `id`
+     * const v2DocumentWithIdOnly = await prisma.v2Document.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends V2DocumentUpdateManyAndReturnArgs>(args: SelectSubset<T, V2DocumentUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$V2DocumentPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one V2Document.
+     * @param {V2DocumentUpsertArgs} args - Arguments to update or create a V2Document.
+     * @example
+     * // Update or create a V2Document
+     * const v2Document = await prisma.v2Document.upsert({
+     *   create: {
+     *     // ... data to create a V2Document
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the V2Document we want to update
+     *   }
+     * })
+     */
+    upsert<T extends V2DocumentUpsertArgs>(args: SelectSubset<T, V2DocumentUpsertArgs<ExtArgs>>): Prisma__V2DocumentClient<$Result.GetResult<Prisma.$V2DocumentPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of V2Documents.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {V2DocumentCountArgs} args - Arguments to filter V2Documents to count.
+     * @example
+     * // Count the number of V2Documents
+     * const count = await prisma.v2Document.count({
+     *   where: {
+     *     // ... the filter for the V2Documents we want to count
+     *   }
+     * })
+    **/
+    count<T extends V2DocumentCountArgs>(
+      args?: Subset<T, V2DocumentCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], V2DocumentCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a V2Document.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {V2DocumentAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends V2DocumentAggregateArgs>(args: Subset<T, V2DocumentAggregateArgs>): Prisma.PrismaPromise<GetV2DocumentAggregateType<T>>
+
+    /**
+     * Group by V2Document.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {V2DocumentGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends V2DocumentGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: V2DocumentGroupByArgs['orderBy'] }
+        : { orderBy?: V2DocumentGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, V2DocumentGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetV2DocumentGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the V2Document model
+   */
+  readonly fields: V2DocumentFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for V2Document.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__V2DocumentClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the V2Document model
+   */
+  interface V2DocumentFieldRefs {
+    readonly id: FieldRef<"V2Document", 'String'>
+    readonly vehicleNo: FieldRef<"V2Document", 'String'>
+    readonly folderLink: FieldRef<"V2Document", 'String'>
+    readonly description: FieldRef<"V2Document", 'String'>
+    readonly createdAt: FieldRef<"V2Document", 'DateTime'>
+    readonly updatedAt: FieldRef<"V2Document", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * V2Document findUnique
+   */
+  export type V2DocumentFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the V2Document
+     */
+    select?: V2DocumentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the V2Document
+     */
+    omit?: V2DocumentOmit<ExtArgs> | null
+    /**
+     * Filter, which V2Document to fetch.
+     */
+    where: V2DocumentWhereUniqueInput
+  }
+
+  /**
+   * V2Document findUniqueOrThrow
+   */
+  export type V2DocumentFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the V2Document
+     */
+    select?: V2DocumentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the V2Document
+     */
+    omit?: V2DocumentOmit<ExtArgs> | null
+    /**
+     * Filter, which V2Document to fetch.
+     */
+    where: V2DocumentWhereUniqueInput
+  }
+
+  /**
+   * V2Document findFirst
+   */
+  export type V2DocumentFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the V2Document
+     */
+    select?: V2DocumentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the V2Document
+     */
+    omit?: V2DocumentOmit<ExtArgs> | null
+    /**
+     * Filter, which V2Document to fetch.
+     */
+    where?: V2DocumentWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of V2Documents to fetch.
+     */
+    orderBy?: V2DocumentOrderByWithRelationInput | V2DocumentOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for V2Documents.
+     */
+    cursor?: V2DocumentWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` V2Documents from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` V2Documents.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of V2Documents.
+     */
+    distinct?: V2DocumentScalarFieldEnum | V2DocumentScalarFieldEnum[]
+  }
+
+  /**
+   * V2Document findFirstOrThrow
+   */
+  export type V2DocumentFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the V2Document
+     */
+    select?: V2DocumentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the V2Document
+     */
+    omit?: V2DocumentOmit<ExtArgs> | null
+    /**
+     * Filter, which V2Document to fetch.
+     */
+    where?: V2DocumentWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of V2Documents to fetch.
+     */
+    orderBy?: V2DocumentOrderByWithRelationInput | V2DocumentOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for V2Documents.
+     */
+    cursor?: V2DocumentWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` V2Documents from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` V2Documents.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of V2Documents.
+     */
+    distinct?: V2DocumentScalarFieldEnum | V2DocumentScalarFieldEnum[]
+  }
+
+  /**
+   * V2Document findMany
+   */
+  export type V2DocumentFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the V2Document
+     */
+    select?: V2DocumentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the V2Document
+     */
+    omit?: V2DocumentOmit<ExtArgs> | null
+    /**
+     * Filter, which V2Documents to fetch.
+     */
+    where?: V2DocumentWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of V2Documents to fetch.
+     */
+    orderBy?: V2DocumentOrderByWithRelationInput | V2DocumentOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing V2Documents.
+     */
+    cursor?: V2DocumentWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` V2Documents from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` V2Documents.
+     */
+    skip?: number
+    distinct?: V2DocumentScalarFieldEnum | V2DocumentScalarFieldEnum[]
+  }
+
+  /**
+   * V2Document create
+   */
+  export type V2DocumentCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the V2Document
+     */
+    select?: V2DocumentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the V2Document
+     */
+    omit?: V2DocumentOmit<ExtArgs> | null
+    /**
+     * The data needed to create a V2Document.
+     */
+    data: XOR<V2DocumentCreateInput, V2DocumentUncheckedCreateInput>
+  }
+
+  /**
+   * V2Document createMany
+   */
+  export type V2DocumentCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many V2Documents.
+     */
+    data: V2DocumentCreateManyInput | V2DocumentCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * V2Document createManyAndReturn
+   */
+  export type V2DocumentCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the V2Document
+     */
+    select?: V2DocumentSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the V2Document
+     */
+    omit?: V2DocumentOmit<ExtArgs> | null
+    /**
+     * The data used to create many V2Documents.
+     */
+    data: V2DocumentCreateManyInput | V2DocumentCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * V2Document update
+   */
+  export type V2DocumentUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the V2Document
+     */
+    select?: V2DocumentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the V2Document
+     */
+    omit?: V2DocumentOmit<ExtArgs> | null
+    /**
+     * The data needed to update a V2Document.
+     */
+    data: XOR<V2DocumentUpdateInput, V2DocumentUncheckedUpdateInput>
+    /**
+     * Choose, which V2Document to update.
+     */
+    where: V2DocumentWhereUniqueInput
+  }
+
+  /**
+   * V2Document updateMany
+   */
+  export type V2DocumentUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update V2Documents.
+     */
+    data: XOR<V2DocumentUpdateManyMutationInput, V2DocumentUncheckedUpdateManyInput>
+    /**
+     * Filter which V2Documents to update
+     */
+    where?: V2DocumentWhereInput
+    /**
+     * Limit how many V2Documents to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * V2Document updateManyAndReturn
+   */
+  export type V2DocumentUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the V2Document
+     */
+    select?: V2DocumentSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the V2Document
+     */
+    omit?: V2DocumentOmit<ExtArgs> | null
+    /**
+     * The data used to update V2Documents.
+     */
+    data: XOR<V2DocumentUpdateManyMutationInput, V2DocumentUncheckedUpdateManyInput>
+    /**
+     * Filter which V2Documents to update
+     */
+    where?: V2DocumentWhereInput
+    /**
+     * Limit how many V2Documents to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * V2Document upsert
+   */
+  export type V2DocumentUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the V2Document
+     */
+    select?: V2DocumentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the V2Document
+     */
+    omit?: V2DocumentOmit<ExtArgs> | null
+    /**
+     * The filter to search for the V2Document to update in case it exists.
+     */
+    where: V2DocumentWhereUniqueInput
+    /**
+     * In case the V2Document found by the `where` argument doesn't exist, create a new V2Document with this data.
+     */
+    create: XOR<V2DocumentCreateInput, V2DocumentUncheckedCreateInput>
+    /**
+     * In case the V2Document was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<V2DocumentUpdateInput, V2DocumentUncheckedUpdateInput>
+  }
+
+  /**
+   * V2Document delete
+   */
+  export type V2DocumentDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the V2Document
+     */
+    select?: V2DocumentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the V2Document
+     */
+    omit?: V2DocumentOmit<ExtArgs> | null
+    /**
+     * Filter which V2Document to delete.
+     */
+    where: V2DocumentWhereUniqueInput
+  }
+
+  /**
+   * V2Document deleteMany
+   */
+  export type V2DocumentDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which V2Documents to delete
+     */
+    where?: V2DocumentWhereInput
+    /**
+     * Limit how many V2Documents to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * V2Document without action
+   */
+  export type V2DocumentDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the V2Document
+     */
+    select?: V2DocumentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the V2Document
+     */
+    omit?: V2DocumentOmit<ExtArgs> | null
+  }
+
+
+  /**
+   * Model V2User
+   */
+
+  export type AggregateV2User = {
+    _count: V2UserCountAggregateOutputType | null
+    _min: V2UserMinAggregateOutputType | null
+    _max: V2UserMaxAggregateOutputType | null
+  }
+
+  export type V2UserMinAggregateOutputType = {
+    id: string | null
+    username: string | null
+    password: string | null
+    deviceId: string | null
+    status: $Enums.UserStatus | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type V2UserMaxAggregateOutputType = {
+    id: string | null
+    username: string | null
+    password: string | null
+    deviceId: string | null
+    status: $Enums.UserStatus | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type V2UserCountAggregateOutputType = {
+    id: number
+    username: number
+    password: number
+    deviceId: number
+    status: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type V2UserMinAggregateInputType = {
+    id?: true
+    username?: true
+    password?: true
+    deviceId?: true
+    status?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type V2UserMaxAggregateInputType = {
+    id?: true
+    username?: true
+    password?: true
+    deviceId?: true
+    status?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type V2UserCountAggregateInputType = {
+    id?: true
+    username?: true
+    password?: true
+    deviceId?: true
+    status?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type V2UserAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which V2User to aggregate.
+     */
+    where?: V2UserWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of V2Users to fetch.
+     */
+    orderBy?: V2UserOrderByWithRelationInput | V2UserOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: V2UserWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` V2Users from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` V2Users.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned V2Users
+    **/
+    _count?: true | V2UserCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: V2UserMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: V2UserMaxAggregateInputType
+  }
+
+  export type GetV2UserAggregateType<T extends V2UserAggregateArgs> = {
+        [P in keyof T & keyof AggregateV2User]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateV2User[P]>
+      : GetScalarType<T[P], AggregateV2User[P]>
+  }
+
+
+
+
+  export type V2UserGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: V2UserWhereInput
+    orderBy?: V2UserOrderByWithAggregationInput | V2UserOrderByWithAggregationInput[]
+    by: V2UserScalarFieldEnum[] | V2UserScalarFieldEnum
+    having?: V2UserScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: V2UserCountAggregateInputType | true
+    _min?: V2UserMinAggregateInputType
+    _max?: V2UserMaxAggregateInputType
+  }
+
+  export type V2UserGroupByOutputType = {
+    id: string
+    username: string
+    password: string
+    deviceId: string | null
+    status: $Enums.UserStatus
+    createdAt: Date
+    updatedAt: Date
+    _count: V2UserCountAggregateOutputType | null
+    _min: V2UserMinAggregateOutputType | null
+    _max: V2UserMaxAggregateOutputType | null
+  }
+
+  type GetV2UserGroupByPayload<T extends V2UserGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<V2UserGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof V2UserGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], V2UserGroupByOutputType[P]>
+            : GetScalarType<T[P], V2UserGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type V2UserSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    username?: boolean
+    password?: boolean
+    deviceId?: boolean
+    status?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["v2User"]>
+
+  export type V2UserSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    username?: boolean
+    password?: boolean
+    deviceId?: boolean
+    status?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["v2User"]>
+
+  export type V2UserSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    username?: boolean
+    password?: boolean
+    deviceId?: boolean
+    status?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["v2User"]>
+
+  export type V2UserSelectScalar = {
+    id?: boolean
+    username?: boolean
+    password?: boolean
+    deviceId?: boolean
+    status?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type V2UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "username" | "password" | "deviceId" | "status" | "createdAt" | "updatedAt", ExtArgs["result"]["v2User"]>
+
+  export type $V2UserPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "V2User"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      username: string
+      password: string
+      deviceId: string | null
+      status: $Enums.UserStatus
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["v2User"]>
+    composites: {}
+  }
+
+  type V2UserGetPayload<S extends boolean | null | undefined | V2UserDefaultArgs> = $Result.GetResult<Prisma.$V2UserPayload, S>
+
+  type V2UserCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<V2UserFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: V2UserCountAggregateInputType | true
+    }
+
+  export interface V2UserDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['V2User'], meta: { name: 'V2User' } }
+    /**
+     * Find zero or one V2User that matches the filter.
+     * @param {V2UserFindUniqueArgs} args - Arguments to find a V2User
+     * @example
+     * // Get one V2User
+     * const v2User = await prisma.v2User.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends V2UserFindUniqueArgs>(args: SelectSubset<T, V2UserFindUniqueArgs<ExtArgs>>): Prisma__V2UserClient<$Result.GetResult<Prisma.$V2UserPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one V2User that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {V2UserFindUniqueOrThrowArgs} args - Arguments to find a V2User
+     * @example
+     * // Get one V2User
+     * const v2User = await prisma.v2User.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends V2UserFindUniqueOrThrowArgs>(args: SelectSubset<T, V2UserFindUniqueOrThrowArgs<ExtArgs>>): Prisma__V2UserClient<$Result.GetResult<Prisma.$V2UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first V2User that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {V2UserFindFirstArgs} args - Arguments to find a V2User
+     * @example
+     * // Get one V2User
+     * const v2User = await prisma.v2User.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends V2UserFindFirstArgs>(args?: SelectSubset<T, V2UserFindFirstArgs<ExtArgs>>): Prisma__V2UserClient<$Result.GetResult<Prisma.$V2UserPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first V2User that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {V2UserFindFirstOrThrowArgs} args - Arguments to find a V2User
+     * @example
+     * // Get one V2User
+     * const v2User = await prisma.v2User.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends V2UserFindFirstOrThrowArgs>(args?: SelectSubset<T, V2UserFindFirstOrThrowArgs<ExtArgs>>): Prisma__V2UserClient<$Result.GetResult<Prisma.$V2UserPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more V2Users that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {V2UserFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all V2Users
+     * const v2Users = await prisma.v2User.findMany()
+     * 
+     * // Get first 10 V2Users
+     * const v2Users = await prisma.v2User.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const v2UserWithIdOnly = await prisma.v2User.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends V2UserFindManyArgs>(args?: SelectSubset<T, V2UserFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$V2UserPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a V2User.
+     * @param {V2UserCreateArgs} args - Arguments to create a V2User.
+     * @example
+     * // Create one V2User
+     * const V2User = await prisma.v2User.create({
+     *   data: {
+     *     // ... data to create a V2User
+     *   }
+     * })
+     * 
+     */
+    create<T extends V2UserCreateArgs>(args: SelectSubset<T, V2UserCreateArgs<ExtArgs>>): Prisma__V2UserClient<$Result.GetResult<Prisma.$V2UserPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many V2Users.
+     * @param {V2UserCreateManyArgs} args - Arguments to create many V2Users.
+     * @example
+     * // Create many V2Users
+     * const v2User = await prisma.v2User.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends V2UserCreateManyArgs>(args?: SelectSubset<T, V2UserCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many V2Users and returns the data saved in the database.
+     * @param {V2UserCreateManyAndReturnArgs} args - Arguments to create many V2Users.
+     * @example
+     * // Create many V2Users
+     * const v2User = await prisma.v2User.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many V2Users and only return the `id`
+     * const v2UserWithIdOnly = await prisma.v2User.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends V2UserCreateManyAndReturnArgs>(args?: SelectSubset<T, V2UserCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$V2UserPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a V2User.
+     * @param {V2UserDeleteArgs} args - Arguments to delete one V2User.
+     * @example
+     * // Delete one V2User
+     * const V2User = await prisma.v2User.delete({
+     *   where: {
+     *     // ... filter to delete one V2User
+     *   }
+     * })
+     * 
+     */
+    delete<T extends V2UserDeleteArgs>(args: SelectSubset<T, V2UserDeleteArgs<ExtArgs>>): Prisma__V2UserClient<$Result.GetResult<Prisma.$V2UserPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one V2User.
+     * @param {V2UserUpdateArgs} args - Arguments to update one V2User.
+     * @example
+     * // Update one V2User
+     * const v2User = await prisma.v2User.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends V2UserUpdateArgs>(args: SelectSubset<T, V2UserUpdateArgs<ExtArgs>>): Prisma__V2UserClient<$Result.GetResult<Prisma.$V2UserPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more V2Users.
+     * @param {V2UserDeleteManyArgs} args - Arguments to filter V2Users to delete.
+     * @example
+     * // Delete a few V2Users
+     * const { count } = await prisma.v2User.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends V2UserDeleteManyArgs>(args?: SelectSubset<T, V2UserDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more V2Users.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {V2UserUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many V2Users
+     * const v2User = await prisma.v2User.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends V2UserUpdateManyArgs>(args: SelectSubset<T, V2UserUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more V2Users and returns the data updated in the database.
+     * @param {V2UserUpdateManyAndReturnArgs} args - Arguments to update many V2Users.
+     * @example
+     * // Update many V2Users
+     * const v2User = await prisma.v2User.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more V2Users and only return the `id`
+     * const v2UserWithIdOnly = await prisma.v2User.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends V2UserUpdateManyAndReturnArgs>(args: SelectSubset<T, V2UserUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$V2UserPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one V2User.
+     * @param {V2UserUpsertArgs} args - Arguments to update or create a V2User.
+     * @example
+     * // Update or create a V2User
+     * const v2User = await prisma.v2User.upsert({
+     *   create: {
+     *     // ... data to create a V2User
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the V2User we want to update
+     *   }
+     * })
+     */
+    upsert<T extends V2UserUpsertArgs>(args: SelectSubset<T, V2UserUpsertArgs<ExtArgs>>): Prisma__V2UserClient<$Result.GetResult<Prisma.$V2UserPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of V2Users.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {V2UserCountArgs} args - Arguments to filter V2Users to count.
+     * @example
+     * // Count the number of V2Users
+     * const count = await prisma.v2User.count({
+     *   where: {
+     *     // ... the filter for the V2Users we want to count
+     *   }
+     * })
+    **/
+    count<T extends V2UserCountArgs>(
+      args?: Subset<T, V2UserCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], V2UserCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a V2User.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {V2UserAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends V2UserAggregateArgs>(args: Subset<T, V2UserAggregateArgs>): Prisma.PrismaPromise<GetV2UserAggregateType<T>>
+
+    /**
+     * Group by V2User.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {V2UserGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends V2UserGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: V2UserGroupByArgs['orderBy'] }
+        : { orderBy?: V2UserGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, V2UserGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetV2UserGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the V2User model
+   */
+  readonly fields: V2UserFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for V2User.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__V2UserClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the V2User model
+   */
+  interface V2UserFieldRefs {
+    readonly id: FieldRef<"V2User", 'String'>
+    readonly username: FieldRef<"V2User", 'String'>
+    readonly password: FieldRef<"V2User", 'String'>
+    readonly deviceId: FieldRef<"V2User", 'String'>
+    readonly status: FieldRef<"V2User", 'UserStatus'>
+    readonly createdAt: FieldRef<"V2User", 'DateTime'>
+    readonly updatedAt: FieldRef<"V2User", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * V2User findUnique
+   */
+  export type V2UserFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the V2User
+     */
+    select?: V2UserSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the V2User
+     */
+    omit?: V2UserOmit<ExtArgs> | null
+    /**
+     * Filter, which V2User to fetch.
+     */
+    where: V2UserWhereUniqueInput
+  }
+
+  /**
+   * V2User findUniqueOrThrow
+   */
+  export type V2UserFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the V2User
+     */
+    select?: V2UserSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the V2User
+     */
+    omit?: V2UserOmit<ExtArgs> | null
+    /**
+     * Filter, which V2User to fetch.
+     */
+    where: V2UserWhereUniqueInput
+  }
+
+  /**
+   * V2User findFirst
+   */
+  export type V2UserFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the V2User
+     */
+    select?: V2UserSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the V2User
+     */
+    omit?: V2UserOmit<ExtArgs> | null
+    /**
+     * Filter, which V2User to fetch.
+     */
+    where?: V2UserWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of V2Users to fetch.
+     */
+    orderBy?: V2UserOrderByWithRelationInput | V2UserOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for V2Users.
+     */
+    cursor?: V2UserWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` V2Users from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` V2Users.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of V2Users.
+     */
+    distinct?: V2UserScalarFieldEnum | V2UserScalarFieldEnum[]
+  }
+
+  /**
+   * V2User findFirstOrThrow
+   */
+  export type V2UserFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the V2User
+     */
+    select?: V2UserSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the V2User
+     */
+    omit?: V2UserOmit<ExtArgs> | null
+    /**
+     * Filter, which V2User to fetch.
+     */
+    where?: V2UserWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of V2Users to fetch.
+     */
+    orderBy?: V2UserOrderByWithRelationInput | V2UserOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for V2Users.
+     */
+    cursor?: V2UserWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` V2Users from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` V2Users.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of V2Users.
+     */
+    distinct?: V2UserScalarFieldEnum | V2UserScalarFieldEnum[]
+  }
+
+  /**
+   * V2User findMany
+   */
+  export type V2UserFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the V2User
+     */
+    select?: V2UserSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the V2User
+     */
+    omit?: V2UserOmit<ExtArgs> | null
+    /**
+     * Filter, which V2Users to fetch.
+     */
+    where?: V2UserWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of V2Users to fetch.
+     */
+    orderBy?: V2UserOrderByWithRelationInput | V2UserOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing V2Users.
+     */
+    cursor?: V2UserWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` V2Users from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` V2Users.
+     */
+    skip?: number
+    distinct?: V2UserScalarFieldEnum | V2UserScalarFieldEnum[]
+  }
+
+  /**
+   * V2User create
+   */
+  export type V2UserCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the V2User
+     */
+    select?: V2UserSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the V2User
+     */
+    omit?: V2UserOmit<ExtArgs> | null
+    /**
+     * The data needed to create a V2User.
+     */
+    data: XOR<V2UserCreateInput, V2UserUncheckedCreateInput>
+  }
+
+  /**
+   * V2User createMany
+   */
+  export type V2UserCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many V2Users.
+     */
+    data: V2UserCreateManyInput | V2UserCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * V2User createManyAndReturn
+   */
+  export type V2UserCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the V2User
+     */
+    select?: V2UserSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the V2User
+     */
+    omit?: V2UserOmit<ExtArgs> | null
+    /**
+     * The data used to create many V2Users.
+     */
+    data: V2UserCreateManyInput | V2UserCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * V2User update
+   */
+  export type V2UserUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the V2User
+     */
+    select?: V2UserSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the V2User
+     */
+    omit?: V2UserOmit<ExtArgs> | null
+    /**
+     * The data needed to update a V2User.
+     */
+    data: XOR<V2UserUpdateInput, V2UserUncheckedUpdateInput>
+    /**
+     * Choose, which V2User to update.
+     */
+    where: V2UserWhereUniqueInput
+  }
+
+  /**
+   * V2User updateMany
+   */
+  export type V2UserUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update V2Users.
+     */
+    data: XOR<V2UserUpdateManyMutationInput, V2UserUncheckedUpdateManyInput>
+    /**
+     * Filter which V2Users to update
+     */
+    where?: V2UserWhereInput
+    /**
+     * Limit how many V2Users to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * V2User updateManyAndReturn
+   */
+  export type V2UserUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the V2User
+     */
+    select?: V2UserSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the V2User
+     */
+    omit?: V2UserOmit<ExtArgs> | null
+    /**
+     * The data used to update V2Users.
+     */
+    data: XOR<V2UserUpdateManyMutationInput, V2UserUncheckedUpdateManyInput>
+    /**
+     * Filter which V2Users to update
+     */
+    where?: V2UserWhereInput
+    /**
+     * Limit how many V2Users to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * V2User upsert
+   */
+  export type V2UserUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the V2User
+     */
+    select?: V2UserSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the V2User
+     */
+    omit?: V2UserOmit<ExtArgs> | null
+    /**
+     * The filter to search for the V2User to update in case it exists.
+     */
+    where: V2UserWhereUniqueInput
+    /**
+     * In case the V2User found by the `where` argument doesn't exist, create a new V2User with this data.
+     */
+    create: XOR<V2UserCreateInput, V2UserUncheckedCreateInput>
+    /**
+     * In case the V2User was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<V2UserUpdateInput, V2UserUncheckedUpdateInput>
+  }
+
+  /**
+   * V2User delete
+   */
+  export type V2UserDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the V2User
+     */
+    select?: V2UserSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the V2User
+     */
+    omit?: V2UserOmit<ExtArgs> | null
+    /**
+     * Filter which V2User to delete.
+     */
+    where: V2UserWhereUniqueInput
+  }
+
+  /**
+   * V2User deleteMany
+   */
+  export type V2UserDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which V2Users to delete
+     */
+    where?: V2UserWhereInput
+    /**
+     * Limit how many V2Users to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * V2User without action
+   */
+  export type V2UserDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the V2User
+     */
+    select?: V2UserSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the V2User
+     */
+    omit?: V2UserOmit<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -5667,6 +7895,31 @@ export namespace Prisma {
   };
 
   export type BusDocumentScalarFieldEnum = (typeof BusDocumentScalarFieldEnum)[keyof typeof BusDocumentScalarFieldEnum]
+
+
+  export const V2DocumentScalarFieldEnum: {
+    id: 'id',
+    vehicleNo: 'vehicleNo',
+    folderLink: 'folderLink',
+    description: 'description',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type V2DocumentScalarFieldEnum = (typeof V2DocumentScalarFieldEnum)[keyof typeof V2DocumentScalarFieldEnum]
+
+
+  export const V2UserScalarFieldEnum: {
+    id: 'id',
+    username: 'username',
+    password: 'password',
+    deviceId: 'deviceId',
+    status: 'status',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type V2UserScalarFieldEnum = (typeof V2UserScalarFieldEnum)[keyof typeof V2UserScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -5744,6 +7997,20 @@ export namespace Prisma {
    * Reference to a field of type 'DateTime[]'
    */
   export type ListDateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'UserStatus'
+   */
+  export type EnumUserStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'UserStatus'>
+    
+
+
+  /**
+   * Reference to a field of type 'UserStatus[]'
+   */
+  export type ListEnumUserStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'UserStatus[]'>
     
 
 
@@ -6031,6 +8298,125 @@ export namespace Prisma {
     fileUrl?: StringWithAggregatesFilter<"BusDocument"> | string
     remarks?: StringNullableWithAggregatesFilter<"BusDocument"> | string | null
     uploadedAt?: DateTimeWithAggregatesFilter<"BusDocument"> | Date | string
+  }
+
+  export type V2DocumentWhereInput = {
+    AND?: V2DocumentWhereInput | V2DocumentWhereInput[]
+    OR?: V2DocumentWhereInput[]
+    NOT?: V2DocumentWhereInput | V2DocumentWhereInput[]
+    id?: StringFilter<"V2Document"> | string
+    vehicleNo?: StringFilter<"V2Document"> | string
+    folderLink?: StringFilter<"V2Document"> | string
+    description?: StringNullableFilter<"V2Document"> | string | null
+    createdAt?: DateTimeFilter<"V2Document"> | Date | string
+    updatedAt?: DateTimeFilter<"V2Document"> | Date | string
+  }
+
+  export type V2DocumentOrderByWithRelationInput = {
+    id?: SortOrder
+    vehicleNo?: SortOrder
+    folderLink?: SortOrder
+    description?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type V2DocumentWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    vehicleNo?: string
+    AND?: V2DocumentWhereInput | V2DocumentWhereInput[]
+    OR?: V2DocumentWhereInput[]
+    NOT?: V2DocumentWhereInput | V2DocumentWhereInput[]
+    folderLink?: StringFilter<"V2Document"> | string
+    description?: StringNullableFilter<"V2Document"> | string | null
+    createdAt?: DateTimeFilter<"V2Document"> | Date | string
+    updatedAt?: DateTimeFilter<"V2Document"> | Date | string
+  }, "id" | "vehicleNo">
+
+  export type V2DocumentOrderByWithAggregationInput = {
+    id?: SortOrder
+    vehicleNo?: SortOrder
+    folderLink?: SortOrder
+    description?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: V2DocumentCountOrderByAggregateInput
+    _max?: V2DocumentMaxOrderByAggregateInput
+    _min?: V2DocumentMinOrderByAggregateInput
+  }
+
+  export type V2DocumentScalarWhereWithAggregatesInput = {
+    AND?: V2DocumentScalarWhereWithAggregatesInput | V2DocumentScalarWhereWithAggregatesInput[]
+    OR?: V2DocumentScalarWhereWithAggregatesInput[]
+    NOT?: V2DocumentScalarWhereWithAggregatesInput | V2DocumentScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"V2Document"> | string
+    vehicleNo?: StringWithAggregatesFilter<"V2Document"> | string
+    folderLink?: StringWithAggregatesFilter<"V2Document"> | string
+    description?: StringNullableWithAggregatesFilter<"V2Document"> | string | null
+    createdAt?: DateTimeWithAggregatesFilter<"V2Document"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"V2Document"> | Date | string
+  }
+
+  export type V2UserWhereInput = {
+    AND?: V2UserWhereInput | V2UserWhereInput[]
+    OR?: V2UserWhereInput[]
+    NOT?: V2UserWhereInput | V2UserWhereInput[]
+    id?: StringFilter<"V2User"> | string
+    username?: StringFilter<"V2User"> | string
+    password?: StringFilter<"V2User"> | string
+    deviceId?: StringNullableFilter<"V2User"> | string | null
+    status?: EnumUserStatusFilter<"V2User"> | $Enums.UserStatus
+    createdAt?: DateTimeFilter<"V2User"> | Date | string
+    updatedAt?: DateTimeFilter<"V2User"> | Date | string
+  }
+
+  export type V2UserOrderByWithRelationInput = {
+    id?: SortOrder
+    username?: SortOrder
+    password?: SortOrder
+    deviceId?: SortOrderInput | SortOrder
+    status?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type V2UserWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    username?: string
+    AND?: V2UserWhereInput | V2UserWhereInput[]
+    OR?: V2UserWhereInput[]
+    NOT?: V2UserWhereInput | V2UserWhereInput[]
+    password?: StringFilter<"V2User"> | string
+    deviceId?: StringNullableFilter<"V2User"> | string | null
+    status?: EnumUserStatusFilter<"V2User"> | $Enums.UserStatus
+    createdAt?: DateTimeFilter<"V2User"> | Date | string
+    updatedAt?: DateTimeFilter<"V2User"> | Date | string
+  }, "id" | "username">
+
+  export type V2UserOrderByWithAggregationInput = {
+    id?: SortOrder
+    username?: SortOrder
+    password?: SortOrder
+    deviceId?: SortOrderInput | SortOrder
+    status?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: V2UserCountOrderByAggregateInput
+    _max?: V2UserMaxOrderByAggregateInput
+    _min?: V2UserMinOrderByAggregateInput
+  }
+
+  export type V2UserScalarWhereWithAggregatesInput = {
+    AND?: V2UserScalarWhereWithAggregatesInput | V2UserScalarWhereWithAggregatesInput[]
+    OR?: V2UserScalarWhereWithAggregatesInput[]
+    NOT?: V2UserScalarWhereWithAggregatesInput | V2UserScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"V2User"> | string
+    username?: StringWithAggregatesFilter<"V2User"> | string
+    password?: StringWithAggregatesFilter<"V2User"> | string
+    deviceId?: StringNullableWithAggregatesFilter<"V2User"> | string | null
+    status?: EnumUserStatusWithAggregatesFilter<"V2User"> | $Enums.UserStatus
+    createdAt?: DateTimeWithAggregatesFilter<"V2User"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"V2User"> | Date | string
   }
 
   export type UserCreateInput = {
@@ -6321,6 +8707,139 @@ export namespace Prisma {
     fileUrl?: StringFieldUpdateOperationsInput | string
     remarks?: NullableStringFieldUpdateOperationsInput | string | null
     uploadedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type V2DocumentCreateInput = {
+    id?: string
+    vehicleNo: string
+    folderLink: string
+    description?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type V2DocumentUncheckedCreateInput = {
+    id?: string
+    vehicleNo: string
+    folderLink: string
+    description?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type V2DocumentUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    vehicleNo?: StringFieldUpdateOperationsInput | string
+    folderLink?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type V2DocumentUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    vehicleNo?: StringFieldUpdateOperationsInput | string
+    folderLink?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type V2DocumentCreateManyInput = {
+    id?: string
+    vehicleNo: string
+    folderLink: string
+    description?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type V2DocumentUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    vehicleNo?: StringFieldUpdateOperationsInput | string
+    folderLink?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type V2DocumentUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    vehicleNo?: StringFieldUpdateOperationsInput | string
+    folderLink?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type V2UserCreateInput = {
+    id?: string
+    username: string
+    password: string
+    deviceId?: string | null
+    status?: $Enums.UserStatus
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type V2UserUncheckedCreateInput = {
+    id?: string
+    username: string
+    password: string
+    deviceId?: string | null
+    status?: $Enums.UserStatus
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type V2UserUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    username?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    deviceId?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type V2UserUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    username?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    deviceId?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type V2UserCreateManyInput = {
+    id?: string
+    username: string
+    password: string
+    deviceId?: string | null
+    status?: $Enums.UserStatus
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type V2UserUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    username?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    deviceId?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type V2UserUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    username?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    deviceId?: NullableStringFieldUpdateOperationsInput | string | null
+    status?: EnumUserStatusFieldUpdateOperationsInput | $Enums.UserStatus
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type IntFilter<$PrismaModel = never> = {
@@ -6670,6 +9189,80 @@ export namespace Prisma {
     _max?: NestedDateTimeNullableFilter<$PrismaModel>
   }
 
+  export type V2DocumentCountOrderByAggregateInput = {
+    id?: SortOrder
+    vehicleNo?: SortOrder
+    folderLink?: SortOrder
+    description?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type V2DocumentMaxOrderByAggregateInput = {
+    id?: SortOrder
+    vehicleNo?: SortOrder
+    folderLink?: SortOrder
+    description?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type V2DocumentMinOrderByAggregateInput = {
+    id?: SortOrder
+    vehicleNo?: SortOrder
+    folderLink?: SortOrder
+    description?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type EnumUserStatusFilter<$PrismaModel = never> = {
+    equals?: $Enums.UserStatus | EnumUserStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.UserStatus[] | ListEnumUserStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.UserStatus[] | ListEnumUserStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumUserStatusFilter<$PrismaModel> | $Enums.UserStatus
+  }
+
+  export type V2UserCountOrderByAggregateInput = {
+    id?: SortOrder
+    username?: SortOrder
+    password?: SortOrder
+    deviceId?: SortOrder
+    status?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type V2UserMaxOrderByAggregateInput = {
+    id?: SortOrder
+    username?: SortOrder
+    password?: SortOrder
+    deviceId?: SortOrder
+    status?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type V2UserMinOrderByAggregateInput = {
+    id?: SortOrder
+    username?: SortOrder
+    password?: SortOrder
+    deviceId?: SortOrder
+    status?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type EnumUserStatusWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.UserStatus | EnumUserStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.UserStatus[] | ListEnumUserStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.UserStatus[] | ListEnumUserStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumUserStatusWithAggregatesFilter<$PrismaModel> | $Enums.UserStatus
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumUserStatusFilter<$PrismaModel>
+    _max?: NestedEnumUserStatusFilter<$PrismaModel>
+  }
+
   export type StringFieldUpdateOperationsInput = {
     set?: string
   }
@@ -6816,6 +9409,10 @@ export namespace Prisma {
     upsert?: DocumentTypeUpsertWithoutDocumentsInput
     connect?: DocumentTypeWhereUniqueInput
     update?: XOR<XOR<DocumentTypeUpdateToOneWithWhereWithoutDocumentsInput, DocumentTypeUpdateWithoutDocumentsInput>, DocumentTypeUncheckedUpdateWithoutDocumentsInput>
+  }
+
+  export type EnumUserStatusFieldUpdateOperationsInput = {
+    set?: $Enums.UserStatus
   }
 
   export type NestedIntFilter<$PrismaModel = never> = {
@@ -7017,6 +9614,23 @@ export namespace Prisma {
     _count?: NestedIntNullableFilter<$PrismaModel>
     _min?: NestedDateTimeNullableFilter<$PrismaModel>
     _max?: NestedDateTimeNullableFilter<$PrismaModel>
+  }
+
+  export type NestedEnumUserStatusFilter<$PrismaModel = never> = {
+    equals?: $Enums.UserStatus | EnumUserStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.UserStatus[] | ListEnumUserStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.UserStatus[] | ListEnumUserStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumUserStatusFilter<$PrismaModel> | $Enums.UserStatus
+  }
+
+  export type NestedEnumUserStatusWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.UserStatus | EnumUserStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.UserStatus[] | ListEnumUserStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.UserStatus[] | ListEnumUserStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumUserStatusWithAggregatesFilter<$PrismaModel> | $Enums.UserStatus
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumUserStatusFilter<$PrismaModel>
+    _max?: NestedEnumUserStatusFilter<$PrismaModel>
   }
 
   export type BusDocumentCreateWithoutBusInput = {
